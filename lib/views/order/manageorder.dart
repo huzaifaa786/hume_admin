@@ -28,18 +28,20 @@ class _ManageOrderState extends State<ManageOrder> {
           child: Column(
         children: [
           ManageOrderCard(
-                    price: '233 AED',
-                    name: 'ali raxa',
-                    shopname: 'dsfsfsf',
-                    orderno: '23',
-                  ),
-                  SizedBox(height: 5,),
-                    ManageOrderCard(
-                    price: '233 AED',
-                    name: 'ali raxa',
-                    shopname: 'dsfsfsf',
-                    orderno: '23',
-                  ),
+            price: '233 AED',
+            name: 'ali raxa',
+            shopname: 'dsfsfsf',
+            orderno: '23',
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          ManageOrderCard(
+            price: '233 AED',
+            name: 'ali raxa',
+            shopname: 'dsfsfsf',
+            orderno: '23',
+          ),
         ],
       )),
     );

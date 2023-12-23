@@ -8,16 +8,20 @@ class ImageBox extends StatelessWidget {
       {super.key,
       this.onPressed,
       this.ontap,
+      this.image,
       this.width,
       this.text,
       this.height,
       this.fontSize,
+      this.name,
       this.buttonwidth,
       this.buttonheight});
   final onPressed;
   final text;
   final ontap;
   final fontSize;
+  final image;
+  final name;
   final width;
   final height;
   final buttonwidth;
@@ -29,24 +33,25 @@ class ImageBox extends StatelessWidget {
       padding: const EdgeInsets.only(top: 13),
       child: Container(
         padding: const EdgeInsets.all(14.0),
-        width: MediaQuery.of(context).size.width * 0.95,
-        height: MediaQuery.of(context).size.width * 0.4,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           color: hintcolor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(''),
             Column(
               children: [
-                SvgPicture.asset('assets/images/banner.svg'),
+                SvgPicture.asset(image,height: 29,width: 29,),
                 SizedBox(
                   height: 12,
                 ),
                 Text(
-                  'Hello, Rounded Container!',
+                  name,
                   style: TextStyle(
                       color: const Color.fromARGB(255, 119, 110, 110)),
                 ),
