@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class Homecontainer extends StatelessWidget {
@@ -24,10 +22,10 @@ class Homecontainer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 18),
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: 100,
+          // width: MediaQuery.of(context).size.width * 0.9,
+          height: 75,
           padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(40),
               ),
@@ -35,12 +33,15 @@ class Homecontainer extends StatelessWidget {
           child: Row(
             children: [
               icon,
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Text(
                 text,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,color: maincolor),
+                style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: maincolor),
               )
             ],
           ),

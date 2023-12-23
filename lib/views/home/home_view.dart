@@ -58,9 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 40,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconsButton(
-                        height: 60.0,
+                        height: 50.0,
                         imgicon: SvgPicture.asset('assets/images/add.svg'),
                         title: 'Add product',
                         color: hintcolor,
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         imgicon: SvgPicture.asset('assets/images/add.svg'),
                         title: 'Add Home banner',
                         fontSize: 12.0,
-                        height: 60.0,
+                        height: 50.0,
                         color: hintcolor,
                         onPressed: () {
                           Get.toNamed(AppRoutes.addbanner);
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Homecontainer(
-                    icon: SvgPicture.asset('assets/images/sales.svg'),
+                    icon: SvgPicture.asset('assets/images/sales.svg',height: 40,width: 50,),
                     text: 'Sales',
                     onPressed: () {
                       Get.offNamed(AppRoutes.sale);
@@ -96,11 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Get.offNamed(AppRoutes.shop);
                     },
-                    icon: SvgPicture.asset('assets/images/shope.svg'),
+                    icon: SvgPicture.asset('assets/images/shope.svg',height: 40,width: 50,),
                     text: 'Manage Shops',
                   ),
                   Homecontainer(
-                    icon: SvgPicture.asset('assets/images/order.svg'),
+                    icon: SvgPicture.asset('assets/images/order.svg',height: 40,width: 50,),
                     text: 'Manage Orders',
                     onPressed: () {
                       Get.offNamed(AppRoutes.manageorder);
