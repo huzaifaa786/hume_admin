@@ -1,0 +1,117 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:hume_admin/components/home_sizebox.dart';
+import 'package:hume_admin/components/hometopbar.dart';
+import 'package:hume_admin/components/icon_button.dart';
+import 'package:hume_admin/routes/app_routes.dart';
+import 'package:hume_admin/utils/colors.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Background Image at the bottom
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SvgPicture.asset(
+                'assets/images/backgound.svg',
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  Hometopbar(
+                    ontap: () {
+                      Get.toNamed(AppRoutes.notification);
+                    },
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Controlling',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      IconsButton(
+                        height: 60.0,
+                        imgicon: SvgPicture.asset('assets/images/add.svg'),
+                        title: 'Add product',
+                        color: hintcolor,
+                        fontSize: 12.0,
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.addproduct);
+                        },
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      IconsButton(
+                        imgicon: SvgPicture.asset('assets/images/add.svg'),
+                        title: 'Add Home banner',
+                        fontSize: 12.0,
+                        height: 60.0,
+                        color: hintcolor,
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.addbanner);
+                        },
+                        width: MediaQuery.of(context).size.width * 0.5,
+                      )
+                    ],
+                  ),
+                  Homecontainer(
+                    icon: SvgPicture.asset('assets/images/sales.svg'),
+                    text: 'Sales',
+                    onPressed: () {
+                      Get.offNamed(AppRoutes.sale);
+                    },
+                  ),
+                  Homecontainer(
+                    onPressed: () {
+                      Get.offNamed(AppRoutes.shop);
+                    },
+                    icon: SvgPicture.asset('assets/images/shope.svg'),
+                    text: 'Manage Shops',
+                  ),
+                  Homecontainer(
+                    icon: SvgPicture.asset('assets/images/order.svg'),
+                    text: 'Manage Orders',
+                    onPressed: () {
+                      Get.offNamed(AppRoutes.manageorder);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

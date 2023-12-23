@@ -11,11 +11,7 @@ class UiUtilites {
       title,
       message,
       colorText: white,
-      backgroundGradient: const LinearGradient(
-        colors: [Colors.red, Colors.redAccent],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ),
+      backgroundColor: maincolor,
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
     );
@@ -25,18 +21,14 @@ class UiUtilites {
     Get.snackbar(
       title,
       message,
-      backgroundGradient: const LinearGradient(
-        colors: [borderDown, borderTop],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ),
+      backgroundColor: maincolor,
       colorText: white,
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
     );
   }
 
-  static successAlert(context,title) {
+  static successAlert(context, title) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
