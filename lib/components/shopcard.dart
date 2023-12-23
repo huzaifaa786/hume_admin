@@ -1,18 +1,20 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class ShopCard extends StatelessWidget {
-   const ShopCard({super.key, this.name, this.ontap});
+   const ShopCard({super.key, this.name, this.ontap,this.category});
    final name;
    final ontap;
+   final category;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: ontap,
       child: Padding(
         padding: const EdgeInsets.only(top: 12),
@@ -39,18 +41,22 @@ class ShopCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: maincolor),
+                              Container(
+                                constraints: BoxConstraints(maxWidth: Get.width*0.28),
+                                child: Text(
+                                  name,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: maincolor),
+                                ),
                               ),
                               SvgPicture.asset('assets/images/tick.svg')
                             ],
                           ),
                           Text(
-                            'All Shops',
+                            '$category',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,

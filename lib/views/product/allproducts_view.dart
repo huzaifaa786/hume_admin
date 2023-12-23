@@ -35,7 +35,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
               isScrollable: false,
               dividerColor: Colors.transparent,
               indicatorWeight: 0.4,
-              indicatorColor: maincolor,
+              indicatorColor: maincolor.withOpacity(0.8),
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(
@@ -43,9 +43,9 @@ class _AllProductScreenState extends State<AllProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Product',
+                        'Products & sales',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                         ),
                       )
@@ -59,7 +59,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                       Text(
                         'Order History',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -71,127 +71,51 @@ class _AllProductScreenState extends State<AllProductScreen> {
         body: TabBarView(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Row(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.8,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    mainAxisExtent: 290),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Image.asset(
+                        'assets/images/woman.png',
+                        height: 244,
+                      ),
                       Text(
-                        'All Product',
+                        'Wooden Table',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.w700),
+                            fontSize: 14, fontWeight: FontWeight.w600),
                       ),
+                      Text(
+                        'AED 250',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: maincolor),
+                      )
                     ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/man.png'),
-                          Text(
-                            'Wooden Table',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            'AED 250',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: maincolor),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/woman.png'),
-                          Text(
-                            'Wooden Table',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            'AED 250',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: maincolor),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/man.png'),
-                          Text(
-                            'Wooden Table',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            'AED 250',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: maincolor),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/woman.png'),
-                          Text(
-                            'Wooden Table',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            'AED 250',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: maincolor),
-                          )
-                        ],
-                      ),
-                    ],
-                  )
-                ],
+                  );
+                },
               ),
             ),
-            //  OrderCard(
-            //           price: '233 AED',
-            //           name: 'ali raxa',
-            //           shopname: 'dsfsfsf',
-            //           orderno: '23',
-            //         )
             ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) => OrderCard(
-                      price: '233 AED',
-                      name: 'ali raxa',
-                      shopname: 'dsfsfsf',
-                      orderno: '23',
-                    )),
+              itemCount: 3,
+              itemBuilder: (context, index) => OrderCard(
+                price: '233 AED',
+                name: 'Ali raza',
+                shopname: 'Trendy Fashion',
+                orderno: '23',
+              ),
+            ),
           ],
         ),
       ),
