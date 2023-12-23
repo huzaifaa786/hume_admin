@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/button.dart';
@@ -46,40 +47,60 @@ class _AddShopState extends State<AddShop> {
               ),
               Row(
                 children: [
-                  AddBannerBox(
-                    onPressed: () {
-                      controller.selectImage();
-                    },
-                    text: 'Choose Page Panner',
-                    buttonheight: 32.0,
-                    fontSize: 12,
-                    buttonwidth: MediaQuery.of(context).size.width * 0.39,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: MediaQuery.of(context).size.height * 0.12,
+                  Column(
+                    children: [
+                      AddBannerBox(
+                        onPressed: () {
+                          controller.selectImage();
+                        },
+                        text: 'Choose Page Panner',
+                        buttonheight: 32.0,
+                        fontSize: 12,
+                        buttonwidth: MediaQuery.of(context).size.width * 0.39,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.12,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      ImageBox(
+                        image: 'assets/images/banner.svg',
+                        name: 'erertrt',
+                        width: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 4,
                   ),
-                  AddBannerBox(
-                    onPressed: () {
-                      controller.selectImage();
-                    },
-                    text: 'Choose Page Panner',
-                    fontSize: 12,
-                    buttonheight: 32.0,
-                    buttonwidth: MediaQuery.of(context).size.width * 0.3,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.12,
+                  Column(
+                    children: [
+                      AddBannerBox(
+                        onPressed: () {
+                          controller.selectImage();
+                        },
+                        text: 'Choose Page Panner',
+                        fontSize: 12,
+                        buttonheight: 32.0,
+                        buttonwidth: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.12,
+                      ),
+                      ImageBox(
+                        image: controller.bannerImage,
+                        name: 'erertrt',
+                        width: MediaQuery.of(context).size.width * 0.4,
+                      ),
+                    ],
                   )
                 ],
               ),
-              ImageBox()
             ],
           )),
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14.0),
-          child: Buttonn(title: 'dddd', onPressed: () {}),
+          child: Buttonn(title: 'Add shop', onPressed: () {}),
         ),
       ),
     );

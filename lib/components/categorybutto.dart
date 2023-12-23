@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class CategoryButton extends StatefulWidget {
@@ -54,20 +55,20 @@ class _CategoryButtonState extends State<CategoryButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              
-               Row(
-                 children: [
-                  
-                   Text(
-                    widget.text,
-                    style: TextStyle(
-                      color: isPressed ? Colors.white : widget.textcolor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                                 ),
-                 ],
-               ),
+              if (isPressed) // Conditionally render the tickk svg
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/images/tickk.svg'),
+                  ],
+                ),
+              Text(
+                widget.text,
+                style: TextStyle(
+                  color: isPressed ? Colors.white : widget.textcolor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ],
           ),
         ),

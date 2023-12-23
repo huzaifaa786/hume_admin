@@ -1,19 +1,16 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/dropdown.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/largebutton.dart';
-import 'package:hume_admin/components/orderbutton.dart';
 import 'package:hume_admin/components/sizebox.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/addbaner/addbanner_view.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -86,21 +83,31 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12,),
+                    SizedBox(
+                      height: 12,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text('Uploaded images',style: TextStyle(color: Colors.grey),),
+                        Text(
+                          'Uploaded images',
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ],
                     ),
-                     SizedBox(height: 12,),
-                    Row(children: [SvgPicture.asset('assets/images/image.svg'),
-                      Text('  Image .jpg',style: TextStyle(color: Colors.grey,fontSize: 18),),
-                    
-                    
-                    ],)
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      children: [
+                        SvgPicture.asset('assets/images/image.svg'),
+                        Text(
+                          '  Image .jpg',
+                          style: TextStyle(color: Colors.grey, fontSize: 18),
+                        ),
+                      ],
+                    )
                   ],
-                  
                 ),
               ),
               DropDown(),
@@ -158,29 +165,29 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 children: [
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.21,
-        
+
                     text: 'Clothes',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.21,
-        
+
                     text: 'Devices',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.39,
-        
+
                     text: 'Personal services',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                 ],
@@ -189,11 +196,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 children: [
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.35,
-        
+
                     text: 'Home & kitchen',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
@@ -201,16 +208,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     text: 'Furniture',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.21,
-        
+
                     text: 'Foods',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                 ],
@@ -219,29 +226,29 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 children: [
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.35,
-        
+
                     text: 'Bags & shoes',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.25,
-        
+
                     text: 'Makeup',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.21,
-        
+
                     text: 'Perfumes',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                 ],
@@ -250,20 +257,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 children: [
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.39,
-        
+
                     text: 'Hair & skin products',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                   CategoryButton(
                     width: MediaQuery.of(context).size.width * 0.39,
-        
+
                     text: 'Accessories',
                     textcolor: maincolor,
                     color: hintcolor,
-        
+
                     // color: ,
                   ),
                 ],

@@ -26,13 +26,13 @@ class Buttonn extends StatelessWidget {
         height: 60,
         child: Container(
           decoration: BoxDecoration(
-            color: selected ? maincolor : hintcolor, // Solid color instead of gradient
+            color: selected ? maincolor : Colors.grey.shade400, // Solid color instead of gradient
             borderRadius: const BorderRadius.all(Radius.circular(40)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/images/home.svg'),
+              SvgPicture.asset('assets/images/home.svg',color: white,),
               Text(
                 title,
                 style: const TextStyle(

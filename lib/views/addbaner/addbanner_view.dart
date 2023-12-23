@@ -36,15 +36,18 @@ class _AddBannerState extends State<AddBanner> {
           child: SafeArea(
               child: Column(
             children: [
-             AddBannerBox(
-                    text: 'Choose Page Panner',
-                      buttonheight:48.0,
-                      fontSize: 20.0,
-                      buttonwidth: MediaQuery.of(context).size.width * 0.42 ,
-                    width: MediaQuery.of(context).size.width * 0.94,
-                    height: MediaQuery.of(context).size.height * 0.18,
-                  ),
-                  SizedBox(height: 13,),
+              AddBannerBox(
+                onPressed: (){controller.selectProfileImage();},
+                text: 'Choose Page Panner',
+                buttonheight: 48.0,
+                fontSize: 20.0,
+                buttonwidth: MediaQuery.of(context).size.width * 0.42,
+                width: MediaQuery.of(context).size.width * 0.94,
+                height: MediaQuery.of(context).size.height * 0.18,
+              ),
+              SizedBox(
+                height: 13,
+              ),
               Container(
                 padding: const EdgeInsets.all(14.0),
                 width: MediaQuery.of(context).size.width * 0.95,
@@ -59,7 +62,7 @@ class _AddBannerState extends State<AddBanner> {
                     Text(''),
                     Column(
                       children: [
-                        SvgPicture.asset('assets/images/banner.svg'),
+                       Image.file(controller.bannerImage!),
                         SizedBox(
                           height: 12,
                         ),
@@ -94,22 +97,3 @@ class _AddBannerState extends State<AddBanner> {
     );
   }
 }
-//  child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: [
-//               Column(
-//                 children: [
-//                   SvgPicture.asset('assets/images/banner.svg'),
-//                   Text(
-//                     'Hello, Rounded Container!',
-//                     style: TextStyle(
-//                         color: const Color.fromARGB(255, 119, 110, 110)),
-//                   ),
-//                   SizedBox(
-//                     height: 12,
-//                   ),
-//                 ],
-//               ),
-//             
-//             ],
-//           // ),
