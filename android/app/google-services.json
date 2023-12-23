@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "79324128247",
+    "project_id": "hume-dc192",
+    "storage_bucket": "hume-dc192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79324128247:android:a66b1e4b509f24633344f2",
+        "android_client_info": {
+          "package_name": "com.tritec.hume"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT5rVrNEMp1xsL1h35hf9715PA81D0P8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79324128247:android:294e53dd61990b443344f2",
+        "android_client_info": {
+          "package_name": "com.tritec.hume_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT5rVrNEMp1xsL1h35hf9715PA81D0P8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
