@@ -54,17 +54,20 @@ class _CategoryButtonState extends State<CategoryButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (widget.icon != null) ...[
-                widget.icon,
-              ],
-               Text(
-                widget.text,
-                style: TextStyle(
-                  color: isPressed ? Colors.white : widget.textcolor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              
+               Row(
+                 children: [
+                  
+                   Text(
+                    widget.text,
+                    style: TextStyle(
+                      color: isPressed ? Colors.white : widget.textcolor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                                 ),
+                 ],
+               ),
             ],
           ),
         ),
