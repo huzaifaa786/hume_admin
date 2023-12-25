@@ -24,12 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             // Background Image at the bottom
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SvgPicture.asset(
-                'assets/images/backgound.svg',
-              ),
-            ),
 
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -87,7 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Homecontainer(
-                    icon: SvgPicture.asset('assets/images/sales.svg',height: 40,width: 50,),
+                    icon: SvgPicture.asset(
+                      'assets/images/sales.svg',
+                      height: 40,
+                      width: 50,
+                    ),
                     text: 'Sales',
                     onPressed: () {
                       Get.toNamed(AppRoutes.sale);
@@ -97,11 +95,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Get.toNamed(AppRoutes.shop);
                     },
-                    icon: SvgPicture.asset('assets/images/shope.svg',height: 40,width: 50,),
+                    icon: SvgPicture.asset(
+                      'assets/images/shope.svg',
+                      height: 40,
+                      width: 50,
+                    ),
                     text: 'Manage Shops',
                   ),
                   Homecontainer(
-                    icon: SvgPicture.asset('assets/images/order.svg',height: 40,width: 50,),
+                    icon: SvgPicture.asset(
+                      'assets/images/order.svg',
+                      height: 40,
+                      width: 50,
+                    ),
                     text: 'Manage Orders',
                     onPressed: () {
                       Get.toNamed(AppRoutes.manageorder);
@@ -112,6 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: SvgPicture.asset(
+        'assets/images/backgound.svg',
       ),
     );
   }
