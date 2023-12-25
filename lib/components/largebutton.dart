@@ -11,7 +11,7 @@ class LargeButton extends StatelessWidget {
       @required this.onPressed,
       this.textcolor,
       this.icon,
-      this.buttonWidth = 0.8,
+      this.buttonWidth = 0.6,
       this.screenRatio = 0.9,
       this.rounded = false,
       this.color = maincolor})
@@ -32,7 +32,7 @@ class LargeButton extends StatelessWidget {
       child: Container(
         decoration:
             BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
-        width: MediaQuery.of(context).size.width * 0.6,
+        width: MediaQuery.of(context).size.width * buttonWidth,
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

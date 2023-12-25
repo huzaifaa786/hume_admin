@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: "Huma",
-      initialBinding: HomeBinding(),
-      home: HomeScreen(),
+      initialBinding: SplashBinding(),
+      home: SplashView(),
       getPages: AppPages.pages,
     );
   }

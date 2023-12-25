@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/notification_box.dart';
 import 'package:hume_admin/components/smallbutton.dart';
@@ -48,13 +49,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 shopname: 'sdfsfg',
                 date: '5/5/4444',
               ),
+              Gap(30),
               Button(
                 buttonWidth: MediaQuery.of(context).size.width * 0.45,
                 buttonheight: 38.0,
                 title: 'Go to Order',
                 onPressed: () {},
                 textcolor: white,
-              )
+              ),
+              Gap(20)
             ],
           ),
         )),

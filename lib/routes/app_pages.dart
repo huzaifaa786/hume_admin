@@ -5,6 +5,7 @@ import 'package:hume_admin/views/addbaner/addbanner_view.dart';
 import 'package:hume_admin/views/clientInfo/clientinfo_view.dart';
 import 'package:hume_admin/views/clientInfo/clientinfp_binding.dart';
 import 'package:hume_admin/views/home/home_binding.dart';
+import 'package:hume_admin/views/login/login_binding.dart';
 import 'package:hume_admin/views/notification.dart/notification_binding.dart';
 import 'package:hume_admin/views/notification.dart/notification_view.dart';
 import 'package:hume_admin/views/order/manageorder.dart';
@@ -21,7 +22,7 @@ import 'package:hume_admin/views/shops/shops_binding.dart';
 import 'package:hume_admin/views/shops/shops_view.dart';
 import 'package:hume_admin/views/splash/splash_binding.dart';
 import 'package:hume_admin/views/splash/splash_view.dart';
-import 'package:hume_admin/views/welcome/welcome_view.dart';
+import 'package:hume_admin/views/login/login_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -37,7 +38,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.welcome,
-      page: () => const WelcomeView(),
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.home,
