@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:hume_admin/components/orderbutton.dart';
 import 'package:hume_admin/components/smallbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -23,16 +24,16 @@ class ManageOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      // padding: const EdgeInsets.all(6.0),
+      padding: EdgeInsets.only(left: 15, right: 15, top: 10),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.98,
-        height: MediaQuery.of(context).size.width * 0.8,
+        // width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-          color: hintcolor,
-          borderRadius: BorderRadius.circular(20),
+          color: hintcolor.withOpacity(0.35),
+          borderRadius: BorderRadius.circular(7),
           border: Border.all(
-            color: Colors.grey,
-            width: 1.0,
+            color: Colors.grey.shade300,
+            width: 0.5,
           ),
         ),
         child: Padding(
@@ -43,9 +44,9 @@ class ManageOrderCard extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.only(
+                    left: 12, right: 20, top: 8, bottom: 8),
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.width * 0.15,
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(40),
@@ -61,7 +62,9 @@ class ManageOrderCard extends StatelessWidget {
                             Text(
                               name,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
                             )
                           ],
                         ),
@@ -86,9 +89,10 @@ class ManageOrderCard extends StatelessWidget {
                 height: 12,
               ),
               Container(
-                padding: const EdgeInsets.all(14.0),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 10, bottom: 10),
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.width * 0.2,
+                // height: MediaQuery.of(context).size.width * 0.2,
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(40),
@@ -102,23 +106,18 @@ class ManageOrderCard extends StatelessWidget {
                           children: [
                             SvgPicture.asset(
                               'assets/images/order.svg',
-                              height: 23,
+                              height: 20,
+                              width: 23,
                             ),
+                            Gap(4),
                             Row(
                               children: [
                                 Text(
-                                  '  Order NO  ',
+                                  'Order NO  $orderno',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w700,
-                                      color: colortext),
-                                ),
-                                Text(
-                                  orderno,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      color: colortext),
+                                      color: Colors.black54),
                                 ),
                               ],
                             )
@@ -138,6 +137,7 @@ class ManageOrderCard extends StatelessWidget {
                         )
                       ],
                     ),
+                    Gap(8),
                     Row(
                       children: [
                         Row(
@@ -145,11 +145,15 @@ class ManageOrderCard extends StatelessWidget {
                             SvgPicture.asset(
                               'assets/images/home.svg',
                               height: 23,
+                              width: 23,
                             ),
                             Text(
                               shopname,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
+                                color: colortext,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
                             )
                           ],
                         ),
@@ -195,51 +199,53 @@ class ManageOrderCard extends StatelessWidget {
                           fontWeight: FontWeight.w700)),
                 ],
               ),
-                SizedBox(
-                    height: 23,
-                  ),
+              SizedBox(
+                height: 23,
+              ),
               SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     OrderButton(
                       bordercolor: colortext,
                       text: 'accept order',
                       textcolor: colortext,
-                      width: MediaQuery.of(context).size.width * 0.21,
-                
+                      width: MediaQuery.of(context).size.width * 0.25,
+
                       // color: ,
                     ),
                     OrderButton(
-                      width: MediaQuery.of(context).size.width * 0.256,
+                      width: MediaQuery.of(context).size.width * 0.26,
                       bordercolor: colortext,
                       text: 'Mark as delivred',
                       color: colortext,
                       textcolor: white,
                       icon: SvgPicture.asset('assets/images/tickk.svg'),
-                
+
                       // color: ,
                     ),
                     OrderButton(
-                      width: MediaQuery.of(context).size.width * 0.21,
+                      width: MediaQuery.of(context).size.width * 0.25,
                       bordercolor: const Color.fromARGB(255, 226, 117, 109),
                       text: 'Order Reject',
                       textcolor: Colors.red,
-                
+
                       // color: ,
                     ),
                     OrderButton(
-                          width: MediaQuery.of(context).size.width * 0.25,
+                      width: MediaQuery.of(context).size.width * 0.26,
                       bordercolor: Colors.red,
                       color: Colors.red,
                       text: 'Mark as Rejected',
                       textcolor: white,
                       icon: SvgPicture.asset('assets/images/cross.svg'),
-                
+
                       // color: ,
                     ),
                   ],
                 ),
-              )
+              ),
+              Gap(30)
             ],
           ),
         ),

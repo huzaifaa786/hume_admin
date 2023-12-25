@@ -22,7 +22,7 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
@@ -41,7 +41,8 @@ class OrderCard extends StatelessWidget {
                 height: 15,
               ),
               Container(
-                padding: const EdgeInsets.only(left:12,right: 20,top: 8,bottom: 8),
+                padding: const EdgeInsets.only(
+                    left: 12, right: 20, top: 8, bottom: 8),
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                   color: white,
@@ -57,8 +58,10 @@ class OrderCard extends StatelessWidget {
                             SvgPicture.asset('assets/images/head.svg'),
                             Text(
                               name,
-                              style: TextStyle(color: Colors.black54,
-                                  fontSize: 14, fontWeight: FontWeight.w700),
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
                             )
                           ],
                         ),
@@ -83,7 +86,8 @@ class OrderCard extends StatelessWidget {
                 height: 12,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 20,right: 20,top:10,bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 10, bottom: 10),
                 width: MediaQuery.of(context).size.width * 0.9,
                 // height: MediaQuery.of(context).size.width * 0.2,
                 decoration: BoxDecoration(
@@ -109,9 +113,9 @@ class OrderCard extends StatelessWidget {
                                   'Order NO  $orderno',
                                   style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w700,color: Colors.black54),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black54),
                                 ),
-                                
                               ],
                             )
                           ],
@@ -130,8 +134,7 @@ class OrderCard extends StatelessWidget {
                         )
                       ],
                     ),
-                        Gap(8),
-
+                    Gap(8),
                     Row(
                       children: [
                         Row(
@@ -144,8 +147,10 @@ class OrderCard extends StatelessWidget {
                             Text(
                               shopname,
                               style: TextStyle(
-                                  color: colortext,
-                                  fontSize: 11, fontWeight: FontWeight.w700,),
+                                color: colortext,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
                             )
                           ],
                         ),
