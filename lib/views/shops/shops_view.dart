@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/shopcard.dart';
-import 'package:hume_admin/components/smallbutton.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -33,7 +31,7 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
         child: Column(
           children: [
             Row(
@@ -44,14 +42,14 @@ class _ShopScreenState extends State<ShopScreen> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                 ),
                 IconsButton(
-                  width: MediaQuery.of(context).size.width * 0.52,
+                  width: MediaQuery.of(context).size.width * 0.5,
                   imgicon: Icon(
                     Icons.add,
                     color: white,
                   ),
                   fontSize: 14.0,
                   title: 'Add New Shop',
-                  height: 50.0,
+                  height: 45.0,
                   textcolor: white,
                   color: maincolor,
                   onPressed: () {
@@ -63,9 +61,7 @@ class _ShopScreenState extends State<ShopScreen> {
             SizedBox(
               height: 15,
             ),
-            new Divider(
-              color: const Color.fromARGB(255, 187, 171, 170),
-            ),
+            Divider(),
             SizedBox(
               height: 15,
             ),
@@ -76,14 +72,17 @@ class _ShopScreenState extends State<ShopScreen> {
                   ontap: () {
                     Get.toNamed(AppRoutes.allproduct);
                   },
+                  category: 'Clothes brand',
                 ),
                 ShopCard(
                   name: 'ali',
                   ontap: () {},
+                  category: 'Clothes brand',
                 ),
                 ShopCard(
                   name: 'ali',
                   ontap: () {},
+                  category: 'Clothes brand',
                 ),
               ],
             )

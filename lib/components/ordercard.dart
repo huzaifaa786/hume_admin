@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class OrderCard extends StatelessWidget {
@@ -21,16 +22,15 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.width * 0.7,
         decoration: BoxDecoration(
-          color: hintcolor,
-          borderRadius: BorderRadius.circular(20),
+          color: hintcolor.withOpacity(0.35),
+          borderRadius: BorderRadius.circular(7),
           border: Border.all(
-            color: Colors.grey,
-            width: 1.0,
+            color: Colors.grey.shade300,
+            width: 0.5,
           ),
         ),
         child: Padding(
@@ -38,12 +38,11 @@ class OrderCard extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               Container(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.only(left:12,right: 20,top: 8,bottom: 8),
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.width * 0.15,
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(40),
@@ -58,7 +57,7 @@ class OrderCard extends StatelessWidget {
                             SvgPicture.asset('assets/images/head.svg'),
                             Text(
                               name,
-                              style: TextStyle(
+                              style: TextStyle(color: Colors.black54,
                                   fontSize: 14, fontWeight: FontWeight.w700),
                             )
                           ],
@@ -84,9 +83,9 @@ class OrderCard extends StatelessWidget {
                 height: 12,
               ),
               Container(
-                padding: const EdgeInsets.all(14.0),
+                padding: const EdgeInsets.only(left: 20,right: 20,top:10,bottom: 10),
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.width * 0.2,
+                // height: MediaQuery.of(context).size.width * 0.2,
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(40),
@@ -100,27 +99,21 @@ class OrderCard extends StatelessWidget {
                           children: [
                             SvgPicture.asset(
                               'assets/images/order.svg',
-                              height: 23,
+                              height: 20,
+                              width: 23,
                             ),
-                               Row(
+                            Gap(4),
+                            Row(
                               children: [
-                                  Text(
-                              '  Order NO  ' ,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: colortext),
-                            ),
                                 Text(
-                                  orderno,
+                                  'Order NO  $orderno',
                                   style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      color: colortext),
+                                      fontWeight: FontWeight.w700,color: Colors.black54),
                                 ),
+                                
                               ],
                             )
-                           
                           ],
                         ),
                         Row(
@@ -137,6 +130,8 @@ class OrderCard extends StatelessWidget {
                         )
                       ],
                     ),
+                        Gap(8),
+
                     Row(
                       children: [
                         Row(
@@ -144,11 +139,13 @@ class OrderCard extends StatelessWidget {
                             SvgPicture.asset(
                               'assets/images/home.svg',
                               height: 23,
+                              width: 23,
                             ),
-                          Text(
+                            Text(
                               shopname,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
+                                  color: colortext,
+                                  fontSize: 11, fontWeight: FontWeight.w700,),
                             )
                           ],
                         ),
@@ -193,7 +190,8 @@ class OrderCard extends StatelessWidget {
                           fontSize: 14,
                           fontWeight: FontWeight.w700)),
                 ],
-              )
+              ),
+              Gap(20),
             ],
           ),
         ),

@@ -90,12 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset('assets/images/sales.svg',height: 40,width: 50,),
                     text: 'Sales',
                     onPressed: () {
-                      Get.offNamed(AppRoutes.sale);
+                      Get.toNamed(AppRoutes.sale);
                     },
                   ),
                   Homecontainer(
                     onPressed: () {
-                      Get.offNamed(AppRoutes.shop);
+                      Get.toNamed(AppRoutes.shop);
                     },
                     icon: SvgPicture.asset('assets/images/shope.svg',height: 40,width: 50,),
                     text: 'Manage Shops',
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset('assets/images/order.svg',height: 40,width: 50,),
                     text: 'Manage Orders',
                     onPressed: () {
-                      Get.offNamed(AppRoutes.manageorder);
+                      Get.toNamed(AppRoutes.manageorder);
                     },
                   ),
                 ],

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -35,13 +36,15 @@ class _SaleScreenState extends State<SaleScreen> {
         ),
         body: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(
+                  left: 15,
+                ),
                 width: MediaQuery.of(context).size.width,
-                height: 55,
+                // height: 55,
                 decoration: BoxDecoration(
                   color: hintcolor,
                   borderRadius: BorderRadius.circular(13),
@@ -49,9 +52,17 @@ class _SaleScreenState extends State<SaleScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Choose the shop',style: TextStyle(color: Colors.grey),),
+                    Text(
+                      '$selectedShop',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                     PopupMenuButton<String>(
-                      onSelected: (String value) {},
+                      icon: SvgPicture.asset('assets/images/dropdown.svg'),
+                      onSelected: (String value) {
+                        setState(() {
+                          selectedShop = value;
+                        });
+                      },
                       itemBuilder: (BuildContext context) {
                         return shops.map((String shop) {
                           return PopupMenuItem<String>(
@@ -60,7 +71,7 @@ class _SaleScreenState extends State<SaleScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(shop),
-                                SvgPicture.asset('assets/images/dropdown.svg'),
+                                // SvgPicture.asset('assets/images/dropdown.svg'),
                               ],
                             ),
                           );
@@ -70,6 +81,7 @@ class _SaleScreenState extends State<SaleScreen> {
                   ],
                 ),
               ),
+              Gap(12),
               Flexible(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
@@ -91,27 +103,29 @@ class _SaleScreenState extends State<SaleScreen> {
                           formatButtonVisible: false,
                           titleCentered: true,
                           titleTextStyle: TextStyle(
-                              color: Color.fromARGB(255, 56, 125, 181),
-                              fontSize: 23),
+                              fontFamily: "Poppins",
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: maincolor),
                         ),
                         calendarStyle: CalendarStyle(
                           // we
                           defaultTextStyle:
                               const TextStyle(color: Colors.black),
                           todayDecoration: BoxDecoration(
-                              color: maincolor.withOpacity(0.5),
+                              color: colortext.withOpacity(0.5),
                               shape: BoxShape.circle),
                           selectedDecoration: const BoxDecoration(
-                              color: maincolor, shape: BoxShape.circle),
+                              color: colortext, shape: BoxShape.circle),
                           markerDecoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           rangeStartDecoration: BoxDecoration(
-                              color: maincolor, shape: BoxShape.circle),
+                              color: colortext, shape: BoxShape.circle),
                           rangeEndDecoration: BoxDecoration(
-                              color: maincolor, shape: BoxShape.circle),
-                          rangeHighlightColor: maincolor.withOpacity(0.2),
+                              color: colortext, shape: BoxShape.circle),
+                          rangeHighlightColor: colortext.withOpacity(0.2),
                           isTodayHighlighted: true,
                           outsideDaysVisible: false,
                         ),
@@ -139,36 +153,6 @@ class _SaleScreenState extends State<SaleScreen> {
                               color: Colors.white, fontStyle: FontStyle.italic),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
-                        child: Column(
-                          children: [
-                            Text('Total Sales',
-                                style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w500,
-                                    color: maincolor)),
-                            SizedBox(height: 30),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
-                              decoration: BoxDecoration(
-                                  color: colortext,
-                                  borderRadius: BorderRadius.circular(13)),
-                              child: const Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '0 AED',
-                                    style: TextStyle(
-                                        color: white,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                            ),
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -176,6 +160,38 @@ class _SaleScreenState extends State<SaleScreen> {
             ],
           ),
         )),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Wrap(
+            runSpacing: 12,
+            clipBehavior: Clip.antiAlias,
+            alignment: WrapAlignment.center,
+            children: [
+              Divider(),
+              Text('Total Sales',
+                  style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: maincolor)),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
+                decoration: BoxDecoration(
+                    color: colortext, borderRadius: BorderRadius.circular(13)),
+                child: const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '0 AED',
+                      style: TextStyle(
+                          color: white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600),
+                    )),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

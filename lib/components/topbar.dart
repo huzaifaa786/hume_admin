@@ -28,12 +28,16 @@ class TitleTopBar extends StatelessWidget {
             name,
             style: TextStyle(
               fontFamily: "Poppins",
-              color: maincolor,
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
+              fontSize: 17,fontWeight: FontWeight.w500,color: maincolor
             ),
           ),
-          Text('      ')
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.transparent,
+            ),
+          ),
         ],
       ),
     );

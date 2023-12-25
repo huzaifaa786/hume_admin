@@ -17,7 +17,7 @@ class Homecontainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onPressed,
       child: Padding(
         padding: const EdgeInsets.only(top: 18),

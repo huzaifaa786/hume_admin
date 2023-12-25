@@ -58,7 +58,7 @@ class IconsButton extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: maincolor,
+                color: textcolor,
                 fontFamily: 'Poppins',
                 fontSize: fontSize,
                 fontWeight: FontWeight.w700,
