@@ -10,7 +10,7 @@ class ShopController extends GetxController {
   File? bannerImage;
   String? bannerImageName; // Variable to store the name
 
-  Future selectProfileImage() async {
+  Future selectImage() async {
     final tempImage = await _imageSelectorApi.selectImage();
     bannerImage = tempImage;
     if (bannerImage != null) {
