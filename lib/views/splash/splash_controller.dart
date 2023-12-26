@@ -1,7 +1,9 @@
-import 'dart:async'; 
+import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/routes/app_routes.dart';
+import 'package:hume_admin/services/auth_service.dart';
 
 class SplashController extends GetxController {
   static SplashController instance = Get.find();
@@ -14,12 +16,6 @@ class SplashController extends GetxController {
   }
 
   checkFirstSeen() async {
-    // final User? user = FirebaseAuth.instance.currentUser;
-
-    // if (user != null) {
-    Get.offNamed(AppRoutes.welcome);
-    // } else {
-    // Get.offNamed(AppRoutes.signin);
-    // }
+    Get.put(AuthService());
   }
 }

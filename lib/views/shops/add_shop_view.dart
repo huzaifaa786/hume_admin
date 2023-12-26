@@ -87,7 +87,7 @@ class _AddShopState extends State<AddShop> {
                         height: MediaQuery.of(context).size.height * 0.12,
                       ),
                       ImageBox(
-                        image: controller.bannerImage,
+                        image: 'assets/images/banner.svg',
                         name: 'erertrt',
                         width: MediaQuery.of(context).size.width * 0.4,
                       ),

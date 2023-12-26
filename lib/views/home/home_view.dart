@@ -8,6 +8,7 @@ import 'package:hume_admin/components/hometopbar.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/utils/controller_initlization.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -119,8 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: SvgPicture.asset(
-        'assets/images/backgound.svg',
+      bottomNavigationBar: InkWell(
+        onTap: (){
+          authService.logout();
+        },
+        child: SvgPicture.asset(
+          'assets/images/backgound.svg',
+        ),
       ),
     );
   }
