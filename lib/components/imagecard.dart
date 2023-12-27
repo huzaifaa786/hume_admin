@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -46,14 +48,22 @@ class ImageBox extends StatelessWidget {
             Text(''),
             Column(
               children: [
-                SvgPicture.asset(image,height: 29,width: 29,),
+                Image.file(
+                  image,
+                  width: 29,
+                  height: 29,
+                ),
                 SizedBox(
                   height: 12,
                 ),
-                Text(
-                  name,
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 119, 110, 110)),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  child: Text(
+                    name,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: const Color.fromARGB(255, 119, 110, 110)),
+                  ),
                 ),
               ],
             ),
