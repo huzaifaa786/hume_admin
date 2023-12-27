@@ -70,7 +70,9 @@ class ImageBox extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SvgPicture.asset('assets/images/edit.svg'),
+                InkWell(
+                  onTap: ontap,
+                  child: SvgPicture.asset('assets/images/edit.svg')),
               ],
             ),
           ],

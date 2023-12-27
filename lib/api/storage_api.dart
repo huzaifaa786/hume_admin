@@ -4,7 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart' as storage;
 import 'package:flutter/services.dart';
 import 'package:hume_admin/exceptions/storage_api_exceptions.dart';
 import 'package:hume_admin/helper/data_model.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 
 class StorageApi {
   Future<CloudStorageResult> uploadBannerImage({

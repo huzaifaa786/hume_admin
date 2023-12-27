@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:hume_admin/api/storage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/shops.dart';
-import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/services/shop_service.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:path/path.dart';
@@ -97,7 +96,20 @@ class ShopController extends GetxController {
       logoImageUrl: logoImageResult.imageUrl,
       logoImageName: logoImageResult.imageFileName,
     ));
-    Get.toNamed(AppRoutes.addshop);
-    UiUtilites.successAlert('Shop created successfully', 'Congratulations');
+    clear();
+    update();
+
+    UiUtilites.successSnackbar('Congratulatios', 'Shop created successfully');
+  }
+
+  clear() {
+    name.clear();
+    description.clear();
+    bannerImage = null;
+    logoImage = null;
+    bannerImageName = '';
+    logoImageName = '';
+    isLogoSelected = false;
+    isBannerSelected = false;
   }
 }

@@ -83,6 +83,9 @@ class _AddShopState extends State<AddShop> {
                     children: [
                       controller.isLogoSelected
                           ? ImageBox(
+                              ontap: () {
+                                controller.selectLogo();
+                              },
                               image: controller.logoImage,
                               name: controller.logoImageName,
                               width: MediaQuery.of(context).size.width * 0.4,
