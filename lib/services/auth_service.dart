@@ -6,8 +6,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/controller_initlization.dart';
-import 'package:hume_admin/views/home/home_view.dart';
-import 'package:hume_admin/views/login/login_view.dart';
 
 class AuthService extends GetxController {
   static AuthService get instance => Get.find();

@@ -9,7 +9,6 @@ import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/input_field_pass.dart';
 import 'package:hume_admin/components/largebutton.dart';
 import 'package:hume_admin/main.dart';
-import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/services/auth_service.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/login/login_controller.dart';

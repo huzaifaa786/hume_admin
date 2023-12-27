@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/button.dart';
@@ -7,6 +8,7 @@ import 'package:hume_admin/components/imagecard.dart';
 import 'package:hume_admin/components/input_field.dart';
 
 import 'package:hume_admin/components/topbar.dart';
+import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:hume_admin/views/shops/shops_controller.dart';
 
 class AddShop extends StatefulWidget {
@@ -40,34 +42,38 @@ class _AddShopState extends State<AddShop> {
               InputField(
                 width: MediaQuery.of(context).size.width * 0.65,
                 hint: 'Shop Name',
+                controller: controller.name,
               ),
               InputField(
                 width: MediaQuery.of(context).size.width * 0.9,
                 hint: 'short Discription',
+                controller: controller.description,
               ),
               Row(
                 children: [
                   Column(
                     children: [
-                      AddBannerBox(
-                        onPressed: () {
-                          controller.selectImage();
-                        },
-                        text: 'Choose Page Panner',
-                        buttonheight: 32.0,
-                        fontSize: 12,
-                        buttonwidth: MediaQuery.of(context).size.width * 0.39,
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        height: MediaQuery.of(context).size.height * 0.12,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      ImageBox(
-                        image: 'assets/images/banner.svg',
-                        name: 'erertrt',
-                        width: MediaQuery.of(context).size.width * 0.5,
-                      ),
+                      controller.isBannerSelected
+                          ? ImageBox(
+                              ontap: () {
+                                controller.selectImage();
+                              },
+                              image: controller.bannerImage,
+                              name: controller.bannerImageName,
+                              width: MediaQuery.of(context).size.width * 0.5,
+                            )
+                          : AddBannerBox(
+                              onPressed: () {
+                                controller.selectImage();
+                              },
+                              text: 'Choose Page Banner',
+                              buttonheight: 32.0,
+                              fontSize: 12,
+                              buttonwidth:
+                                  MediaQuery.of(context).size.width * 0.39,
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.12,
+                            ),
                     ],
                   ),
                   SizedBox(
@@ -75,22 +81,24 @@ class _AddShopState extends State<AddShop> {
                   ),
                   Column(
                     children: [
-                      AddBannerBox(
-                        onPressed: () {
-                          controller.selectImage();
-                        },
-                        text: 'Choose Page Panner',
-                        fontSize: 12,
-                        buttonheight: 32.0,
-                        buttonwidth: MediaQuery.of(context).size.width * 0.3,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.12,
-                      ),
-                      ImageBox(
-                        image: 'assets/images/banner.svg',
-                        name: 'erertrt',
-                        width: MediaQuery.of(context).size.width * 0.4,
-                      ),
+                      controller.isLogoSelected
+                          ? ImageBox(
+                              image: controller.logoImage,
+                              name: controller.logoImageName,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                            )
+                          : AddBannerBox(
+                              onPressed: () {
+                                controller.selectLogo();
+                              },
+                              text: 'Choose shop logo',
+                              fontSize: 12,
+                              buttonheight: 32.0,
+                              buttonwidth:
+                                  MediaQuery.of(context).size.width * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.12,
+                            ),
                     ],
                   )
                 ],
@@ -100,7 +108,21 @@ class _AddShopState extends State<AddShop> {
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14.0),
-          child: Buttonn(title: 'Add shop', onPressed: () {}),
+          child: Buttonn(
+              selected: (controller.arefieldsFilled.value &&
+                      controller.isLogoSelected & controller.isBannerSelected)
+                  ? true
+                  : false,
+              title: 'Add shop',
+              onPressed: () {
+                if (controller.arefieldsFilled.value &&
+                    controller.isLogoSelected & controller.isBannerSelected) {
+                  controller.createShop();
+                } else {
+                  UiUtilites.errorSnackbar(
+                      'Fill all fields', 'Please fill all the fields');
+                }
+              }),
         ),
       ),
     );
