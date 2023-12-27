@@ -2,74 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 
-class CategoryButton extends StatefulWidget {
+class CategoryButton extends StatelessWidget {
   const CategoryButton({
     Key? key,
-    this.text,
-    this.icon,
-    this.color,
-    this.textcolor,
-    this.bordercolor,
-    this.onPressed,
-    this.width,
+    required this.text,
+    required this.onPressed,
+    required this.isSelected,
   }) : super(key: key);
 
-  final text;
-  final icon;
-  final color;
-  final textcolor;
-  final bordercolor;
-  final onPressed;
-  final width;
-
-  @override
-  _CategoryButtonState createState() => _CategoryButtonState();
-}
-
-class _CategoryButtonState extends State<CategoryButton> {
-  bool isPressed = false;
+  final String text;
+  final VoidCallback onPressed;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          isPressed = !isPressed;
-        });
-        if (widget.onPressed != null) {
-          widget.onPressed();
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(7.0),
-        child: Container(
-          width: widget.width,
-          height: 35,
-          decoration: BoxDecoration(
-            color: isPressed ? colortext : widget.color ?? Colors.white,
-            border: widget.bordercolor != null
-                ? Border.all(color: widget.bordercolor!)
-                : null,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (isPressed) // Conditionally render the tickk svg
-                Row(
-                  children: [
-                    SvgPicture.asset('assets/images/tickk.svg'),
-                  ],
+      onTap: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          color: isSelected ? colortext : hintcolor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                if (isSelected)
+                  SvgPicture.asset(
+                    'assets/images/tickk.svg',
+                    // Adjust the width and height as needed
+                    width: 16,
+                    height: 16,
+                  ),
+                SizedBox(width: isSelected ? 8 : 0), // Add some spacing if the tick is shown
+                Text(
+                  text,
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : colortext,
+                    fontSize: 12,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    height: 0.08,
+                    letterSpacing: 0.96,
+                  ),
                 ),
-              Text(
-                widget.text,
-                style: TextStyle(
-                  color: isPressed ? Colors.white : widget.textcolor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

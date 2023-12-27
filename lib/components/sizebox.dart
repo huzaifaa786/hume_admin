@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/views/product/product_controller.dart';
 
 class SizeContainer extends StatefulWidget {
-  const SizeContainer({Key? key, this.text, this.ontap}) : super(key: key);
+  const SizeContainer({Key? key, this.text, this.sizeValue}) : super(key: key);
 
-  final text;
-  final ontap;
+  final String? text;
+  final String? sizeValue;
 
   @override
   _SizeContainerState createState() => _SizeContainerState();
@@ -21,8 +22,9 @@ class _SizeContainerState extends State<SizeContainer> {
         setState(() {
           isPressed = !isPressed;
         });
-        if (widget.ontap != null) {
-          widget.ontap();
+
+        if (widget.sizeValue != null) {
+          ProductController.instance.toggleSize(widget.sizeValue!);
         }
       },
       child: Padding(
@@ -32,7 +34,7 @@ class _SizeContainerState extends State<SizeContainer> {
           height: 50,
           child: Center(
             child: Text(
-              widget.text,
+              widget.text ?? '',
               style: TextStyle(
                 color: isPressed ? Colors.white : Colors.black,
               ),
@@ -40,10 +42,16 @@ class _SizeContainerState extends State<SizeContainer> {
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isPressed ? maincolor : hintcolor,
+            color: isPressed ? colortext : hintcolor,
           ),
         ),
       ),
     );
   }
 }
+
+
+
+
+// Example usage
+
