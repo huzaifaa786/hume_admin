@@ -6,6 +6,8 @@ import 'package:hume_admin/components/ordercard.dart';
 import 'package:hume_admin/components/topbar.dart';
 
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/views/order/order_view.dart';
+import 'package:hume_admin/views/product/product_controller.dart';
 
 class AllProductScreen extends StatefulWidget {
   const AllProductScreen({super.key});
@@ -19,102 +21,109 @@ class _AllProductScreenState extends State<AllProductScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          forceMaterialTransparency: true,
-          title: TitleTopBar(
-            name: 'Trendy fashion shop',
-            ontap: () {
-              Get.back();
-            },
-          ),
-          bottom: TabBar(
-              isScrollable: false,
-              dividerColor: Colors.transparent,
-              indicatorWeight: 0.4,
-              indicatorColor: maincolor.withOpacity(0.8),
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                Tab(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Products & sales',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Tab(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Order History',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-        ),
-        body: TabBarView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.8,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
-                    mainAxisExtent: 290),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/woman.png',
-                        height: 244,
-                      ),
-                      Text(
-                        'Wooden Table',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        'AED 250',
-                        style: TextStyle(
-                            fontSize: 16,
+      child: GetBuilder<ProductController>(
+        builder: (controller) => Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            title: TitleTopBar(
+              name: 'Trendy fashion shop',
+              ontap: () {
+                Get.back();
+              },
+            ),
+            bottom: TabBar(
+                isScrollable: false,
+                dividerColor: Colors.transparent,
+                indicatorWeight: 0.4,
+                indicatorColor: maincolor.withOpacity(0.8),
+                unselectedLabelColor: Colors.grey,
+                tabs: [
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Products & sales',
+                          style: TextStyle(
+                            fontSize: 12,
                             fontWeight: FontWeight.w700,
-                            color: maincolor),
-                      )
-                    ],
-                  );
-                },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Order History',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
+          ),
+          body: TabBarView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.8,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      mainAxisExtent: 290),
+                  itemCount: controller.shopProducts.length,
+                  itemBuilder: (context, index) {
+                    final product = controller.shopProducts[index];
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.network(
+                          product.productImageUrls[0],
+                          height: 244,
+                        ),
+                        // Image.asset(
+                        //   'assets/images/woman.png',
+                        //   height: 244,
+                        // ),
+                        Text(
+                          product.productName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          'AED ' + product.productPrice.toString(),
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: maincolor),
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => OrderCard(
-                price: '233 AED',
-                name: 'Ali raza',
-                shopname: 'Trendy Fashion',
-                orderno: '23',
+              ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, index) => OrderCard(
+                  price: '233 AED',
+                  name: 'Ali raza',
+                  shopname: 'Trendy Fashion',
+                  orderno: '23',
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

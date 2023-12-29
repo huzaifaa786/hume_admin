@@ -16,8 +16,11 @@ import 'package:hume_admin/utils/ui_utils.dart';
 
 class ProductController extends GetxController {
   static ProductController instance = Get.find();
-  final _productApi = ProductApi();
 
+  final _productApi = ProductApi();
+  List<ProductModel> shopProducts = [];
+
+  final _databaseApi = DatabaseApi();
   TextEditingController ProductnameController = TextEditingController();
   TextEditingController productpriceController = TextEditingController();
   TextEditingController productdiscriptionController = TextEditingController();
@@ -30,7 +33,6 @@ class ProductController extends GetxController {
   List<Shop> shops = [];
   Shop? shop;
   Shop? selectedShop;
-  final _databaseApi = DatabaseApi();
   RxBool areFieldsFilled = false.obs;
   List<String> categories = [
     'Clothes',
@@ -56,6 +58,7 @@ class ProductController extends GetxController {
     productdiscriptionController.addListener(() {
       checkFields();
     });
+    products();
 
     super.onInit();
   }
@@ -157,6 +160,12 @@ class ProductController extends GetxController {
     selectedShop = null;
     category = '';
     areFieldsFilled.value = false;
+    update();
+  }
+
+  products() async {
+    String id = Get.parameters['id'].toString();
+    shopProducts = await _databaseApi.fetchProducts(id);
     update();
   }
 }
