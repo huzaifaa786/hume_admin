@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/ordercard.dart';
 import 'package:hume_admin/components/topbar.dart';
-import 'package:hume_admin/routes/app_routes.dart';
+
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/order/order_view.dart';
 
 class AllProductScreen extends StatefulWidget {
   const AllProductScreen({super.key});
@@ -16,7 +15,6 @@ class AllProductScreen extends StatefulWidget {
 }
 
 class _AllProductScreenState extends State<AllProductScreen> {
-  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

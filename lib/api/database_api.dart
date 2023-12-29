@@ -18,4 +18,19 @@ class DatabaseApi {
       );
     }
   }
+
+  Future<List<Shop>> getAllShops() async {
+    try {
+      QuerySnapshot querySnapshot = await _shopsCollection.get();
+      List<Shop> shops = querySnapshot.docs.map((doc) {
+        return Shop.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
+      return shops;
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to get Shops',
+        message: e.message,
+      );
+    }
+  }
 }

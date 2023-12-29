@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:hume_admin/exceotions/database_exception.dart';
-import 'package:hume_admin/modal/product_model.dart';
+import 'package:hume_admin/models/product_model.dart';
 
 
 class ProductApi {
