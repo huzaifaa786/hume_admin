@@ -6,6 +6,7 @@ class InputField extends StatelessWidget {
       {Key? key,
       this.controller,
       this.hint,
+      this.keyboardType,
       this.text,
       this.width,
       this.color = Colors.white,
@@ -28,6 +29,7 @@ class InputField extends StatelessWidget {
   final validator;
   final width;
   final obscure;
+  final keyboardType;
   final hint;
   final type;
   final imageIcon;

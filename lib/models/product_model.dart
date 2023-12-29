@@ -1,7 +1,7 @@
 class ProductModel {
   late String id;
   late String productName;
-  late double productPrice;
+  late String productPrice;
   late String productDescription;
   late String shopId;
   late String category;
@@ -25,7 +25,7 @@ class ProductModel {
     id = json['id'];
     productName = json['productName'];
     shopId = json['shopId'];
-    productPrice = json['productPrice'].toDouble();
+    productPrice = json['productPrice'];
     productDescription = json['productDescription'];
     category = json['category'];
     selectedSizes = List<String>.from(json['selectedSizes']);
