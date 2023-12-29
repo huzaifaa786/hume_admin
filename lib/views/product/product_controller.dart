@@ -1,3 +1,4 @@
+import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/modal/product_model.dart';
@@ -11,8 +12,11 @@ import 'package:hume_admin/api/image_selection.dart';
 
 class ProductController extends GetxController {
   static ProductController instance = Get.find();
-  final _productApi = ProductApi();
 
+  final _productApi = ProductApi();
+  List<ProductModel> shopProducts = [];
+
+  final _databaseApi = DatabaseApi();
   TextEditingController ProductnameController = TextEditingController();
   TextEditingController productpriceController = TextEditingController();
   TextEditingController productdiscriptionController = TextEditingController();
@@ -97,5 +101,18 @@ class ProductController extends GetxController {
     } catch (e) {
       print('Error saving product: $e');
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    products();
+    update();
+  }
+
+  products() async {
+    String id = Get.parameters['id'].toString();
+    shopProducts = await _databaseApi.fetchProducts(id);
+    update();
   }
 }

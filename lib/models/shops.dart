@@ -8,6 +8,7 @@ class Shop {
   String? bannerImageName;
   String? logoImageUrl;
   String? logoImageName;
+  String? category;
   Shop({
     required this.id,
     this.name,
@@ -16,6 +17,7 @@ class Shop {
     this.bannerImageName,
     this.logoImageUrl,
     this.logoImageName,
+    this.category,
   });
 
   Shop.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Shop {
     bannerImageName = json['bannerImageName'];
     logoImageUrl = json['logoImageUrl'];
     logoImageName = json['logoImageName'];
+    category = json['category'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +40,7 @@ class Shop {
     data['bannerImageName'] = this.bannerImageName;
     data['logoImageUrl'] = this.logoImageUrl;
     data['logoImageName'] = this.logoImageName;
+    data['category'] = this.category;
     return data;
   }
 
@@ -49,6 +53,7 @@ class Shop {
       bannerImageName: map['bannerImageName'],
       logoImageUrl: map['logoImageUrl'],
       logoImageName: map['logoImageName'],
+      category: map['category'],
     );
   }
 }
