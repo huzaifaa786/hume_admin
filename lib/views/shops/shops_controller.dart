@@ -102,6 +102,7 @@ class ShopController extends GetxController {
     UiUtilites.successSnackbar('Congratulatios', 'Shop created successfully');
   }
 
+
   clear() {
     name.clear();
     description.clear();
