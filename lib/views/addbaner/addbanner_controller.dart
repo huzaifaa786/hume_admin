@@ -1,58 +1,140 @@
+// ignore_for_file: unused_field, depend_on_referenced_packages, avoid_print
+
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:hume_admin/api/database_api.dart';
-import 'package:hume_admin/api/storage_api.dart';
+import 'package:hume_admin/api/storage_api1.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/home_banner_model.dart';
-//import 'package:hume_admin/modal/home_banner_model.dart';
 import 'package:hume_admin/services/banner_service.dart';
+import 'package:hume_admin/utils/controller_initlization.dart';
 import 'package:path/path.dart';
 import 'package:hume_admin/api/image_selection.dart';
 
 class AddBannerController extends GetxController {
-  static AddBannerController instance = Get.find();
   final _imageSelectorApi = ImageSelectorApi();
-
-// List to store image names
 
   final _storeImageApi = StorageApi();
   final _bannerService = Bannerservice();
-  File? bannerImage;
- 
-  String? bannerImageName; // Variable to store the name
+  File? bannerImage1;
+  File? bannerImage2;
+  File? bannerImage3;
+  HomeBanner? bannerImages;
+  String? bannerImageName1;
+  String? bannerImageName2;
+  String? bannerImageName3;
 
-  Future selectProfileImage() async {
+  Future selectBannerImages1() async {
     final tempImage = await _imageSelectorApi.selectImage();
-    bannerImage = tempImage;
-    if (bannerImage != null) {
-      // Get the name of the selected image
-      bannerImageName = basename(bannerImage!.path);
+    bannerImage1 = tempImage;
+    if (bannerImage1 != null) {
+      bannerImageName1 = basename(bannerImage1!.path);
     }
+    update();
+  }
 
+  Future selectBannerImages2() async {
+    final tempImage = await _imageSelectorApi.selectImage();
+    bannerImage2 = tempImage;
+    if (bannerImage2 != null) {
+      bannerImageName2 = basename(bannerImage2!.path);
+    }
+    update();
+  }
+
+  Future selectBannerImages3() async {
+    final tempImage = await _imageSelectorApi.selectImage();
+    bannerImage3 = tempImage;
+    if (bannerImage3 != null) {
+      bannerImageName3 = basename(bannerImage3!.path);
+    }
     update();
   }
 
   Future storeBanner() async {
-    print('object****************');
-    var id = DateTime.now().millisecondsSinceEpoch.toString();
-    final CloudStorageResult result = await _storeImageApi.uploadHomeBanner(
-        imageName: bannerImageName.toString(), imageToUpload: bannerImage!);
-    result.imageFileName.toString();
-    result.imageUrl.toString();
-  
+    if (bannerImage1 != null && bannerImage2 != null && bannerImage3 != null) {
+      var id = DateTime.now().millisecondsSinceEpoch.toString();
+      final CloudStorageResult image1 = await _storeImageApi.uploadHomeBanner(
+          imageName: bannerImageName1.toString(), imageToUpload: bannerImage1!);
+      final CloudStorageResult image2 = await _storeImageApi.uploadHomeBanner(
+          imageName: bannerImageName1.toString(), imageToUpload: bannerImage2!);
+      final CloudStorageResult image3 = await _storeImageApi.uploadHomeBanner(
+          imageName: bannerImageName1.toString(), imageToUpload: bannerImage3!);
 
-    print('object****************123213');
+      await _bannerService.createBanner(
+          banner: HomeBanner(
+        id: id,
+        imageUrl1: image1.imageUrl.toString(),
+        imageUrl2: image2.imageUrl.toString(),
+        imageUrl3: image3.imageUrl.toString(),
+      ));
+      update();
+    } else {
+      throw ArgumentError('One or more of the banner images are null.');
+    }
+  }
 
-    await _bannerService.createBanner(
-        banner: HomeBanner(
-      id: id,
-      imageName: result.imageFileName.toString(),
-      imageUrl1: result.imageUrl.toString(),
-      imageUrl2: result.imageUrl.toString(),
-      imageUrl3: result.imageUrl.toString(),
-    ));
-    // clear();
-    update();
+  void fetchBannerImages() {
+    try {
+      final collectionRef = FirebaseFirestore.instance.collection('banners');
+      collectionRef.limit(1).get().then((snapshot) {
+        if (snapshot.docs.isNotEmpty) {
+          final document = snapshot.docs.first;
+          final data = document.data();
+          bannerImages = HomeBanner.fromJson(data);
+          print(bannerImages);
+          update();
+        } else {
+          print('No documents found in the collection');
+        }
+      });
+    } catch (e) {
+      print('Error fetching banner images: $e');
+    }
+  }
+
+  Future<void> updateBanner() async {
+    try {
+      DocumentReference docRef =
+          firebaseFirestore.collection('banners').doc(bannerImages!.id);
+      Map<String, dynamic> updatedData = {
+        'imageUrl1': bannerImages!.imageUrl1,
+        'imageUrl2': bannerImages!.imageUrl2,
+        'imageUrl3': bannerImages!.imageUrl3,
+      };
+
+      if (bannerImage1 != null) {
+        final CloudStorageResult image1 = await _storeImageApi.uploadHomeBanner(
+            imageName: bannerImageName1.toString(),
+            imageToUpload: bannerImage1!);
+        print(image1);
+        updatedData['imageUrl1'] = image1.imageUrl;
+      }
+
+      if (bannerImage2 != null) {
+        final CloudStorageResult image2 = await _storeImageApi.uploadHomeBanner(
+            imageName: bannerImageName2.toString(),
+            imageToUpload: bannerImage2!);
+        updatedData['imageUrl2'] = image2.imageUrl;
+      }
+
+      if (bannerImage3 != null) {
+        final CloudStorageResult image3 = await _storeImageApi.uploadHomeBanner(
+            imageName: bannerImageName3.toString(),
+            imageToUpload: bannerImage3!);
+        updatedData['imageUrl3'] = image3.imageUrl;
+      }
+      // Update the document with the new data
+      await docRef.update(updatedData);
+
+      if (docRef.id.isNotEmpty) {
+        Get.back();
+      } else {
+        print('Failed to store data.');
+      }
+    } catch (e) {
+      print('Error storing data: $e');
+    }
   }
 }

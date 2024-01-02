@@ -66,7 +66,7 @@ class DatabaseApi {
     return products;
   }
 
-  Future<void> createBanner(HomeBanner banner) async {
+  Future createBanner(HomeBanner banner) async {
     try {
       await _bannersCollection.doc(banner.id).set(banner.toJson());
     } on PlatformException catch (e) {

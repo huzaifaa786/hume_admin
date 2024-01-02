@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/api/database_api.dart';
-import 'package:hume_admin/api/storage_api.dart';
+import 'package:hume_admin/api/storage_api1.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/services/shop_service.dart';

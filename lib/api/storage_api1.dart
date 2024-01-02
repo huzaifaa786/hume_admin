@@ -84,7 +84,7 @@ class StorageApi {
     }
   }
 
-Future<CloudStorageResult> uploadHomeBanner({
+  Future<CloudStorageResult> uploadHomeBanner({
     required String imageName,
     required File imageToUpload,
   }) async {
@@ -93,7 +93,6 @@ Future<CloudStorageResult> uploadHomeBanner({
     final storage.Reference storageReference = storage.FirebaseStorage.instance
         .ref()
         .child("home/banner/$imageName/$imageFileName");
-
     try {
       final storage.UploadTask uploadTask =
           storageReference.putFile(imageToUpload);
@@ -102,12 +101,14 @@ Future<CloudStorageResult> uploadHomeBanner({
           await Future.value(uploadTask);
 
       final downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
-
       if (uploadTask.storage.bucket.isNotEmpty) {
         final url = downloadUrl.toString();
+        print(CloudStorageResult(
+          imageUrl: url,
+          imageFileName: imageFileName,
+        ));
         return CloudStorageResult(
           imageUrl: url,
-          
           imageFileName: imageFileName,
         );
       } else {
@@ -123,7 +124,4 @@ Future<CloudStorageResult> uploadHomeBanner({
       );
     }
   }
-
-
-
 }
