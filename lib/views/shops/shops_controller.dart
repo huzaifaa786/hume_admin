@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/api/storage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/shops.dart';
@@ -14,10 +15,13 @@ import 'package:hume_admin/api/image_selection.dart';
 
 class ShopController extends GetxController {
   static ShopController instance = Get.find();
-  final _imageSelectorApi = ImageSelectorApi();
+
+  List<Shop> shops = [];
 
   final _shopService = Shopservice();
   final _imagestorageApi = StorageApi();
+  final _databaseApi = DatabaseApi();
+  final _imageSelectorApi = ImageSelectorApi();
 
   RxBool arefieldsFilled = false.obs;
   bool isBannerSelected = false;
@@ -26,6 +30,7 @@ class ShopController extends GetxController {
   String id = '';
   String bannerUrl = '';
   String logoUrl = '';
+  String category = '';
   TextEditingController name = TextEditingController();
   TextEditingController description = TextEditingController();
 
@@ -35,12 +40,30 @@ class ShopController extends GetxController {
   String? bannerImageName;
   String? logoImageName;
 
+  int selectedIndex = -1;
+
+  List<String> categories = [
+    'Clothes',
+    'Furniture',
+    'Bags and shoes',
+    'Makeup',
+    'Home & kitchen',
+    'Skin & Hair Products',
+    'Perfumes',
+    'Devices',
+    'Accessories',
+    'Personal Services',
+    'Foods'
+  ];
+
   Future selectImage() async {
     final tempImage = await _imageSelectorApi.selectImage();
+
     bannerImage = tempImage;
+
     if (bannerImage != null) {
-      // Get the name of the selected image
       bannerImageName = basename(bannerImage!.path);
+
       isBannerSelected = true;
     }
     update();
@@ -48,10 +71,12 @@ class ShopController extends GetxController {
 
   Future selectLogo() async {
     final tempImage = await _imageSelectorApi.selectImage();
+
     logoImage = tempImage;
+
     if (logoImage != null) {
-      // Get the name of the selected image
       logoImageName = basename(bannerImage!.path);
+
       isLogoSelected = true;
     }
     update();
@@ -76,10 +101,12 @@ class ShopController extends GetxController {
     description.addListener(() {
       checkFields();
     });
+    index();
   }
 
   Future createShop() async {
     id = DateTime.now().millisecondsSinceEpoch.toString();
+    category = categories[selectedIndex];
 
     final CloudStorageResult bannerImageResult = await _imagestorageApi
         .uploadBannerImage(shopId: id, imageToUpload: bannerImage!);
@@ -95,11 +122,12 @@ class ShopController extends GetxController {
       bannerImageName: bannerImageResult.imageFileName,
       logoImageUrl: logoImageResult.imageUrl,
       logoImageName: logoImageResult.imageFileName,
+      category: category,
     ));
     clear();
     update();
 
-    UiUtilites.successSnackbar('Congratulatios', 'Shop created successfully');
+    UiUtilites.successSnackbar('Shop created successfully', 'Congratulatios');
   }
 
 
@@ -110,7 +138,24 @@ class ShopController extends GetxController {
     logoImage = null;
     bannerImageName = '';
     logoImageName = '';
+    category = '';
+    selectedIndex = -1;
     isLogoSelected = false;
     isBannerSelected = false;
+  }
+
+//----------fetch all shops-------------
+  index() async {
+    shops = await _databaseApi.fetchShops();
+    update();
+  }
+
+//------------delete shop---------------
+  Future deleteShop(String id) async {
+    await _databaseApi.destroy(id);
+
+    shops = index();
+    UiUtilites.successAlert(context, 'Success');
+    update();
   }
 }

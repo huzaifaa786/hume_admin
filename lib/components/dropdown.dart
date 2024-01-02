@@ -22,8 +22,12 @@ class DropDown extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Choose the store',style: TextStyle(color: Colors.grey),),
-            Icon(Icons.keyboard_arrow_down_sharp)
+            children: [
+              Text(
+                'Choose the store',
+                style: TextStyle(color: Colors.grey),
+              ),
+              Icon(Icons.keyboard_arrow_down_sharp)
             ],
           ),
         ),

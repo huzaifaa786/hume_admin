@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:hume_admin/exceptions/storage_api_exceptions.dart';
 import 'package:hume_admin/helper/data_model.dart';
 
-
 class StorageApi {
   Future<CloudStorageResult> uploadBannerImage({
     required String shopId,

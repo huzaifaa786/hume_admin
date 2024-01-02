@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
 
-
 class LargeButton extends StatelessWidget {
   const LargeButton(
       {Key? key,
@@ -30,8 +29,8 @@ class LargeButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        decoration:
-            BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
+        decoration: BoxDecoration(
+            color: color, borderRadius: BorderRadius.circular(30)),
         width: MediaQuery.of(context).size.width * buttonWidth,
         height: 60,
         child: Row(

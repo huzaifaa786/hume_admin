@@ -7,10 +7,18 @@ import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class ShopCard extends StatelessWidget {
-   const ShopCard({super.key, this.name, this.ontap,this.category});
-   final name;
-   final ontap;
-   final category;
+  const ShopCard(
+      {super.key,
+      this.name,
+      this.ontap,
+      this.category,
+      this.deleteShop,
+      this.image});
+  final name;
+  final ontap;
+  final category;
+  final deleteShop;
+  final image;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +39,19 @@ class ShopCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset('assets/images/shop.svg'),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage(image),
+                      ),
+                    ),
+                    // Image.network(
+                    //   image,
+                    //   height: 50,
+                    //   width: 50,
+                    // ),
                     SizedBox(
                       width: 12,
                     ),
@@ -42,7 +62,8 @@ class ShopCard extends StatelessWidget {
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(maxWidth: Get.width*0.28),
+                                constraints:
+                                    BoxConstraints(maxWidth: Get.width * 0.28),
                                 child: Text(
                                   name,
                                   overflow: TextOverflow.ellipsis,
@@ -60,7 +81,8 @@ class ShopCard extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
-                                color: const Color.fromARGB(255, 187, 173, 173)),
+                                color:
+                                    const Color.fromARGB(255, 187, 173, 173)),
                           ),
                         ]),
                   ],
@@ -68,11 +90,11 @@ class ShopCard extends StatelessWidget {
                 IconsButton(
                   color: white,
                   height: 40.0,
-                  width: MediaQuery.of(context).size.width * 0.35,
+                  // width: MediaQuery.of(context).size.width * 0.35,
                   title: 'Delete Shop',
                   fontSize: 14.0,
                   textcolor: Colors.red,
-                  onPressed: () {},
+                  onPressed: deleteShop,
                 )
               ],
             )),

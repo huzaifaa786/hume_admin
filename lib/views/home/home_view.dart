@@ -121,9 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: InkWell(
-        onTap: (){
-          authService.logout();
-        },
+       
         child: SvgPicture.asset(
           'assets/images/backgound.svg',
         ),

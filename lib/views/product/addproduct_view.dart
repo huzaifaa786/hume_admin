@@ -8,8 +8,11 @@ import 'package:hume_admin/components/dropdown.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/largebutton.dart';
+import 'package:hume_admin/components/shopdropdown.dart';
 import 'package:hume_admin/components/sizebox.dart';
 import 'package:hume_admin/components/topbar.dart';
+import 'package:hume_admin/components/validarebutton.dart';
+import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:path/path.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/product/product_controller.dart';
@@ -54,6 +57,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       width: 12,
                     ),
                     InputField(
+                      keyboardType: TextInputType.number,
                       controller: controller.productpriceController,
                       hint: 'price',
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -122,7 +126,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '${basename( controller.productImages[i].path)}',
+                                  '${basename(controller.productImages[i].path)}',
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 12),
                                 ),
@@ -133,7 +137,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     ],
                   ),
                 ),
-                DropDown(),
+                SizedBox(
+                  height: 12,
+                ),
+                controller.shops.isNotEmpty
+                    ? ShopDropdownField(
+                        imageIcon: 'assets/images/trickk.svg',
+                        items: controller.shops,
+                        selectedValue: controller.selectedShop,
+                        icon: Icon(Icons.shop),
+                        onChange: (value) {
+                          setState(() {
+                            controller.selectedShop = value;
+                            controller.checkFields();
+                          });
+                        },
+                      )
+                    : SizedBox(),
                 InputField(
                   controller: controller.productdiscriptionController,
                   hint: 'Discription',
@@ -187,6 +207,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       onPressed: () {
                         setState(() {
                           controller.selectedIndex = index;
+                          controller.checkFields();
                         });
                       },
                       isSelected: index == controller.selectedIndex,
@@ -199,12 +220,17 @@ class _AddProductScreenState extends State<AddProductScreen> {
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14),
-          child: LargeButton(
-            title: 'Sell Product',
-            onPressed: () {
-              controller.saveProduct();
-            },
-            textcolor: white,
+          child: validateButton(
+            title: 'Sell Product ',
+            onPressed: controller.areFieldsFilled.value
+                ? () {
+                    controller.saveProduct();
+                  }
+                : () {
+                    UiUtilites.errorSnackbar(
+                        'Fill out all fields', 'Please fill all above fields');
+                  },
+            selected: controller.areFieldsFilled.value,
           ),
         ),
       ),
