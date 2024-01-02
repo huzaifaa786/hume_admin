@@ -12,4 +12,5 @@ class AppRoutes {
   static const notification = '/notification';
   static const clientinfo = '/clientinfo';
   static const manageorder = '/manageorder';
+  static const editproduct = '/editproduct';
 }

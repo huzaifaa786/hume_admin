@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/product/editproduct/editproduct_controller.dart';
+import 'package:hume_admin/views/product/product_controller.dart';
 
-
-class SizeContainer extends StatefulWidget {
-  const SizeContainer({Key? key, this.text, this.sizeValue}) : super(key: key);
+class EditSizeContainer extends StatefulWidget {
+  const EditSizeContainer({Key? key, this.text, this.sizeValue,this.isSelected = false}) : super(key: key);
 
   final String? text;
   final String? sizeValue;
+  final bool isSelected;
 
   @override
-  _SizeContainerState createState() => _SizeContainerState();
+  _EditSizeContainerState createState() => _EditSizeContainerState();
 }
 
-class _SizeContainerState extends State<SizeContainer> {
+class _EditSizeContainerState extends State<EditSizeContainer> {
   bool isPressed = false;
 
   @override
@@ -25,7 +25,7 @@ class _SizeContainerState extends State<SizeContainer> {
         });
 
         if (widget.sizeValue != null) {
-          EditProductController.instance.toggleSize(widget.sizeValue!);
+          ProductController.instance.toggleSize(widget.sizeValue!);
         }
       },
       child: Padding(
@@ -37,13 +37,13 @@ class _SizeContainerState extends State<SizeContainer> {
             child: Text(
               widget.text ?? '',
               style: TextStyle(
-                color: isPressed ? Colors.white : Colors.black,
+                color: widget.isSelected ? Colors.white : Colors.black,
               ),
             ),
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isPressed ? colortext : hintcolor,
+            color: widget.isSelected ? colortext : hintcolor,
           ),
         ),
       ),

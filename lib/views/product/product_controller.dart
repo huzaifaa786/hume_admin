@@ -1,3 +1,5 @@
+
+
 import 'dart:developer';
 
 import 'package:hume_admin/api/database_api.dart';
@@ -25,7 +27,7 @@ class ProductController extends GetxController {
   TextEditingController productpriceController = TextEditingController();
   TextEditingController productdiscriptionController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
-  final _storageApi = StorageApi();
+  final _storageApi = StorageApii();
   String category = '';
   List<String> selectedSizes = [];
   List<File> productImages = [];
@@ -49,6 +51,8 @@ class ProductController extends GetxController {
   ];
   void onInit() {
     getAllshops();
+    GetOneproducts();
+    log('ddddddddddddddddddd');
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -167,5 +171,23 @@ class ProductController extends GetxController {
     String id = Get.parameters['id'].toString();
     shopProducts = await _databaseApi.fetchProducts(id);
     update();
+  }
+
+  GetOneproducts() async {
+    try {
+      String id = Get.parameters['id'].toString();
+      ProductModel? product = await _productApi.getProductById(id);
+
+      if (product != null) {
+        print('Product found: $product');
+        print(product);
+      } else {
+        print('Product not found');
+      }
+
+      update();
+    } catch (e) {
+      print('Error fetching product: $e');
+    }
   }
 }

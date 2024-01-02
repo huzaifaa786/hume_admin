@@ -35,4 +35,34 @@ class ProductApi {
       );
     }
   }
+
+  Future<ProductModel?> getProductById(String productId) async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> doc =
+          await _productCollection.doc(productId).get()
+              as DocumentSnapshot<Map<String, dynamic>>;
+
+      if (doc.exists) {
+        return ProductModel.fromJson(doc.data()!);
+      } else {
+        return null;
+      }
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to fetch product by ID',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<void> updateProduct( productId, product) async {
+    try {
+      await _productCollection.doc(productId).update(product.toJson());
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to update product',
+        message: e.message,
+      );
+    }
+  }
 }

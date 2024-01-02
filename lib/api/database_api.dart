@@ -37,6 +37,7 @@ class DatabaseApi {
       throw DatabaseApiException(title: 'Failed to delete Shop', message: '');
     }
   }
+
   Future<List<Shop>> getAllShops() async {
     try {
       QuerySnapshot querySnapshot = await _shopsCollection.get();
@@ -51,6 +52,7 @@ class DatabaseApi {
       );
     }
   }
+
   Future<List<ProductModel>> fetchProducts(id) async {
     final QuerySnapshot<Object?> snapshot =
         await _productsCollection.where('shopId', isEqualTo: id).get();
@@ -59,5 +61,23 @@ class DatabaseApi {
         .map((doc) => ProductModel.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
     return products;
+  }
+
+  Future<Shop?> getShopById(String shopId) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await _shopsCollection.doc(shopId).get();
+
+      if (documentSnapshot.exists) {
+        return Shop.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+      } else {
+        return null; // Shop not found
+      }
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to get Shop by ID',
+        message: e.message,
+      );
+    }
   }
 }
