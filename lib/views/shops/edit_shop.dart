@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/button.dart';
 import 'package:hume_admin/components/categorybutto.dart';
+import 'package:hume_admin/components/editimagecard.dart';
 import 'package:hume_admin/components/imagecard.dart';
 import 'package:hume_admin/components/input_field.dart';
 
@@ -14,14 +15,14 @@ import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:hume_admin/views/shops/shops_controller.dart';
 
-class AddShop extends StatefulWidget {
-  const AddShop({super.key});
+class EditShop extends StatefulWidget {
+  const EditShop({super.key});
 
   @override
-  State<AddShop> createState() => _AddShopState();
+  State<EditShop> createState() => _EditShopState();
 }
 
-class _AddShopState extends State<AddShop> {
+class _EditShopState extends State<EditShop> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ShopController>(
@@ -30,7 +31,7 @@ class _AddShopState extends State<AddShop> {
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: TitleTopBar(
-            name: 'Add Shops',
+            name: 'Edit Shop',
             ontap: () {
               Get.back();
             },
@@ -45,7 +46,7 @@ class _AddShopState extends State<AddShop> {
               children: [
                 InputField(
                   width: MediaQuery.of(context).size.width * 0.65,
-                  hint: 'Shop Name',
+                  hint: 'name',
                   controller: controller.name,
                 ),
                 InputField(
@@ -66,19 +67,14 @@ class _AddShopState extends State<AddShop> {
                                 name: controller.bannerImageName,
                                 width: MediaQuery.of(context).size.width * 0.5,
                               )
-                            : AddBannerBox(
-                                onPressed: () {
+                            : EditImageBox(
+                                ontap: () {
                                   controller.selectImage();
                                 },
-                                text: 'Choose Page Banner',
-                                buttonheight: 32.0,
-                                fontSize: 12,
-                                buttonwidth:
-                                    MediaQuery.of(context).size.width * 0.39,
+                                image: controller.shopDetails!.bannerImageUrl,
+                                name: controller.shopDetails!.name,
                                 width: MediaQuery.of(context).size.width * 0.5,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.12,
-                              ),
+                              )
                       ],
                     ),
                     SizedBox(
@@ -95,19 +91,14 @@ class _AddShopState extends State<AddShop> {
                                 name: controller.logoImageName,
                                 width: MediaQuery.of(context).size.width * 0.4,
                               )
-                            : AddBannerBox(
-                                onPressed: () {
+                            : EditImageBox(
+                                ontap: () {
                                   controller.selectLogo();
                                 },
-                                text: 'Choose shop logo',
-                                fontSize: 12,
-                                buttonheight: 32.0,
-                                buttonwidth:
-                                    MediaQuery.of(context).size.width * 0.3,
+                                image: controller.shopDetails!.logoImageUrl,
+                                name: controller.shopDetails!.logoImageName,
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.12,
-                              ),
+                              )
                       ],
                     )
                   ],
@@ -147,17 +138,14 @@ class _AddShopState extends State<AddShop> {
           padding: const EdgeInsets.all(14.0),
           child: Buttonn(
               selected: (controller.arefieldsFilled.value &&
-                      controller.isLogoSelected & controller.isBannerSelected &&
                       controller.selectedIndex != -1)
                   ? true
                   : false,
-              title: 'Add shop',
+              title: 'Update shop',
               onPressed: () {
                 if (controller.arefieldsFilled.value &&
-                    controller.isLogoSelected &&
-                    controller.isBannerSelected &&
                     controller.selectedIndex != -1) {
-                  controller.createShop();
+                  controller.updateShop();
                 } else {
                   UiUtilites.errorSnackbar(
                       'Fill all fields', 'Please fill all the fields');

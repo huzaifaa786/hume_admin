@@ -5,6 +5,7 @@ class AppRoutes {
   static const addbanner = '/addbanner';
   static const sale = '/sale';
   static const shop = '/shop';
+  static const editshop = '/editshop';
   static const addshop = '/addshop';
   static const addproduct = '/addproduct';
   static const allproduct = '/allproduct';
@@ -12,4 +13,5 @@ class AppRoutes {
   static const notification = '/notification';
   static const clientinfo = '/clientinfo';
   static const manageorder = '/manageorder';
+  static const editproduct = '/editproduct';
 }

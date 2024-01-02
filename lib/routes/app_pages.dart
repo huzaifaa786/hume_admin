@@ -14,10 +14,13 @@ import 'package:hume_admin/views/order/order_view.dart';
 import 'package:hume_admin/views/product/addproduct_view.dart';
 import 'package:hume_admin/views/home/home_view.dart';
 import 'package:hume_admin/views/product/allproducts_view.dart';
+import 'package:hume_admin/views/product/editproduct/editproduct_binding.dart';
+import 'package:hume_admin/views/product/editproduct/editproduct_view.dart';
 import 'package:hume_admin/views/product/product_binding.dart';
 import 'package:hume_admin/views/sale/sale_binding.dart';
 import 'package:hume_admin/views/sale/sale_view.dart';
 import 'package:hume_admin/views/shops/add_shop_view.dart';
+import 'package:hume_admin/views/shops/edit_shop.dart';
 import 'package:hume_admin/views/shops/shops_binding.dart';
 import 'package:hume_admin/views/shops/shops_view.dart';
 import 'package:hume_admin/views/splash/splash_binding.dart';
@@ -62,6 +65,11 @@ class AppPages {
       binding: ShopBinding(),
     ),
     GetPage(
+      name: AppRoutes.editshop,
+      page: () => const EditShop(),
+      binding: ShopBinding(),
+    ),
+    GetPage(
       name: AppRoutes.addproduct,
       page: () => const AddProductScreen(),
       binding: ProductBinding(),
@@ -69,12 +77,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.allproduct,
       page: () => const AllProductScreen(),
-       binding: ProductBinding(),
+      binding: ProductBinding(),
     ),
     GetPage(
       name: AppRoutes.order,
       page: () => const OrderHistory(),
-       binding: OrderBinding(),
+      binding: OrderBinding(),
     ),
     GetPage(
       name: AppRoutes.notification,
@@ -86,10 +94,15 @@ class AppPages {
       page: () => const ClientInfoScreen(),
       binding: ClientBinding(),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.manageorder,
       page: () => const ManageOrder(),
       binding: OrderBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.editproduct,
+      page: () => const EditProductScreen(),
+      binding: EditProductBinding(),
     ),
   ];
 }

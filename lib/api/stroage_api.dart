@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:hume_admin/exceotions/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 
-class StorageApi {
+class StorageApii {
   Future<CloudStorageResult> uploadProfileImage({
     required String productId,
     required File imageToUpload,

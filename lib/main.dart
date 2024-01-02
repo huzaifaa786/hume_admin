@@ -2,6 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/firebase_options.dart';
 import 'package:hume_admin/routes/app_pages.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
+      builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       title: "Huma",
       initialBinding: SplashBinding(),

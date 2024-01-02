@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
+
+import 'dart:developer';
+
 import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
@@ -23,7 +26,7 @@ class ProductController extends GetxController {
   TextEditingController productpriceController = TextEditingController();
   TextEditingController productdiscriptionController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
-  final _storageApi = StorageApi();
+  final _storageApi = StorageApii();
   String category = '';
   List<String> selectedSizes = [];
   List<File> productImages = [];
@@ -48,6 +51,8 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     getAllshops();
+    GetOneproducts();
+    log('ddddddddddddddddddd');
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -165,5 +170,23 @@ class ProductController extends GetxController {
     String id = Get.parameters['id'].toString();
     shopProducts = await _databaseApi.fetchProducts(id);
     update();
+  }
+
+  GetOneproducts() async {
+    try {
+      String id = Get.parameters['id'].toString();
+      ProductModel? product = await _productApi.getProductById(id);
+
+      if (product != null) {
+        print('Product found: $product');
+        print(product);
+      } else {
+        print('Product not found');
+      }
+
+      update();
+    } catch (e) {
+      print('Error fetching product: $e');
+    }
   }
 }
