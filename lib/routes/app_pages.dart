@@ -18,6 +18,7 @@ import 'package:hume_admin/views/product/product_binding.dart';
 import 'package:hume_admin/views/sale/sale_binding.dart';
 import 'package:hume_admin/views/sale/sale_view.dart';
 import 'package:hume_admin/views/shops/add_shop_view.dart';
+import 'package:hume_admin/views/shops/edit_shop.dart';
 import 'package:hume_admin/views/shops/shops_binding.dart';
 import 'package:hume_admin/views/shops/shops_view.dart';
 import 'package:hume_admin/views/splash/splash_binding.dart';
@@ -59,6 +60,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.addshop,
       page: () => const AddShop(),
+      binding: ShopBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.editshop,
+      page: () => const EditShop(),
       binding: ShopBinding(),
     ),
     GetPage(

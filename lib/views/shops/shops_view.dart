@@ -56,6 +56,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     textcolor: white,
                     color: maincolor,
                     onPressed: () {
+                      controller.clear();
                       Get.toNamed(AppRoutes.addshop);
                     },
                   ),
@@ -74,16 +75,34 @@ class _ShopScreenState extends State<ShopScreen> {
                     itemBuilder: (context, index) {
                       final shop = controller.shops[index];
                       return ShopCard(
-                        name: shop.name,
-                        image: shop.logoImageUrl,
-                        ontap: () {
-                          Get.toNamed(AppRoutes.allproduct, parameters: {'id': '1'});
-                        },
-                        category: shop.category,
-                        deleteShop: () {
-                          controller.deleteShop(shop.id);
-                        },
-                      );
+                          name: shop.name,
+                          image: shop.logoImageUrl,
+                          ontap: () {
+                            Get.toNamed(AppRoutes.allproduct,
+                                parameters: {'id': shop.id});
+                          },
+                          category: shop.category,
+                          updateShop: () {
+                            controller.shopDetail(shop.id);
+                          },
+                          onPressed: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                    title: Text('Are you sure!'),
+                                    content: Text(
+                                        'you are going tp delete shop and all its products'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Cancel'),
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                          onPressed: () =>
+                                              controller.deleteShop(shop.id),
+                                          child: Text('Delete'))
+                                    ],
+                                  )));
                     }),
               ),
             ],

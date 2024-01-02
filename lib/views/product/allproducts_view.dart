@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/ordercard.dart';
 import 'package:hume_admin/components/topbar.dart';
-
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/order/order_view.dart';
 import 'package:hume_admin/views/product/product_controller.dart';
 
 class AllProductScreen extends StatefulWidget {
