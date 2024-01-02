@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hume_admin/components/smallbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -12,7 +14,7 @@ class AddBannerBox extends StatelessWidget {
     this.fontSize,
     this.buttonwidth,
     this.buttonheight,
-    this.text, // Make text parameter optional
+    this.text, File? bannerImage, // Make text parameter optional
   }) : super(key: key);
 
   final onPressed;

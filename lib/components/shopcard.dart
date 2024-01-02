@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -12,13 +13,15 @@ class ShopCard extends StatelessWidget {
       this.name,
       this.ontap,
       this.category,
-      this.deleteShop,
-      this.image});
+      this.onPressed,
+      this.image,
+      this.updateShop});
   final name;
   final ontap;
   final category;
-  final deleteShop;
+  final onPressed;
   final image;
+  final updateShop;
 
   @override
   Widget build(BuildContext context) {
@@ -87,15 +90,50 @@ class ShopCard extends StatelessWidget {
                         ]),
                   ],
                 ),
-                IconsButton(
-                  color: white,
-                  height: 40.0,
-                  // width: MediaQuery.of(context).size.width * 0.35,
-                  title: 'Delete Shop',
-                  fontSize: 14.0,
-                  textcolor: Colors.red,
-                  onPressed: deleteShop,
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: updateShop,
+                      child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: maincolor),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Icon(
+                            Icons.edit_document,
+                            color: maincolor,
+                          )),
+                    ),
+                    Gap(10),
+                    GestureDetector(
+                      onTap: onPressed,
+                      child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: Colors.red),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          )),
+                    ),
+                    Gap(10),
+                  ],
                 )
+
+                // IconsButton(
+                //   color: white,
+                //   height: 40.0,
+                //   // width: MediaQuery.of(context).size.width * 0.35,
+                //   title: 'Delete Shop',
+                //   fontSize: 14.0,
+                //   textcolor: Colors.red,
+                //   onPressed: onPressed,
+                // )
               ],
             )),
       ),

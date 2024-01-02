@@ -7,7 +7,6 @@ import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/routes/app_routes.dart';
 
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/order/order_view.dart';
 import 'package:hume_admin/views/product/product_controller.dart';
 
 class AllProductScreen extends StatefulWidget {

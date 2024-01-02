@@ -12,5 +12,4 @@ class Shopservice {
   }) async {
     await _databaseApi.createShop(shop);
   }
-
 }

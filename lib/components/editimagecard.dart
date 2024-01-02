@@ -5,8 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:hume_admin/utils/colors.dart';
 
-class ImageBox extends StatelessWidget {
-  const ImageBox(
+class EditImageBox extends StatelessWidget {
+  const EditImageBox(
       {super.key,
       this.onPressed,
       this.ontap,
@@ -48,7 +48,7 @@ class ImageBox extends StatelessWidget {
             Text(''),
             Column(
               children: [
-                Image.file(
+                Image.network(
                   image,
                   width: 29,
                   height: 29,
