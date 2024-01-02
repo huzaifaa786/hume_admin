@@ -5,5 +5,6 @@ class AddBannerBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => AddBannerController());
+    
   }
 }

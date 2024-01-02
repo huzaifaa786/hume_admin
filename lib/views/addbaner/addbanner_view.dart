@@ -5,6 +5,7 @@ import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/largebutton.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/utils/controller_initlization.dart';
 import 'package:hume_admin/views/addbaner/addbanner_controller.dart';
 
 class AddBanner extends StatefulWidget {
@@ -44,7 +45,7 @@ class _AddBannerState extends State<AddBanner> {
                   buttonwidth: MediaQuery.of(context).size.width * 0.42,
                   width: MediaQuery.of(context).size.width * 0.94,
                   height: MediaQuery.of(context).size.height * 0.18,
-                ),
+                                  ),
                 SizedBox(
                   height: 13,
                 ),
@@ -63,7 +64,11 @@ class _AddBannerState extends State<AddBanner> {
                         Text(''),
                         Column(
                           children: [
-                            Image.file(controller.bannerImage!,height: 80,width: 80,),
+                            Image.file(
+                              controller.bannerImage!,
+                              height: 80,
+                              width: 80,
+                            ),
                             SizedBox(
                               height: 12,
                             ),
@@ -84,6 +89,7 @@ class _AddBannerState extends State<AddBanner> {
                       ],
                     ),
                   ),
+                  
               ],
             ),
           ),
@@ -92,7 +98,9 @@ class _AddBannerState extends State<AddBanner> {
           padding: const EdgeInsets.all(14),
           child: LargeButton(
             title: 'Apply',
-            onPressed: () {},
+            onPressed: () {
+              controller.storeBanner();
+            },
             textcolor: white,
           ),
         ),

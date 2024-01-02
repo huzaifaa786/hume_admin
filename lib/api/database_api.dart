@@ -5,12 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hume_admin/exceptions/database_api_exception.dart';
+import 'package:hume_admin/models/home_banner_model.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
 
 class DatabaseApi {
   static final _firestore = FirebaseFirestore.instance;
   final CollectionReference _shopsCollection = _firestore.collection("shops");
+  final CollectionReference _bannersCollection =
+      _firestore.collection("banners");
   final CollectionReference _productsCollection =
       _firestore.collection("products");
 
@@ -99,14 +102,5 @@ class DatabaseApi {
     }
   }
 
-  Future updateShop(Shop shop) async {
-    try {
-      await _shopsCollection.doc(shop.id).set(shop.toJson());
-    } on PlatformException catch (e) {
-      throw DatabaseApiException(
-        title: 'Failed to update Shop',
-        message: e.message,
-      );
-    }
-  }
+ 
 }
