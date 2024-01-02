@@ -102,5 +102,24 @@ class DatabaseApi {
     }
   }
 
- 
+  Future updateShop(Shop shop) async {
+    try {
+      await _shopsCollection.doc(shop.id).set(shop.toJson());
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to update Shop',
+      );
+    }
+  }
+
+  Future<void> createBanner(HomeBanner banner) async {
+    try {
+      await _bannersCollection.doc(banner.id).set(banner.toJson());
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to create Banner',
+        message: e.message,
+      );
+    }
+  }
 }
