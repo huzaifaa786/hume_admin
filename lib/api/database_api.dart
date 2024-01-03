@@ -88,17 +88,15 @@ class DatabaseApi {
   Future<Shop?> editShop(String id) async {
     final QuerySnapshot<Object?> shop =
         await _shopsCollection.where('id', isEqualTo: id).get();
-
-    // Check if any document is found
     if (shop.docs.isNotEmpty) {
-      // Assuming Shop is the model representing your shop data
+
       final shopData = shop.docs.first.data() as Map<String, dynamic>;
       final shopObject = Shop.fromJson(
-          shopData); // Use your model constructor or deserialization logic
+          shopData); 
 
       return shopObject;
     } else {
-      return null; // Handle the case where no document is found
+      return null; 
     }
   }
 
