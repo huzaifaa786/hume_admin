@@ -1,15 +1,13 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/api/database_api.dart';
-import 'package:hume_admin/api/storage_api.dart';
+import 'package:hume_admin/api/storage_api1.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/shops.dart';
-import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/services/shop_service.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:path/path.dart';
@@ -66,7 +64,6 @@ class ShopController extends GetxController {
 
     if (bannerImage != null) {
       bannerImageName = basename(bannerImage!.path);
-
       isBannerSelected = true;
     }
     update();
@@ -78,8 +75,7 @@ class ShopController extends GetxController {
     logoImage = tempImage;
 
     if (logoImage != null) {
-      logoImageName = basename(bannerImage!.path);
-
+      logoImageName = basename(logoImage!.path);
       isLogoSelected = true;
     }
     update();
@@ -104,7 +100,7 @@ class ShopController extends GetxController {
     description.addListener(() {
       checkFields();
     });
-    index();
+    fetchShop();
     update();
   }
 
@@ -135,7 +131,6 @@ class ShopController extends GetxController {
     UiUtilites.successSnackbar('Shop created successfully', 'Congratulatios');
   }
 
-
   clear() {
     name.clear();
     description.clear();
@@ -153,7 +148,7 @@ class ShopController extends GetxController {
   }
 
 //----------fetch all shops-------------
-  index() async {
+  fetchShop() async {
     shops = await _databaseApi.fetchShops();
     update();
   }
@@ -162,60 +157,8 @@ class ShopController extends GetxController {
   Future deleteShop(String id) async {
     await _databaseApi.deleteShop(id);
 
-    shops = await index();
+    shops = await fetchShop();
     UiUtilites.successAlert(context, 'Success');
     update();
-  }
-
-//-----------update shop----------
-  shopDetail(String id) async {
-    shopDetails = await _databaseApi.editShop(id);
-    name.text = shopDetails!.name.toString();
-    description.text = shopDetails!.description.toString();
-    int index = categories.indexOf(shopDetails!.category.toString());
-    if (index != -1) {
-      selectedIndex = index;
-    }
-    Get.toNamed(AppRoutes.editshop);
-  }
-
-  updateShop() async {
-    LoadingHelper.show();
-    if (bannerImage != null) {
-      final CloudStorageResult bannerImageResult = await _imagestorageApi
-          .uploadBannerImage(shopId: id, imageToUpload: bannerImage!);
-      bannerUrl = bannerImageResult.imageUrl;
-      bannerImageName = bannerImageResult.imageFileName;
-    } else {
-      bannerUrl = shopDetails!.bannerImageUrl.toString();
-      bannerImageName = shopDetails!.bannerImageName.toString();
-    }
-
-    if (logoImage != null) {
-      final CloudStorageResult logoImageResult = await _imagestorageApi
-          .uploadLogoImage(shopId: id, imageToUpload: logoImage!);
-
-      logoUrl = logoImageResult.imageUrl;
-      logoImageName = logoImageResult.imageFileName;
-    } else {
-      logoUrl = shopDetails!.logoImageUrl.toString();
-      logoImageName = shopDetails!.logoImageName.toString();
-    }
-
-    _databaseApi.updateShop(Shop(
-      id: shopDetails!.id.toString(),
-      name: name.text,
-      description: description.text,
-      bannerImageUrl: bannerUrl,
-      bannerImageName: bannerImageName,
-      logoImageUrl: logoUrl,
-      logoImageName: logoImageName,
-      category: category,
-    ));
-    clear();
-    update();
-    LoadingHelper.dismiss();
-    Get.toNamed(AppRoutes.shop);
-    UiUtilites.successSnackbar('Shop updated successfully', 'Congratulatios');
   }
 }

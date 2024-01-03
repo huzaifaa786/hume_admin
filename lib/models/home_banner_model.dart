@@ -7,7 +7,6 @@ class HomeBanner {
   String? imageUrl3;
   HomeBanner({
     required this.id,
-    this.imageName,
     this.imageUrl1,
     this.imageUrl2,
     this.imageUrl3,
@@ -15,7 +14,6 @@ class HomeBanner {
 
   HomeBanner.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    imageName = json['imageName'];
     imageUrl1 = json['imageUrl1'];
     imageUrl2 = json['imageUrl2'];
     imageUrl3 = json['imageUrl3'];
@@ -24,7 +22,6 @@ class HomeBanner {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
-    data['imageName'] = imageName;
     data['imageUrl1'] = imageUrl1;
     data['imageUrl2'] = imageUrl2;
     data['imageUrl3'] = imageUrl3;

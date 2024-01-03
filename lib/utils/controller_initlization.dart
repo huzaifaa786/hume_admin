@@ -14,7 +14,6 @@ import 'package:hume_admin/views/splash/splash_controller.dart';
 
 SplashController splashController = SplashController.instance;
 HomeController homeController = HomeController.instance;
-AddBannerController addBannerController = AddBannerController.instance;
 SaleController saleController = SaleController.instance;
 ShopController shopController = ShopController.instance;
 ProductController productController = ProductController.instance;
