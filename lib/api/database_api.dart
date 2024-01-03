@@ -85,6 +85,24 @@ class DatabaseApi {
     return products;
   }
 
+ 
+  Future<Shop?> getShopById(String shopId) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await _shopsCollection.doc(shopId).get();
+
+      if (documentSnapshot.exists) {
+        return Shop.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+      } else {
+        return null; // Shop not found
+      }
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to get Shop by ID',
+      );
+    }
+  }
+
   Future<Shop?> editShop(String id) async {
     final QuerySnapshot<Object?> shop =
         await _shopsCollection.where('id', isEqualTo: id).get();

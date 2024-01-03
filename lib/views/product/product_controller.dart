@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print
+
+
 import 'dart:developer';
 
 import 'package:hume_admin/api/database_api.dart';
@@ -5,9 +8,7 @@ import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/api/product_api.dart';
-
 import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/api/image_selection.dart';
@@ -25,7 +26,7 @@ class ProductController extends GetxController {
   TextEditingController productpriceController = TextEditingController();
   TextEditingController productdiscriptionController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
-  final _storageApi = StorageApi();
+  final _storageApi = StorageApii();
   String category = '';
   List<String> selectedSizes = [];
   List<File> productImages = [];
@@ -47,8 +48,11 @@ class ProductController extends GetxController {
     'Personal Services',
     'Foods'
   ];
+  @override
   void onInit() {
     getAllshops();
+    GetOneproducts();
+    log('ddddddddddddddddddd');
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -84,7 +88,6 @@ class ProductController extends GetxController {
 
   Future<void> getAllshops() async {
     shops = await _databaseApi.getAllShops();
-
     print(shops);
     checkFields();
     update();
@@ -167,5 +170,23 @@ class ProductController extends GetxController {
     String id = Get.parameters['id'].toString();
     shopProducts = await _databaseApi.fetchProducts(id);
     update();
+  }
+
+  GetOneproducts() async {
+    try {
+      String id = Get.parameters['id'].toString();
+      ProductModel? product = await _productApi.getProductById(id);
+
+      if (product != null) {
+        print('Product found: $product');
+        print(product);
+      } else {
+        print('Product not found');
+      }
+
+      update();
+    } catch (e) {
+      print('Error fetching product: $e');
+    }
   }
 }

@@ -4,36 +4,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/categorybutto.dart';
-import 'package:hume_admin/components/dropdown.dart';
+import 'package:hume_admin/components/editsizebox.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
-import 'package:hume_admin/components/largebutton.dart';
 import 'package:hume_admin/components/shopdropdown.dart';
 import 'package:hume_admin/components/sizebox.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/components/validarebutton.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
+import 'package:hume_admin/views/product/editproduct/editproduct_controller.dart';
 import 'package:path/path.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/product/product_controller.dart';
 
-class AddProductScreen extends StatefulWidget {
-  const AddProductScreen({super.key});
+class EditProductScreen extends StatefulWidget {
+  const EditProductScreen({super.key});
 
   @override
-  State<AddProductScreen> createState() => _AddProductScreenState();
+  State<EditProductScreen> createState() => _EditProductScreenState();
 }
 
-class _AddProductScreenState extends State<AddProductScreen> {
+class _EditProductScreenState extends State<EditProductScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductController>(
+    return GetBuilder<EditProductController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: TitleTopBar(
-            name: 'Add Product',
+            name: 'Edit Product',
             ontap: () {
               Get.back();
             },
@@ -125,11 +124,56 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                Text(
-                                  '${basename(controller.productImages[i].path)}',
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 12),
+                                SizedBox(
+                                  width: Get.width*0.5,
+                                  child: Text(
+                                    '${basename(controller.productImages[i].path)}',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    // maxLines: 1,
+                                  ),
                                 ),
+                                InkWell(
+                                    onTap: () {
+                                      controller.deletefileImage(i);
+                                    },
+                                    child: Icon(
+                                      Icons.delete_forever_outlined,
+                                      color: Colors.red,
+                                    ))
+                              ],
+                            ),
+                          for (var i = 0;
+                              i < controller.productNetworkImages.length;
+                              i++)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Image.network(
+                                      controller.productNetworkImages[i]
+                                          .toString(),
+                                      height: 80,
+                                      width: 80,
+                                      fit: BoxFit.cover,
+                                    )),
+                                // Text(
+                                //   '${basename(controller.pr[i].path)}',
+                                //   style: TextStyle(
+                                //       color: Colors.grey, fontSize: 12),
+                                // ),
+                                InkWell(
+                                    onTap: () {
+                                      controller.deletenetworkImage(i);
+                                    },
+                                    child: Icon(
+                                      Icons.delete_forever_outlined,
+                                      color: Colors.red,
+                                    ))
                               ],
                             ),
                         ],
@@ -176,8 +220,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 Row(
                   children: [
                     for (var size in ['S', 'M', 'L', 'XL', '2XL', '3XL'])
-                      SizeContainer(
+                      EditSizeContainer(
                         text: size,
+                        isSelected: controller.selectedSizes
+                            .where((element) => element == size)
+                            .isNotEmpty,
                         sizeValue: size,
                       ),
                   ],
@@ -224,7 +271,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
             title: 'Sell Product ',
             onPressed: controller.areFieldsFilled.value
                 ? () {
-                    controller.saveProduct();
+                    controller.updateProduct();
                   }
                 : () {
                     UiUtilites.errorSnackbar(
