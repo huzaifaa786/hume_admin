@@ -3,17 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/button.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/editimagecard.dart';
 import 'package:hume_admin/components/imagecard.dart';
 import 'package:hume_admin/components/input_field.dart';
-
 import 'package:hume_admin/components/topbar.dart';
-import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
-import 'package:hume_admin/views/shops/shops_controller.dart';
+import 'package:hume_admin/views/shops/edit_shop/edit_shop_controller.dart';
 
 class EditShop extends StatefulWidget {
   const EditShop({super.key});
@@ -25,7 +22,7 @@ class EditShop extends StatefulWidget {
 class _EditShopState extends State<EditShop> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ShopController>(
+    return GetBuilder<EditShopController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -37,7 +34,8 @@ class _EditShopState extends State<EditShop> {
             },
           ),
         ),
-        body: SingleChildScrollView(
+        body:
+        controller.shopDetails != null? SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: SafeArea(
@@ -71,8 +69,8 @@ class _EditShopState extends State<EditShop> {
                                 ontap: () {
                                   controller.selectImage();
                                 },
-                                image: controller.shopDetails!.bannerImageUrl,
-                                name: controller.shopDetails!.name,
+                                image: controller.bannerUrl,
+                                name: controller.bannerImageName,
                                 width: MediaQuery.of(context).size.width * 0.5,
                               )
                       ],
@@ -82,7 +80,7 @@ class _EditShopState extends State<EditShop> {
                     ),
                     Column(
                       children: [
-                        controller.isLogoSelected
+                        controller.logoImage != null
                             ? ImageBox(
                                 ontap: () {
                                   controller.selectLogo();
@@ -95,8 +93,8 @@ class _EditShopState extends State<EditShop> {
                                 ontap: () {
                                   controller.selectLogo();
                                 },
-                                image: controller.shopDetails!.logoImageUrl,
-                                name: controller.shopDetails!.logoImageName,
+                                image: controller.logoUrl,
+                                name: controller.logoImageName,
                                 width: MediaQuery.of(context).size.width * 0.4,
                               )
                       ],
@@ -133,7 +131,7 @@ class _EditShopState extends State<EditShop> {
               ],
             )),
           ),
-        ),
+        ):Container(),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14.0),
           child: Buttonn(

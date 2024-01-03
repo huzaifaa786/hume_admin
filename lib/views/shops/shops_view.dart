@@ -57,7 +57,8 @@ class _ShopScreenState extends State<ShopScreen> {
                     color: maincolor,
                     onPressed: () {
                       controller.clear();
-                      Get.toNamed(AppRoutes.addshop);
+                      Get.toNamed(AppRoutes.addshop)!
+                          .then((value) => controller.fetchShop());
                     },
                   ),
                 ],
@@ -83,14 +84,16 @@ class _ShopScreenState extends State<ShopScreen> {
                           },
                           category: shop.category,
                           updateShop: () {
-                            controller.shopDetail(shop.id);
+                            Get.toNamed(AppRoutes.editshop,
+                                    parameters: {'id': shop.id})!
+                                .then((value) => controller.fetchShop());
                           },
                           onPressed: () => showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
                                     title: Text('Are you sure!'),
                                     content: Text(
-                                        'you are going tp delete shop and all its products'),
+                                        'You are going to delete the shop and all its products'),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () =>
