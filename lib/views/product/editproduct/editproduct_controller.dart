@@ -11,6 +11,7 @@ import 'package:hume_admin/api/storage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
+import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 
 class EditProductController extends GetxController {
@@ -75,7 +76,7 @@ class EditProductController extends GetxController {
     print('ssssssssssssssssssssssssssssssssssssssssss');
     getAllshops();
     GetOneproducts();
-
+    checkFields();
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -111,7 +112,7 @@ class EditProductController extends GetxController {
         productpriceController.text.isNotEmpty &&
         productdiscriptionController.text.isNotEmpty &&
         selectedIndex != -1 &&
-        productImages.isNotEmpty &&
+        productNetworkImages.isNotEmpty &&
         selectedShop != null) {
       areFieldsFilled.value = true;
       update();
@@ -234,5 +235,22 @@ class EditProductController extends GetxController {
     category = '';
     areFieldsFilled.value = false;
     update();
+  }
+
+  Future<void> deleteProduct() async {
+    String productId = Get.parameters['id'].toString();
+
+    try {
+      for (var imageUrl in productNetworkImages) {
+        await _storageApi.deleteImage(imageUrl);
+      }
+
+      await _productApi.deleteProduct(productId);
+      clearFields();
+      Get.offAllNamed(AppRoutes.shop);
+      UiUtilites.successAlert(Get.context, 'Product Deleted Successfully!');
+    } catch (e) {
+      print('Error deleting product: $e');
+    }
   }
 }

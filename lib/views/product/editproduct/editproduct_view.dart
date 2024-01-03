@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/editsizebox.dart';
+import 'package:hume_admin/components/edittopbar.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/shopdropdown.dart';
@@ -31,10 +32,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
-          title: TitleTopBar(
+          title: EditTitleTopBar(
             name: 'Edit Product',
             ontap: () {
               Get.back();
+            },
+            onPressed: () {
+              controller.deleteProduct();
             },
           ),
         ),
@@ -125,7 +129,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: Get.width*0.5,
+                                  width: Get.width * 0.5,
                                   child: Text(
                                     '${basename(controller.productImages[i].path)}',
                                     style: TextStyle(
@@ -268,7 +272,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14),
           child: validateButton(
-            title: 'Sell Product ',
+            title: 'Update Product ',
             onPressed: controller.areFieldsFilled.value
                 ? () {
                     controller.updateProduct();

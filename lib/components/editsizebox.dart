@@ -3,11 +3,18 @@ import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/product/product_controller.dart';
 
 class EditSizeContainer extends StatefulWidget {
-  const EditSizeContainer({Key? key, this.text, this.sizeValue,this.isSelected = false}) : super(key: key);
+  const EditSizeContainer(
+      {Key? key,
+      this.text,
+      this.sizeValue,
+      this.isSelected = false,
+      this.ontap})
+      : super(key: key);
 
   final String? text;
   final String? sizeValue;
   final bool isSelected;
+  final ontap;
 
   @override
   _EditSizeContainerState createState() => _EditSizeContainerState();
@@ -15,7 +22,6 @@ class EditSizeContainer extends StatefulWidget {
 
 class _EditSizeContainerState extends State<EditSizeContainer> {
   bool isPressed = false;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -23,9 +29,8 @@ class _EditSizeContainerState extends State<EditSizeContainer> {
         setState(() {
           isPressed = !isPressed;
         });
-
-        if (widget.sizeValue != null) {
-          ProductController.instance.toggleSize(widget.sizeValue!);
+        if (widget.ontap != null && widget.sizeValue != null) {
+          widget.ontap!(widget.sizeValue!);
         }
       },
       child: Padding(
