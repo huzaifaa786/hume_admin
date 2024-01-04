@@ -9,8 +9,6 @@ import 'package:hume_admin/components/edittopbar.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/shopdropdown.dart';
-import 'package:hume_admin/components/sizebox.dart';
-import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/components/validarebutton.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 import 'package:hume_admin/views/product/editproduct/editproduct_controller.dart';
@@ -33,14 +31,26 @@ class _EditProductScreenState extends State<EditProductScreen> {
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: EditTitleTopBar(
-            name: 'Edit Product',
-            ontap: () {
-              Get.back();
-            },
-            onPressed: () {
-              controller.deleteProduct();
-            },
-          ),
+              name: 'Edit Product',
+              ontap: () {
+                Get.back();
+              },
+              onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                        title: Text('Are you sure!'),
+                        content: Text(
+                            'You are going to delete the shop and all its products'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                              onPressed: () => controller.deleteProduct(),
+                              child: Text('Delete'))
+                        ],
+                      ))),
         ),
         body: SingleChildScrollView(
           child: SafeArea(
@@ -226,10 +236,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     for (var size in ['S', 'M', 'L', 'XL', '2XL', '3XL'])
                       EditSizeContainer(
                         text: size,
-                        isSelected: controller.selectedSizes
-                            .where((element) => element == size)
-                            .isNotEmpty,
+                        isSelected: controller.selectedSizes.contains(size),
                         sizeValue: size,
+                        ontap: () {
+                          controller.checkFields();
+                          controller.selectedSizes.contains(size)
+                          
+                              ? controller.selectedSizes.remove(size):
+                              controller.selectedSizes
+                                  .add(size);
+                          setState(() {});
+                        },
                       ),
                   ],
                 ),

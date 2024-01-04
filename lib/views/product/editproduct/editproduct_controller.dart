@@ -219,8 +219,8 @@ class EditProductController extends GetxController {
       print('Error updating product: $e');
     }
 
-    clearFields();
-    UiUtilites.successAlert(Get.context, 'Product Edit\nSuccessfully !');
+    Get.back();
+    UiUtilites.successSnackbar('Product updated successfully.', 'Success!');
   }
 
   void clearFields() {

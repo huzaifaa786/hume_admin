@@ -157,7 +157,7 @@ class EditShopController extends GetxController {
     }
 
     category = categories[selectedIndex];
-  
+
     _databaseApi.updateShop(Shop(
       id: shopDetails!.id.toString(),
       name: name.text,

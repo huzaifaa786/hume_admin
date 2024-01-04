@@ -25,14 +25,7 @@ class _EditSizeContainerState extends State<EditSizeContainer> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          isPressed = !isPressed;
-        });
-        if (widget.ontap != null && widget.sizeValue != null) {
-          widget.ontap!(widget.sizeValue!);
-        }
-      },
+      onTap: widget.ontap,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
