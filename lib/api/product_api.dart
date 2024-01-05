@@ -55,12 +55,23 @@ class ProductApi {
     }
   }
 
-  Future<void> updateProduct( productId, product) async {
+  Future<void> updateProduct(productId, product) async {
     try {
       await _productCollection.doc(productId).update(product.toJson());
     } on PlatformException catch (e) {
       throw DatabaseApiException(
         title: 'Failed to update product',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<void> deleteProduct(String productId) async {
+    try {
+      await _productCollection.doc(productId).delete();
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete product',
         message: e.message,
       );
     }

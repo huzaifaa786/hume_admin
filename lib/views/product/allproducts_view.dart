@@ -86,32 +86,38 @@ class _AllProductScreenState extends State<AllProductScreen> {
                         itemCount: controller.shopProducts.length,
                         itemBuilder: (context, index) {
                           final product = controller.shopProducts[index];
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                product.productImageUrls[0],
-                                height: 244,
-                              ),
-                              // Image.asset(
-                              //   'assets/images/woman.png',
-                              //   height: 244,
-                              // ),
-                              Text(
-                                product.productName,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                'AED ' + product.productPrice.toString(),
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: maincolor),
-                              )
-                            ],
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.editproduct,
+                                      parameters: {'id': product.id})!
+                                  .then((value) => controller.products());
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.network(
+                                  product.productImageUrls[0],
+                                  height: 240,
+                                  width: Get.width * 0.4,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  product.productName,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  'AED ' + product.productPrice.toString(),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: maincolor),
+                                )
+                              ],
+                            ),
                           );
                         },
                       ),
