@@ -27,7 +27,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
             automaticallyImplyLeading: false,
             forceMaterialTransparency: true,
             title: TitleTopBar(
-              name: 'Trendy fashion shop',
+              name: Get.parameters['shopname'],
               ontap: () {
                 Get.back();
               },
@@ -129,10 +129,10 @@ class _AllProductScreenState extends State<AllProductScreen> {
                   itemBuilder: (context, index) {
                     final product = controller.shopProducts[index];
                     return InkWell(
-                        onTap: () {
-                          Get.toNamed(AppRoutes.editproduct,
-                              parameters: {'id':product.id});
-                        },
+                      onTap: () {
+                        Get.toNamed(AppRoutes.editproduct,
+                            parameters: {'id': product.id});
+                      },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

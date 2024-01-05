@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -13,12 +14,16 @@ class NotificationCard extends StatelessWidget {
     this.shopname,
     this.orderno,
     this.date,
+    this.content,
+    this.productDetail,
   });
   final name;
   final ontap;
   final shopname;
   final orderno;
   final date;
+  final content;
+  final productDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class NotificationCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '  New Order  ',
+                    content,
                     style: TextStyle(
                         color: colortext,
                         fontSize: 15,
@@ -93,7 +98,7 @@ class NotificationCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See clinet info    ',
+                                'See client info    ',
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -135,12 +140,17 @@ class NotificationCard extends StatelessWidget {
                             Gap(4),
                             Row(
                               children: [
-                                Text(
-                                  'Order NO  $orderno',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.black54),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  child: Text(
+                                    'Order NO  $orderno',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black54),
+                                  ),
                                 ),
                               ],
                             )
@@ -148,12 +158,15 @@ class NotificationCard extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text(
-                              'See clinet info    ',
-                              style: TextStyle(
-                                  color: colortext,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
+                            GestureDetector(
+                              onTap: productDetail,
+                              child: Text(
+                                'See order details    ',
+                                style: TextStyle(
+                                    color: colortext,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                             SvgPicture.asset('assets/images/arrow.svg')
                           ],
