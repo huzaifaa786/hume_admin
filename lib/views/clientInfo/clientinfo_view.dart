@@ -62,16 +62,16 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Ali raza',
+                              '${Get.parameters['name']}',
                               style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.w800,
                                   color: colortext),
                             ),
-                            Text(
-                              'dfsdfsdf',
-                              style: TextStyle(color: Colors.grey),
-                            )
+                            // Text(
+                            //   'dfsdfsdf',
+                            //   style: TextStyle(color: Colors.grey),
+                            // )
                           ]),
                     ],
                   ),
@@ -81,7 +81,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
                   Row(
                     children: [
                       SvgPicture.asset('assets/images/message.svg'),
-                      Text('  HUDAT8@gmail.com',
+                      Text('  ${Get.parameters['email']}',
                           style: TextStyle(color: Colors.grey))
                     ],
                   ),
@@ -91,7 +91,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
                   Row(
                     children: [
                       SvgPicture.asset('assets/images/phone.svg'),
-                      Text('  HUDAT8@gmail.com',
+                      Text('  ${Get.parameters['phone']}',
                           style: TextStyle(color: Colors.grey))
                     ],
                   ),
@@ -101,7 +101,7 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
                   Row(
                     children: [
                       SvgPicture.asset('assets/images/location.svg'),
-                      Text('  HUDAT8@gmail.com',
+                      Text('  ${Get.parameters['address']}',
                           style: TextStyle(color: Colors.grey))
                     ],
                   ),
@@ -110,34 +110,34 @@ class _ClientInfoScreenState extends State<ClientInfoScreen> {
               ),
             ),
           ),
-          SizedBox(height: 13),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Orders",
-                  style: const TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xff000000),
-                    height: 23 / 15,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                InfoCard(
-                  ontap: () {
-                    Get.toNamed(AppRoutes.order);
-                  },
-                  price: '233 AED',
-                  shopname: 'dsfsfsf',
-                  orderno: '23',
-                ),
-              ],
-            ),
-          )
+          // SizedBox(height: 13),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 15, right: 15),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text(
+          //         "Orders",
+          //         style: const TextStyle(
+          //           fontFamily: "Poppins",
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w700,
+          //           color: Color(0xff000000),
+          //           height: 23 / 15,
+          //         ),
+          //         textAlign: TextAlign.left,
+          //       ),
+          //       InfoCard(
+          //         ontap: () {
+          //           Get.toNamed(AppRoutes.order);
+          //         },
+          //         price: '233 AED',
+          //         shopname: 'dsfsfsf',
+          //         orderno: '23',
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       )),
     );

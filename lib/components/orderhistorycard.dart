@@ -30,12 +30,15 @@ class OrderHistoryCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Plaid Flap Pocket Drop \n Shoulder Coat',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.45,
+                    child: Text(
+                      '$name',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
                   ),
                   SizedBox(
                     height: 12,

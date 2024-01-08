@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:hume_admin/exceotions/database_exception.dart';
+import 'package:hume_admin/models/combine_order.dart';
+import 'package:hume_admin/models/order_model.dart';
 import 'package:hume_admin/models/product_model.dart';
+import 'package:hume_admin/models/shops.dart';
+import 'package:hume_admin/models/user_model.dart';
 
 class ProductApi {
   static final _firestore = FirebaseFirestore.instance;
@@ -55,7 +59,7 @@ class ProductApi {
     }
   }
 
-  Future<void> updateProduct( productId, product) async {
+  Future<void> updateProduct(productId, product) async {
     try {
       await _productCollection.doc(productId).update(product.toJson());
     } on PlatformException catch (e) {
