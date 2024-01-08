@@ -27,7 +27,7 @@ class ShopDropdownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
         color: hintcolor,

@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:hume_admin/components/infocard.dart';
-import 'package:hume_admin/components/ordercard.dart';
 import 'package:hume_admin/components/topbar.dart';
-import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class ClientInfoScreen extends StatefulWidget {

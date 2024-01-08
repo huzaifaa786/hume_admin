@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
+import 'package:hume_admin/exceotions/database_exception.dart';
 import 'package:hume_admin/models/combine_order.dart';
+import 'package:hume_admin/models/order_item_model.dart';
 import 'package:hume_admin/models/order_model.dart';
+import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/models/user_model.dart';
 
@@ -16,7 +20,7 @@ class OrderApi {
 
     QuerySnapshot<Map<String, dynamic>> orderDocSnapshot =
         await query.limit(10).get();
-        print(orderDocSnapshot);
+    print(orderDocSnapshot);
     if (orderDocSnapshot.size > 0) {
       final orders = orderDocSnapshot.docs.map((doc) => doc.data()).toList();
 
@@ -52,5 +56,45 @@ class OrderApi {
       return combinedOrders;
     }
     return [];
+  }
+
+    static final _firestore = FirebaseFirestore.instance;
+  final CollectionReference _orderItemCollection =
+      _firestore.collection("orderItems");
+  final CollectionReference _productCollection =
+      _firestore.collection("products");
+
+  List<OrdersItemsModel> orderItems = [];
+
+  Future<List<OrdersItemsModel>> fetchOrderItems(String orderId) async {
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await _orderItemCollection.where('orderId', isEqualTo: orderId).get()
+              as QuerySnapshot<Map<String, dynamic>>;
+
+      final List<OrdersItemsModel> fetchedorderItems = snapshot.docs
+          .map((doc) =>
+              OrdersItemsModel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+
+      return fetchedorderItems;
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to fetch order items',
+        message: e.message,
+      );
+    }
+  }
+  Future<ProductModel?> fetchProduct(String productId) async {
+    final QuerySnapshot<Object?> product =
+        await _productCollection.where('id', isEqualTo: productId).get();
+    if (product.docs.isNotEmpty) {
+      final productData = product.docs.first.data() as Map<String, dynamic>;
+      final productObject = ProductModel.fromJson(productData);
+
+      return productObject;
+    } else {
+      return null;
+    }
   }
 }

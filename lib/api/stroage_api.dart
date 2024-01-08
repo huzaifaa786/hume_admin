@@ -125,4 +125,16 @@ class StorageApii {
       );
     }
   }
+
+  Future<void> deleteImage(String imageUrl) async {
+    try {
+      final storage.Reference storageReference =
+          storage.FirebaseStorage.instance.refFromURL(imageUrl);
+
+      await storageReference.delete();
+    } catch (e) {
+      print('Error deleting image: $e');
+      // Handle error, throw exception, or log the error as needed.
+    }
+  }
 }

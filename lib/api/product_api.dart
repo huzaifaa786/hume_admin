@@ -69,4 +69,15 @@ class ProductApi {
       );
     }
   }
+
+  Future<void> deleteProduct(String productId) async {
+    try {
+      await _productCollection.doc(productId).delete();
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete product',
+        message: e.message,
+      );
+    }
+  }
 }

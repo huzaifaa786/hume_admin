@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
-
 import 'dart:developer';
 
 import 'package:hume_admin/api/database_api.dart';
@@ -13,6 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/api/image_selection.dart';
 import 'package:hume_admin/models/shops.dart';
+import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 
 class ProductController extends GetxController {
@@ -20,7 +20,7 @@ class ProductController extends GetxController {
 
   final _productApi = ProductApi();
   List<ProductModel> shopProducts = [];
-
+  String? id;
   final _databaseApi = DatabaseApi();
   TextEditingController ProductnameController = TextEditingController();
   TextEditingController productpriceController = TextEditingController();
@@ -50,9 +50,8 @@ class ProductController extends GetxController {
   ];
   @override
   void onInit() {
-    getAllshops();
-    GetOneproducts();
-    log('ddddddddddddddddddd');
+    products();
+    // getAllshops();
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -62,8 +61,6 @@ class ProductController extends GetxController {
     productdiscriptionController.addListener(() {
       checkFields();
     });
-    products();
-
     super.onInit();
   }
 
@@ -72,8 +69,12 @@ class ProductController extends GetxController {
   void toggleSize(String size) {
     if (selectedSizes.contains(size)) {
       selectedSizes.remove(size);
+      log('ddddddddddddddddddddddddddddddddd');
+      print(selectedSizes);
     } else {
       selectedSizes.add(size);
+      log('ddddddddddddddddddddddddddddddddd');
+      print(selectedSizes);
     }
 
     update();
@@ -82,6 +83,7 @@ class ProductController extends GetxController {
   Future selectImages() async {
     final tempImages = await _imageSelectorApi.selectMultiImage();
     productImages = tempImages;
+
     checkFields();
     update();
   }
@@ -134,6 +136,7 @@ class ProductController extends GetxController {
     } catch (e) {
       print('Error saving product: $e');
     }
+    Get.back();
     UiUtilites.successAlert(Get.context, 'Product Add\nSuccessfully !');
   }
 
@@ -167,26 +170,31 @@ class ProductController extends GetxController {
   }
 
   products() async {
-    String id = Get.parameters['id'].toString();
-    shopProducts = await _databaseApi.fetchProducts(id);
-    update();
-  }
-
-  GetOneproducts() async {
-    try {
-      String id = Get.parameters['id'].toString();
-      ProductModel? product = await _productApi.getProductById(id);
-
-      if (product != null) {
-        print('Product found: $product');
-        print(product);
-      } else {
-        print('Product not found');
-      }
-
+    if (Get.parameters['shop_id'] != null) {
+      id = Get.parameters['shop_id'];
+      shopProducts = await _databaseApi.fetchProducts(id);
       update();
-    } catch (e) {
-      print('Error fetching product: $e');
+    } else {
+      shopProducts = await _databaseApi.fetchProducts(id);
+      update();
     }
   }
+
+  // GetOneproducts() async {
+  //   try {
+  //     String id = Get.parameters['id'].toString();
+  //     ProductModel? product = await _productApi.getProductById(id);
+
+  //     if (product != null) {
+  //       print('Product found: $product');
+  //       print(product);
+  //     } else {
+  //       print('Product not found');
+  //     }
+
+  //     update();
+  //   } catch (e) {
+  //     print('Error fetching product: $e');
+  //   }
+  // }
 }

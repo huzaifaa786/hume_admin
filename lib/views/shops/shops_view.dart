@@ -80,7 +80,7 @@ class _ShopScreenState extends State<ShopScreen> {
                           image: shop.logoImageUrl,
                           ontap: () {
                             Get.toNamed(AppRoutes.allproduct,
-                                parameters: {'id': shop.id});
+                                parameters: {'id': shop.id, 'shopname': shop.name.toString()});
                           },
                           category: shop.category,
                           updateShop: () {

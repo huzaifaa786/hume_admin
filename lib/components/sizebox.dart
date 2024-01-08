@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/product/editproduct/editproduct_controller.dart';
+import 'package:hume_admin/views/product/product_controller.dart';
 
 
 class SizeContainer extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SizeContainerState extends State<SizeContainer> {
         });
 
         if (widget.sizeValue != null) {
-          EditProductController.instance.toggleSize(widget.sizeValue!);
+          ProductController.instance.toggleSize(widget.sizeValue!);
         }
       },
       child: Padding(

@@ -27,7 +27,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
             automaticallyImplyLeading: false,
             forceMaterialTransparency: true,
             title: TitleTopBar(
-              name: 'Trendy fashion shop',
+              name: Get.parameters['shopname'],
               ontap: () {
                 Get.back();
               },
@@ -89,7 +89,8 @@ class _AllProductScreenState extends State<AllProductScreen> {
                           return InkWell(
                             onTap: () {
                               Get.toNamed(AppRoutes.editproduct,
-                                  parameters: {'id': product.id});
+                                      parameters: {'id': product.id})!
+                                  .then((value) => controller.products());
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,6 +122,52 @@ class _AllProductScreenState extends State<AllProductScreen> {
                         },
                       ),
                     ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.8,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      mainAxisExtent: 290),
+                  itemCount: controller.shopProducts.length,
+                  itemBuilder: (context, index) {
+                    final product = controller.shopProducts[index];
+                    return InkWell(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.editproduct,
+                            parameters: {'id': product.id});
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.network(
+                            product.productImageUrls[0],
+                            height: 240,
+                            width: Get.width * 0.4,
+                            fit: BoxFit.cover,
+                          ),
+                          Text(
+                            product.productName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            'AED ' + product.productPrice.toString(),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: maincolor),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
               ListView.builder(
                 itemCount: 3,
                 itemBuilder: (context, index) => OrderCard(

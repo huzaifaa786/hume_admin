@@ -47,7 +47,7 @@ dependencies:
   firebase_storage: ^11.5.6
   firebase_app_check: ^0.2.1+8
   dropdown_button2: ^2.3.9
-  cached_network_image: ^3.3.0
+  cached_network_image: ^3.3.1
   flutter_easyloading: ^3.0.5
   flutter_stripe: ^9.5.0+1
   flutter_dotenv: ^5.1.0

@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class OrderHistoryCard extends StatelessWidget {
