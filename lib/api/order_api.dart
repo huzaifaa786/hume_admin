@@ -12,7 +12,7 @@ class OrderApi {
   Future<List<OrderCombinedModel>?> fetchOrder(
       DocumentSnapshot? lastDoc) async {
     Query<Map<String, dynamic>> query =
-        FirebaseFirestore.instance.collection('orders');
+        FirebaseFirestore.instance.collection('orders').orderBy('id',descending: true);
 
     if (lastDoc != null) {
       query = query.startAfterDocument(lastDoc);

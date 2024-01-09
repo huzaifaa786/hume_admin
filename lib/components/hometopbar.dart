@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/utils/fontWeight.dart';
 
 class Hometopbar extends StatelessWidget {
- const Hometopbar({super.key, this.name, this.ontap});
+  const Hometopbar({super.key, this.name, this.ontap});
   final name;
   final ontap;
 
@@ -23,7 +21,7 @@ class Hometopbar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ali Raza',
+                  'Hume',
                   style: TextStyle(
                       color: black, fontSize: 16, fontWeight: FontWeight.w700),
                 ),

@@ -1,6 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, library_private_types_in_public_api, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:hume_admin/views/product/product_controller.dart';
 
 class EditSizeContainer extends StatefulWidget {
   const EditSizeContainer(

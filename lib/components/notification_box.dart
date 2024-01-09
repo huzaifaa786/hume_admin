@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class NotificationCard extends StatelessWidget {

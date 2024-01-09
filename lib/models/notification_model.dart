@@ -8,6 +8,7 @@ class NotificationModel {
   late String shopId;
   late String content;
   late bool forAdmin;
+  late bool seen;
 
   NotificationModel({
     required this.notificationId,
@@ -16,6 +17,7 @@ class NotificationModel {
     required this.shopId,
     required this.content,
     required this.forAdmin,
+    required this.seen,
   });
 
  NotificationModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class NotificationModel {
     shopId = json['shopId'];
     content = json['content'];
     forAdmin = json['forAdmin'];
+    seen = json['seen'];
   }
   
  Map<String, dynamic> toJson() {
@@ -35,7 +38,7 @@ class NotificationModel {
     data['shopId'] = shopId;
     data['content'] = content;
     data['forAdmin'] = forAdmin;
-
+    data['seen'] = seen;
     return data;
   }
 

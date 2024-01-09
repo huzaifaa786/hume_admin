@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hume_admin/api/notification_api.dart';
 import 'package:hume_admin/api/order_api.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/combine_order.dart';
 import 'package:hume_admin/models/combine_order_product.dart';
+import 'package:hume_admin/models/notification_model.dart';
 import 'package:hume_admin/models/order_item_model.dart';
 import 'package:hume_admin/models/product_model.dart';
+import 'package:hume_admin/services/notification_service.dart';
 import 'package:hume_admin/services/payment_service.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 
@@ -14,10 +17,12 @@ class OrderController extends GetxController {
   static OrderController instance = Get.find();
   final scrollController = ScrollController();
   final OrderApi orderApi = OrderApi();
+  final NotificationApi notificationApi = NotificationApi();
   DocumentSnapshot? lastDocument;
   List<OrderCombinedModel> orders = [];
   String category = 'New arrivals';
   final paymentService = PaymentService();
+  final notificationService = NotificationService();
 
   @override
   void onInit() {
@@ -51,16 +56,31 @@ class OrderController extends GetxController {
     update();
   }
 
-  acceptOrder(id) {
+  acceptOrder(id, userId, shopId, token) async {
     LoadingHelper.show();
     FirebaseFirestore.instance.collection('orders').doc(id).update(
       {'status': '1'},
     );
+    String notiId = DateTime.now().millisecondsSinceEpoch.toString();
+    notificationApi.storeNotification(NotificationModel(
+        notificationId: notiId,
+        orderId: id,
+        userId: userId,
+        shopId: shopId,
+        content: 'Accepted order',
+        forAdmin: false,
+        seen: false));
+    await notificationService.postNotification(
+        title: 'Order Accepted',
+        body: 'Your order has been accepted with Order Id #$id.',
+        receiverToken: token);
+
     LoadingHelper.dismiss();
     update();
   }
 
-  Future<bool> rejectOrder(String id, String paymentIntent) async {
+  Future<bool> rejectOrder(
+      String id, String paymentIntent, userId, shopId, token) async {
     LoadingHelper.show();
     String paymentIntentId = extractId(paymentIntent);
     bool isSuccess = false;
@@ -70,6 +90,22 @@ class OrderController extends GetxController {
       await FirebaseFirestore.instance.collection('orders').doc(id).update(
         {'status': '2'},
       );
+      String notiId = DateTime.now().millisecondsSinceEpoch.toString();
+      print(notiId);
+      notificationApi.storeNotification(NotificationModel(
+          notificationId: notiId,
+          orderId: id,
+          userId: userId,
+          shopId: shopId,
+          content: 'Rejected order',
+          forAdmin: false,
+          seen: false));
+      await notificationService.postNotification(
+          title: 'Order Rejected',
+          body:
+              'Order with Order Id #$id has been rejected and your payment has been refunded to your accout.',
+          receiverToken: '');
+
       isSuccess = true;
       update();
     } else {
@@ -135,11 +171,26 @@ class OrderController extends GetxController {
     }
   }
 
-  deliverdOrder(id) {
+  deliverdOrder(id, userId, shopId, token) async {
     LoadingHelper.show();
     FirebaseFirestore.instance.collection('orders').doc(id).update(
       {'status': '3'},
     );
+    print(token);
+    String notiId = DateTime.now().millisecondsSinceEpoch.toString();
+    notificationApi.storeNotification(NotificationModel(
+        notificationId: notiId,
+        orderId: id,
+        userId: userId,
+        shopId: shopId,
+        content: 'Deliverd order',
+        forAdmin: false,
+        seen: false));
+    await notificationService.postNotification(
+        title: 'Order Delivered',
+        body:
+            'Order with Order Id #$id delivered successfully on your provided destination.',
+        receiverToken: token);
     LoadingHelper.dismiss();
     update();
   }

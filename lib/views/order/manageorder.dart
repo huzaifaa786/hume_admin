@@ -60,13 +60,19 @@ class _ManageOrderState extends State<ManageOrder> {
                         setState(() {
                           controller.orders[index].order.status = '1';
                         });
-                        controller
-                            .acceptOrder(controller.orders[index].order.id);
+                        controller.acceptOrder(
+                            controller.orders[index].order.id,
+                            controller.orders[index].user.id,
+                            controller.orders[index].shop.id,
+                            controller.orders[index].user.token);
                       },
                       onRejectTap: () async {
                         bool i = await controller.rejectOrder(
                             controller.orders[index].order.id,
-                            controller.orders[index].order.paymentIntent!);
+                            controller.orders[index].order.paymentIntent!,
+                            controller.orders[index].user.id,
+                            controller.orders[index].shop.id,
+                            controller.orders[index].user.token);
                         if (i == true) {
                           setState(() {
                             controller.orders[index].order.status = '2';
@@ -77,8 +83,11 @@ class _ManageOrderState extends State<ManageOrder> {
                         setState(() {
                           controller.orders[index].order.status = '3';
                         });
-                        controller
-                            .deliverdOrder(controller.orders[index].order.id);
+                        controller.deliverdOrder(
+                            controller.orders[index].order.id,
+                            controller.orders[index].user.id,
+                            controller.orders[index].shop.id,
+                            controller.orders[index].user.token);
                       },
                       date: formattedDate,
                       price: controller.orders[index].order.total,

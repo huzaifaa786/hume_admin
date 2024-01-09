@@ -25,14 +25,13 @@ class ClientInfoController extends GetxController {
   }
 
   index() async {
-
     final user = await _notificationApi.fetchUser(userId);
     final order = await _notificationApi.fetchOrder(orderId);
-    name = user[0];
-    email = user[1];
-    phone = user[2];
-    address = order[0];
-    total = order[1];
+    name = user.name.toString();
+    email = user.email.toString();
+    phone = order.phone.toString();
+    address = order.address.toString();
+    total = order.total.toString();
     shopName = Get.parameters['shopName'].toString();
     update();
   }

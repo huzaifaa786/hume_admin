@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -26,11 +27,18 @@ class AuthService extends GetxController {
 
   /// If we are setting initial screen from here
   /// then in the main.dart => App() add CircularProgressIndicator()
-  _setInitialScreen(User? user) {
+  _setInitialScreen(User? user) async {
     print(user);
+    var token = await FirebaseMessaging.instance.getToken();
     user == null
         ? Get.offAllNamed(AppRoutes.welcome)
-        : Get.offAllNamed(AppRoutes.home);
+        : {
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .update({'token': token}),
+            Get.offAllNamed(AppRoutes.home)
+          };
   }
 
   // _addUserToFirestore(String userID) async {}

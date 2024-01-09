@@ -10,6 +10,7 @@ import 'package:hume_admin/firebase_options.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/routes/app_pages.dart';
 import 'package:hume_admin/services/payment_service.dart';
+import 'package:hume_admin/services/notification_service.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/home/home_binding.dart';
 import 'package:hume_admin/views/home/home_view.dart';
@@ -20,6 +21,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LoadingHelper.init();
   Get.put(PaymentService());
+  Get.put(NotificationService());
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
