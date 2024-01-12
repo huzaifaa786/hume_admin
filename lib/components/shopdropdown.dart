@@ -1,11 +1,11 @@
 // Assuming you have a Shop model similar to City
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/utils/colors.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class ShopDropdownField extends StatelessWidget {
   const ShopDropdownField({

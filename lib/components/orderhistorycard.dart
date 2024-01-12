@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class OrderHistoryCard extends StatelessWidget {
@@ -30,12 +29,15 @@ class OrderHistoryCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Plaid Flap Pocket Drop \n Shoulder Coat',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.45,
+                    child: Text(
+                      '$name',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
                   ),
                   SizedBox(
                     height: 12,
