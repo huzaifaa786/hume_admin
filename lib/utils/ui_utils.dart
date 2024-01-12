@@ -33,7 +33,7 @@ class UiUtilites {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 side: BorderSide(
                     color: Colors.transparent, style: BorderStyle.solid),
@@ -69,7 +69,7 @@ class UiUtilites {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Gap(40),
-                  Image.asset('assets/images/Approve_Badge.png',
+                  Image.asset('assets/images/logo.png',
                       height: 50, width: 50),
                   Gap(10),
                   Text(
