@@ -122,6 +122,7 @@ class OrderController extends GetxController {
   RxList<CombinedOrderProductModel> combinedOrderProductList =
       <CombinedOrderProductModel>[].obs;
   Future<void> fetchCombinedOrderProductList() async {
+    combinedOrderProductList = <CombinedOrderProductModel>[].obs;
     LoadingHelper.show();
     var id = Get.parameters['id'];
     var orderItemsSnapshot = await FirebaseFirestore.instance

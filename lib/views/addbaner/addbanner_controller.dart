@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/api/storage_api1.dart';
 import 'package:hume_admin/helper/data_model.dart';
+import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/home_banner_model.dart';
 import 'package:hume_admin/services/banner_service.dart';
 import 'package:hume_admin/utils/controller_initlization.dart';
@@ -53,6 +54,7 @@ class AddBannerController extends GetxController {
   }
 
   Future storeBanner() async {
+    LoadingHelper.show();
     if (bannerImage1 != null && bannerImage2 != null && bannerImage3 != null) {
       var id = DateTime.now().millisecondsSinceEpoch.toString();
       final CloudStorageResult image1 = await _storeImageApi.uploadHomeBanner(
@@ -69,8 +71,10 @@ class AddBannerController extends GetxController {
         imageUrl2: image2.imageUrl.toString(),
         imageUrl3: image3.imageUrl.toString(),
       ));
+      LoadingHelper.dismiss();
       update();
     } else {
+      LoadingHelper.dismiss();
       throw ArgumentError('One or more of the banner images are null.');
     }
   }
@@ -96,6 +100,7 @@ class AddBannerController extends GetxController {
 
   Future<void> updateBanner() async {
     try {
+      LoadingHelper.show();
       DocumentReference docRef =
           firebaseFirestore.collection('banners').doc(bannerImages!.id);
       Map<String, dynamic> updatedData = {
@@ -133,7 +138,9 @@ class AddBannerController extends GetxController {
       } else {
         print('Failed to store data.');
       }
+      LoadingHelper.dismiss();
     } catch (e) {
+      LoadingHelper.dismiss();
       print('Error storing data: $e');
     }
   }

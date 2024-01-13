@@ -10,6 +10,7 @@ import 'package:hume_admin/api/product_api.dart';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:hume_admin/api/image_selection.dart';
 import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/routes/app_routes.dart';
@@ -51,7 +52,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     products();
-    // getAllshops();
+
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -69,12 +70,8 @@ class ProductController extends GetxController {
   void toggleSize(String size) {
     if (selectedSizes.contains(size)) {
       selectedSizes.remove(size);
-      log('ddddddddddddddddddddddddddddddddd');
-      print(selectedSizes);
     } else {
       selectedSizes.add(size);
-      log('ddddddddddddddddddddddddddddddddd');
-      print(selectedSizes);
     }
 
     update();
@@ -137,7 +134,7 @@ class ProductController extends GetxController {
       print('Error saving product: $e');
     }
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Product Add\nSuccessfully !');
+    UiUtilites.successSnackbar('Product Add\nSuccessfully !', 'Success!');
   }
 
   void checkFields() {
@@ -179,22 +176,4 @@ class ProductController extends GetxController {
       update();
     }
   }
-
-  // GetOneproducts() async {
-  //   try {
-  //     String id = Get.parameters['id'].toString();
-  //     ProductModel? product = await _productApi.getProductById(id);
-
-  //     if (product != null) {
-  //       print('Product found: $product');
-  //       print(product);
-  //     } else {
-  //       print('Product not found');
-  //     }
-
-  //     update();
-  //   } catch (e) {
-  //     print('Error fetching product: $e');
-  //   }
-  // }
 }

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,7 @@ import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/api/image_selection.dart';
 import 'package:hume_admin/api/product_api.dart';
-// import 'package:hume_admin/api/storage_api.dart';
+
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
@@ -91,14 +90,15 @@ class EditProductController extends GetxController {
   }
 
   int selectedIndex = -1;
+  ////////////////////shop///////////////////////////////
 
   Future<void> getAllshops() async {
     shops = await _databaseApi.getAllShops();
 
-    print(shops);
     checkFields();
     update();
   }
+  ///////////////////image//////////////////////////////////////////
 
   Future selectImages() async {
     final tempImages = await _imageSelectorApi.selectMultiImage();
@@ -127,7 +127,7 @@ class EditProductController extends GetxController {
     selectedShop = shops.firstWhereOrNull((element) => element.id == shop!.id);
     update();
   }
-
+////////////////////////////product/////////////////////////////////
   GetOneproducts() async {
     try {
       String id = Get.parameters['id'].toString();
@@ -189,7 +189,7 @@ class EditProductController extends GetxController {
 
     return imageUrls;
   }
-
+/////////////////////update//////////////////////////////////////////
   Future<void> updateProduct() async {
     String productId = Get.parameters['id'].toString();
     List<String> newImageUrls = await uploadImages(productId);
@@ -236,7 +236,7 @@ class EditProductController extends GetxController {
     areFieldsFilled.value = false;
     update();
   }
-
+////////////////////////////////delete/////////////////////////////
   Future<void> deleteProduct() async {
     String productId = Get.parameters['id'].toString();
 
@@ -248,7 +248,7 @@ class EditProductController extends GetxController {
       await _productApi.deleteProduct(productId);
       clearFields();
       Get.offAllNamed(AppRoutes.shop);
-      UiUtilites.successAlert(Get.context, 'Product Deleted Successfully!');
+      UiUtilites.successSnackbar('Product Deleted successfully.', 'Success!');
     } catch (e) {
       print('Error deleting product: $e');
     }
