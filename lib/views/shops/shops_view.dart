@@ -41,10 +41,10 @@ class _ShopScreenState extends State<ShopScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.35,child:Text(
                     'All Shops',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                  ).translate(),
+                  ).translate(),),
                   IconsButton(
                     width: MediaQuery.of(context).size.width * 0.5,
                     imgicon: Icon(

@@ -24,6 +24,11 @@ class _SaleScreenState extends State<SaleScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleController>(
+      initState: (state){
+        Future.delayed(Duration(milliseconds: 100),(){
+          state.controller!.fetchSale();
+        });
+      },
       builder: (controller) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -183,7 +188,7 @@ class _SaleScreenState extends State<SaleScreen> {
                 child:  Align(
                     alignment: Alignment.center,
                     child: Text(
-                      '0 AED',
+                      '${controller.sum} AED',
                       style: TextStyle(
                           color: white,
                           fontSize: 26,
