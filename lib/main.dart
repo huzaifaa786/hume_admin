@@ -22,13 +22,11 @@ import 'package:hume_admin/views/splash/splash_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LoadingHelper.init();
-  Get.put(PaymentService());
-  Get.put(NotificationService());
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  Get.put(PaymentService());
+  Get.put(NotificationService());
   Stripe.publishableKey =
       "pk_test_51JvIZ1Ey3DjpASZjPAzcOwqhblOq2hbchp6i56BsjapvhWcooQXqh33XwCrKiULfAe7NKFwKUhn2nqURE7VZcXXf00wMDzp4YN";
 

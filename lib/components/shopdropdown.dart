@@ -16,6 +16,7 @@ class ShopDropdownField extends StatelessWidget {
     required this.items,
     required this.icon,
     required this.onChange,
+    this.secreenRatio = 0.55,
   }) : super(key: key);
 
   final imageIcon;
@@ -23,12 +24,13 @@ class ShopDropdownField extends StatelessWidget {
   final List<Shop> items;
   final Widget icon;
   final Function onChange;
+  final secreenRatio;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      width: MediaQuery.of(context).size.width * 0.55,
+      width: MediaQuery.of(context).size.width * secreenRatio,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
         color: hintcolor,
@@ -70,10 +72,9 @@ class ShopDropdownField extends StatelessWidget {
                               height: 40,
                               width: 40,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(40),
                                 image: DecorationImage(
-                                  image: NetworkImage(item
-                                      .logoImageUrl!), 
+                                  image: NetworkImage(item.logoImageUrl!),
                                   fit: BoxFit.cover,
                                 ),
                               ),

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
+import 'package:hume_admin/components/shopdropdown.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/sale/sale_controller.dart';
@@ -24,8 +25,8 @@ class _SaleScreenState extends State<SaleScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleController>(
-      initState: (state){
-        Future.delayed(Duration(milliseconds: 100),(){
+      initState: (state) {
+        Future.delayed(Duration(milliseconds: 100), () {
           state.controller!.fetchSale();
         });
       },
@@ -45,48 +46,25 @@ class _SaleScreenState extends State<SaleScreen> {
           padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
           child: Column(
             children: [
-              Container(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                ),
-                width: MediaQuery.of(context).size.width,
-                // height: 55,
-                decoration: BoxDecoration(
-                  color: hintcolor,
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '$selectedShop',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    PopupMenuButton<String>(
-                      icon: SvgPicture.asset('assets/images/dropdown.svg'),
-                      onSelected: (String value) {
+              controller.shops.isNotEmpty
+                  ? ShopDropdownField(
+                      imageIcon: 'assets/images/tickk.svg',
+                      items: controller.shops,
+                      selectedValue: controller.selectedShop,
+                      icon: Icon(Icons.shop),
+                      secreenRatio: 0.9,
+                      onChange: (value) {
                         setState(() {
-                          selectedShop = value;
+                          controller.selectedShop = value;
+                          controller.rangeEnd == null
+                              ?  controller.getsale()
+                              : controller.getSalesBySelectedRange(
+                                  controller.rangeStart!, controller.rangeEnd!);
+                          // controller.checkFields();
                         });
                       },
-                      itemBuilder: (BuildContext context) {
-                        return shops.map((String shop) {
-                          return PopupMenuItem<String>(
-                            value: shop,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(shop),
-                                // SvgPicture.asset('assets/images/dropdown.svg'),
-                              ],
-                            ),
-                          );
-                        }).toList();
-                      },
-                    ),
-                  ],
-                ),
-              ),
+                    )
+                  : SizedBox(),
               Gap(12),
               Flexible(
                 child: SizedBox(
@@ -175,17 +153,18 @@ class _SaleScreenState extends State<SaleScreen> {
             children: [
               Divider(),
               Text('Total Sales',
-                  style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: maincolor)).translate(),
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: maincolor))
+                  .translate(),
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.only(top: 20, bottom: 20),
                 decoration: BoxDecoration(
                     color: colortext, borderRadius: BorderRadius.circular(13)),
-                child:  Align(
+                child: Align(
                     alignment: Alignment.center,
                     child: Text(
                       '${controller.sum} AED',

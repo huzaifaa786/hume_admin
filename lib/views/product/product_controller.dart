@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
+import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/api/product_api.dart';
 import 'dart:io';
@@ -52,7 +53,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     products();
-
+    getAllshops();
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -86,9 +87,11 @@ class ProductController extends GetxController {
   }
 
   Future<void> getAllshops() async {
+    LoadingHelper.show();
     shops = await _databaseApi.getAllShops();
     print(shops);
     checkFields();
+    LoadingHelper.dismiss();
     update();
   }
 

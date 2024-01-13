@@ -1,19 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:hume_admin/api/database_api.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/order_model.dart';
+import 'package:hume_admin/models/shops.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SaleController extends GetxController {
   static SaleController instance = Get.find();
   CalendarFormat format = CalendarFormat.month;
+  final _databaseApi = DatabaseApi();
   var format1 = 'month';
   DateTime ourdate = DateTime.now();
   DateTime today = DateTime.now();
   DateTime? rangeStart;
   DateTime? rangeEnd;
+  List<Shop> shops = [];
+  bool isOpen = false;
+  Shop? selectedShop;
 
-  bool isOpen = false; // Add this property
+  @override
+  void onInit() {
+    getAllshops();
+    super.onInit();
+  }
 
   void open() {
     isOpen = true;
@@ -31,6 +41,14 @@ class SaleController extends GetxController {
     rangeStart = null;
     rangeEnd = null;
     getsale();
+    update();
+  }
+
+  Future<void> getAllshops() async {
+    LoadingHelper.show();
+    shops = await _databaseApi.getAllShops();
+    print(shops);
+    LoadingHelper.dismiss();
     update();
   }
 
@@ -57,10 +75,12 @@ class SaleController extends GetxController {
   double sum = 0;
 
   double getsale() {
+    LoadingHelper.show();
     List<OrderModel> fetchSales;
-    fetchSales = orders;
+    fetchSales = getOrdersById();
     sum = 0;
     for (var sale in fetchSales) {
+      print('${sale.shopId} ');
       DateTime dateTime =
           DateTime.fromMillisecondsSinceEpoch(int.parse(sale.id));
       DateTime formattedDate =
@@ -72,6 +92,7 @@ class SaleController extends GetxController {
       }
     }
     update();
+    LoadingHelper.dismiss();
     return sum;
   }
 
@@ -82,7 +103,7 @@ class SaleController extends GetxController {
       LoadingHelper.show();
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('orders')
-          // .where('status', isEqualTo: 3)
+          .where('status', isEqualTo: 3)
           .get();
 
       List<OrderModel> fetchSale = querySnapshot.docs.map((doc) {
@@ -100,8 +121,9 @@ class SaleController extends GetxController {
   }
 
   double getSalesBySelectedRange(DateTime startDate, DateTime endDate) {
-    List<OrderModel> fetchSales = orders;
-    // print(fetchSales);
+    LoadingHelper.show();
+    List<OrderModel> fetchSales = getOrdersById();
+    print(fetchSales);
     sum = 0;
     DateTime formattedStartDate = DateTime.utc(
         startDate.year, startDate.month, startDate.day, 0, 0, 0, 0);
@@ -120,8 +142,15 @@ class SaleController extends GetxController {
       }
     }
     update();
-    print(sum);
+    LoadingHelper.dismiss();
     return sum;
+  }
+
+  List<OrderModel> getOrdersById() {
+    if (selectedShop == null) {
+      return orders;
+    }
+    return orders.where((order) => order.shopId == selectedShop!.id).toList();
   }
 
   clear() {
