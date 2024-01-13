@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/dropdown.dart';
 import 'package:hume_admin/components/icon_button.dart';
@@ -103,7 +104,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           Text(
                             'Uploaded images',
                             style: TextStyle(color: Colors.grey),
-                          ),
+                          ).translate(),
                         ],
                       ),
                       SizedBox(
@@ -167,7 +168,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     Text(
                       'Sizes (Optional,)',
                       style: TextStyle(color: Colors.grey),
-                    ),
+                    ).translate(),
                   ],
                 ),
                 SizedBox(
@@ -188,7 +189,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 Text(
                   'Choose product Catigory',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+                ).translate(),
                 SizedBox(
                   height: 16,
                 ),

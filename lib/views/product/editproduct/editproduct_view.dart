@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/editsizebox.dart';
 import 'package:hume_admin/components/edittopbar.dart';
@@ -38,17 +39,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
               onPressed: () => showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                        title: Text('Are you sure!'),
+                        title: Text('Are you sure!').translate(),
                         content: Text(
-                            'You are going to delete the shop and all its products'),
+                            'You are going to delete the shop and all its products').translate(),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: Text('Cancel'),
+                            child: Text('Cancel').translate(),
                           ),
                           TextButton(
                               onPressed: () => controller.deleteProduct(),
-                              child: Text('Delete'))
+                              child: Text('Delete').translate())
                         ],
                       ))),
         ),
@@ -116,7 +117,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           Text(
                             'Uploaded images',
                             style: TextStyle(color: Colors.grey),
-                          ),
+                          ).translate(),
                         ],
                       ),
                       SizedBox(
@@ -225,7 +226,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     Text(
                       'Sizes (Optional,)',
                       style: TextStyle(color: Colors.grey),
-                    ),
+                    ).translate(),
                   ],
                 ),
                 SizedBox(
@@ -256,7 +257,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 Text(
                   'Choose product Catigory',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+                ).translate(),
                 SizedBox(
                   height: 16,
                 ),

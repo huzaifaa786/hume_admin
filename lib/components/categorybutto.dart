@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class CategoryButton extends StatelessWidget {
@@ -46,7 +47,7 @@ class CategoryButton extends StatelessWidget {
                     height: 0.08,
                     letterSpacing: 0.96,
                   ),
-                ),
+                ).translate(),
               ],
             ),
           ),

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class Buttonn extends StatelessWidget {
@@ -40,7 +41,7 @@ class Buttonn extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
+              ).translate(),
             ],
           ),
         ),

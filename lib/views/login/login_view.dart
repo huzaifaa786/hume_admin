@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/guest_topbar.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/input_field_pass.dart';
@@ -53,7 +54,7 @@ class LoginView extends StatelessWidget {
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             color: maincolor),
-                      ),
+                      ).translate(),
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: Column(

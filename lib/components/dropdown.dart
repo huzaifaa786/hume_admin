@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class DropDown extends StatelessWidget {
@@ -26,7 +27,7 @@ class DropDown extends StatelessWidget {
               Text(
                 'Choose the store',
                 style: TextStyle(color: Colors.grey),
-              ),
+              ).translate(),
               Icon(Icons.keyboard_arrow_down_sharp)
             ],
           ),

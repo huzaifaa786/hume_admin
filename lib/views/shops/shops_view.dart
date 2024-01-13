@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/shopcard.dart';
 import 'package:hume_admin/components/topbar.dart';
@@ -43,7 +44,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   Text(
                     'All Shops',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                  ),
+                  ).translate(),
                   IconsButton(
                     width: MediaQuery.of(context).size.width * 0.5,
                     imgicon: Icon(
@@ -91,19 +92,19 @@ class _ShopScreenState extends State<ShopScreen> {
                           onPressed: () => showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
-                                    title: Text('Are you sure!'),
+                                    title: Text('Are you sure!').translate(),
                                     content: Text(
-                                        'You are going to delete the shop and all its products'),
+                                        'You are going to delete the shop and all its products').translate(),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () =>
                                             Navigator.pop(context, 'Cancel'),
-                                        child: Text('Cancel'),
+                                        child: Text('Cancel').translate(),
                                       ),
                                       TextButton(
                                           onPressed: () =>
                                               controller.deleteShop(shop.id),
-                                          child: Text('Delete'))
+                                          child: Text('Delete').translate())
                                     ],
                                   )));
                     }),

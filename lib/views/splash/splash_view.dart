@@ -1,5 +1,7 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/utils/controller_initlization.dart';
 
 class SplashView extends StatefulWidget {
@@ -19,42 +21,12 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(4289491966),
-              Color(4289491966),
-              Color(4289494015),
-              Color(4289494015),
-              Color(4289494015),
-              Color(4289505535),
-              Color(4288538110),
-              Color(4292214271)
-            ],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/splashLogo.png',height: 210,width: 210,),
-            const SizedBox(height: 14),
-            const Text(
-              "Find Your Personal Trainer",
-              style: TextStyle(
-                fontFamily: "Poppins",
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: Colors.white,
-                height: 5 / 12,
-              ),
-            ),
-            const SizedBox(height: 70),
-          ],
+        margin: const EdgeInsets.only(left: 30, right: 30),
+        child: Center(
+          child:
+              SvgPicture.asset('assets/images/logo.svg', height: 50, width: 80),
         ),
       ),
     );

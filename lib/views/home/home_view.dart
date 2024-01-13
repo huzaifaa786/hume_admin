@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/home_sizebox.dart';
 import 'package:hume_admin/components/hometopbar.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/routes/app_routes.dart';
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/views/app_translate/translate.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                         ),
-                      ),
+                      ).translate(),
                     ],
                   ),
                   SizedBox(
@@ -79,6 +81,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: MediaQuery.of(context).size.width * 0.5,
                       )
                     ],
+                  ),
+                  SizedBox(height: 12),
+                  IconsButton(
+                    imgicon: Icon(Icons.language_outlined),
+                    title: 'Language',
+                    fontSize: 12.0,
+                    height: 50.0,
+                    color: hintcolor,
+                    onPressed: () {
+                      Get.to(()=> TranslateScreen());
+                    },
+                    width: MediaQuery.of(context).size.width,
                   ),
                   Homecontainer(
                     icon: SvgPicture.asset(

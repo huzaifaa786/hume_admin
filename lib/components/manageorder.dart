@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/orderbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -87,7 +88,7 @@ class ManageOrderCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).translate(),
                               SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -132,7 +133,7 @@ class ManageOrderCard extends StatelessWidget {
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black54),
-                                  ),
+                                  ).translate(),
                                 ],
                               )
                             ],
@@ -145,7 +146,7 @@ class ManageOrderCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).translate(),
                               SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -185,7 +186,7 @@ class ManageOrderCard extends StatelessWidget {
                   Text(
                     '       Requested',
                     style: TextStyle(color: Colors.grey),
-                  ),
+                  ).translate(),
                   SizedBox(
                     width: 23,
                   ),
@@ -203,7 +204,7 @@ class ManageOrderCard extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w700),
-                  ),
+                  ).translate(),
                   SizedBox(
                     width: 23,
                   ),

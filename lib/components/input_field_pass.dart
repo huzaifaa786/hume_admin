@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hume_admin/utils/colors.dart';
+import 'package:hume_admin/utils/translation.dart';
 
-class PasswordInputField extends StatelessWidget {
+class PasswordInputField extends StatefulWidget {
   const PasswordInputField(
       {Key? key,
       this.controller,
@@ -45,29 +48,48 @@ class PasswordInputField extends StatelessWidget {
   final readOnly;
 
   @override
+  State<PasswordInputField> createState() => _PasswordInputFieldState();
+}
+
+class _PasswordInputFieldState extends State<PasswordInputField> {
+  String? hinttext;
+  hintTrans() async {
+    hinttext = await translateText(widget.hint);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    hintTrans();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // bool isDark = Provider.of<DarkThemeProvider>(context).darkTheme;
 
     return Container(
       width: Get.width,
       child: TextFormField(
-        readOnly: readOnly,
-        enabled: enabled,
-        controller: controller,
-        style: TextStyle(fontSize: fontSize),
-        obscureText: obscure,
-        keyboardType: type,
-        validator: validator,
+        readOnly: widget.readOnly,
+        enabled: widget.enabled,
+        controller: widget.controller,
+        style: TextStyle(fontSize: widget.fontSize),
+        obscureText: widget.obscure,
+        keyboardType: widget.type,
+        validator: widget.validator,
         decoration: InputDecoration(
           suffixIcon: IconButton(
             padding: const EdgeInsets.only(right: 20),
             icon: Icon(
               // Based on passwordVisible state choose the icon
-              obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+              widget.obscure
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
               color: maincolor,
             ),
             onPressed: () {
-              toggle();
+              widget.toggle();
             },
           ),
           border: OutlineInputBorder(
@@ -79,13 +101,13 @@ class PasswordInputField extends StatelessWidget {
               style: BorderStyle.none,
             ),
           ),
-          hintText: hint,
+          hintText: hinttext ?? '...',
           hintStyle: const TextStyle(color: Colors.grey),
           filled: true,
           fillColor: Colors.grey.withOpacity(0.1),
         ),
         cursorColor: Colors.black,
-        maxLines: maxlines == true ? null : 1,
+        maxLines: widget.maxlines == true ? null : 1,
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/sale/sale_controller.dart';
@@ -173,13 +174,13 @@ class _SaleScreenState extends State<SaleScreen> {
                       fontFamily: "Poppins",
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: maincolor)),
+                      color: maincolor)).translate(),
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.only(top: 20, bottom: 20),
                 decoration: BoxDecoration(
                     color: colortext, borderRadius: BorderRadius.circular(13)),
-                child: const Align(
+                child:  Align(
                     alignment: Alignment.center,
                     child: Text(
                       '0 AED',
@@ -187,7 +188,7 @@ class _SaleScreenState extends State<SaleScreen> {
                           color: white,
                           fontSize: 26,
                           fontWeight: FontWeight.w600),
-                    )),
+                    ).translate()),
               ),
             ],
           ),

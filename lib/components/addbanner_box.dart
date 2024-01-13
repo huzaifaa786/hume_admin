@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/smallbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -46,7 +47,7 @@ class AddBannerBox extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(color: const Color.fromARGB(255, 119, 110, 110)),
-                ),
+                ).translate(),
               SizedBox(
                 height: 12,
               ),

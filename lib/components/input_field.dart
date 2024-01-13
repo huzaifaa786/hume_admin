@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:hume_admin/utils/translation.dart';
 
-class InputField extends StatelessWidget {
+class InputField extends StatefulWidget {
   const InputField(
       {Key? key,
       this.controller,
@@ -46,40 +47,55 @@ class InputField extends StatelessWidget {
   final readOnly;
 
   @override
+  State<InputField> createState() => _InputFieldState();
+}
+
+class _InputFieldState extends State<InputField> {
+  String? hinttext;
+  hintTrans() async {
+    hinttext = await translateText(widget.hint);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    hintTrans();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // bool isDark = Provider.of<DarkThemeProvider>(context).darkTheme;
 
     return Padding(
       padding: const EdgeInsets.only(top: 14),
       child: Container(
-        width: width,
+        width: widget.width,
         child: TextFormField(
-          readOnly: readOnly,
-          enabled: enabled,
-          
-          controller: controller,
-          style: TextStyle(fontSize: fontSize),
-          obscureText: obscure,
-          keyboardType: type,
-          validator: validator,
+          readOnly: widget.readOnly,
+          enabled: widget.enabled,
+          controller: widget.controller,
+          style: TextStyle(fontSize: widget.fontSize),
+          obscureText: widget.obscure,
+          keyboardType: widget.type,
+          validator: widget.validator,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(30.0),
               ),
-               borderSide: BorderSide(
+              borderSide: BorderSide(
                 width: 0,
                 style: BorderStyle.none,
               ),
             ),
-            hintText: hint,
+            hintText: hinttext ?? '...',
             hintStyle: const TextStyle(color: Colors.grey),
             filled: true,
             fillColor: Colors.grey.withOpacity(0.1),
           ),
-          
           cursorColor: Colors.black,
-          maxLines: maxlines == true ? null : 1,
+          maxLines: widget.maxlines == true ? null : 1,
         ),
       ),
     );

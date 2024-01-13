@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class TitleTopBar extends StatelessWidget {
@@ -30,7 +31,7 @@ class TitleTopBar extends StatelessWidget {
               fontFamily: "Poppins",
               fontSize: 17,fontWeight: FontWeight.w500,color: maincolor
             ),
-          ),
+          ).translate(),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Icon(

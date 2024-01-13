@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/ordercard.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/routes/app_routes.dart';
@@ -49,7 +50,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
                           ),
-                        )
+                        ).translate()
                       ],
                     ),
                   ),
@@ -63,7 +64,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
                           ),
-                        ),
+                        ).translate(),
                       ],
                     ),
                   ),
@@ -72,7 +73,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
           body: TabBarView(
             children: [
               controller.shopProducts.isEmpty
-                  ? Center(child: Text('No products found!'))
+                  ? Center(child: Text('No products found!').translate())
                   : Padding(
                       padding:
                           const EdgeInsets.only(left: 15, right: 15, top: 15),
@@ -115,7 +116,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
                                       color: maincolor),
-                                )
+                                ).translate()
                               ],
                             ),
                           );
@@ -161,7 +162,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color: maincolor),
-                          )
+                          ).translate()
                         ],
                       ),
                     );

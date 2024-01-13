@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, deprecated_member_use, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class LargeButton extends StatelessWidget {
@@ -43,7 +44,7 @@ class LargeButton extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
-            ),
+            ).translate(),
           ],
         ),
       ),

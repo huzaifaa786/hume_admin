@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -102,7 +103,7 @@ class NotificationCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).translate(),
                               SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -149,7 +150,7 @@ class NotificationCard extends StatelessWidget {
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black54),
-                                  ),
+                                  ).translate(),
                                 ),
                               ],
                             )
@@ -165,7 +166,7 @@ class NotificationCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).translate(),
                             ),
                             SvgPicture.asset('assets/images/arrow.svg')
                           ],

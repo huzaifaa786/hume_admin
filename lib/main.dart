@@ -6,6 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/firebase_options.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/routes/app_pages.dart';
@@ -44,20 +46,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: white,
+    GetStorage box = GetStorage();
+    box.read('Locale') == null ? box.write('Locale', 'en') : null;
+    String locale = box.read('Locale') ?? 'en';
+    return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
+        translateFrom: box.read('Locale') == 'en' ? Locale('ur') : Locale('en'),
+        translateTo: Locale(locale),
+        automaticDetection: false, builder: () {
+      return GetMaterialApp(
+        theme: ThemeData(
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: white,
+          ),
+          useMaterial3: true,
+          fontFamily: 'Poppins',
         ),
-        useMaterial3: true,
-        fontFamily: 'Poppins',
-      ),
-      builder: EasyLoading.init(),
-      debugShowCheckedModeBanner: false,
-      title: "Huma",
-      initialBinding: SplashBinding(),
-      home: SplashView(),
-      getPages: AppPages.pages,
-    );
+        builder: EasyLoading.init(),
+        debugShowCheckedModeBanner: false,
+        title: "Huma",
+        initialBinding: SplashBinding(),
+        home: SplashView(),
+        getPages: AppPages.pages,
+      );
+    });
   }
 }

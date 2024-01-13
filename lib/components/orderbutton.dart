@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 
 class OrderButton extends StatelessWidget {
   const OrderButton({
@@ -44,7 +45,7 @@ class OrderButton extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(color: textcolor, fontSize: 10),
-              ),
+              ).translate(),
             ],
           ),
         ),

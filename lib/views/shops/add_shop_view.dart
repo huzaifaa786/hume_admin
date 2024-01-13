@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/addbanner_box.dart';
 import 'package:hume_admin/components/button.dart';
 import 'package:hume_admin/components/categorybutto.dart';
@@ -114,7 +115,7 @@ class _AddShopState extends State<AddShop> {
                 Text(
                   'Choose shop category',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+                ).translate(),
                 Gap(20),
                 GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
