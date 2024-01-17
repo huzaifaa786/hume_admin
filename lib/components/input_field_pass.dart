@@ -101,7 +101,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
               style: BorderStyle.none,
             ),
           ),
-          hintText: hinttext ?? '...',
+          hintText: hinttext ?? '',
           hintStyle: const TextStyle(color: Colors.grey),
           filled: true,
           fillColor: Colors.grey.withOpacity(0.1),

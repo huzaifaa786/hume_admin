@@ -54,6 +54,7 @@ class _InputFieldState extends State<InputField> {
   String? hinttext;
   hintTrans() async {
     hinttext = await translateText(widget.hint);
+    print(hinttext);
     setState(() {});
   }
 
@@ -89,7 +90,7 @@ class _InputFieldState extends State<InputField> {
                 style: BorderStyle.none,
               ),
             ),
-            hintText: hinttext ?? '...',
+            hintText: hinttext ?? '',
             hintStyle: const TextStyle(color: Colors.grey),
             filled: true,
             fillColor: Colors.grey.withOpacity(0.1),
