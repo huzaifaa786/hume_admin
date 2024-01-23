@@ -51,19 +51,6 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  String? hinttext;
-  hintTrans() async {
-    hinttext = await translateText(widget.hint);
-    print(hinttext);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    hintTrans();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     // bool isDark = Provider.of<DarkThemeProvider>(context).darkTheme;
@@ -90,7 +77,7 @@ class _InputFieldState extends State<InputField> {
                 style: BorderStyle.none,
               ),
             ),
-            hintText: hinttext ?? '',
+            hintText: widget.hint,
             hintStyle: const TextStyle(color: Colors.grey),
             filled: true,
             fillColor: Colors.grey.withOpacity(0.1),

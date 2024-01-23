@@ -22,6 +22,7 @@ class SaleController extends GetxController {
   @override
   void onInit() {
     getAllshops();
+    fetchSale();
     super.onInit();
   }
 
@@ -92,6 +93,7 @@ class SaleController extends GetxController {
       }
     }
     update();
+    print(sum);
     LoadingHelper.dismiss();
     return sum;
   }
@@ -103,18 +105,16 @@ class SaleController extends GetxController {
       LoadingHelper.show();
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('orders')
-          .where('status', isEqualTo: 3)
+          .where('status', isEqualTo: '3')
           .get();
-
-      List<OrderModel> fetchSale = querySnapshot.docs.map((doc) {
-        print(List<OrderModel>);
+      List<OrderModel> fetchSales = querySnapshot.docs.map((doc) {
         return OrderModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
       orders = <OrderModel>[].obs;
-      orders = fetchSale;
+      orders = fetchSales;
+      LoadingHelper.dismiss();
       getsale();
       update();
-      LoadingHelper.dismiss();
     } catch (e) {
       print('Error fetching orders: $e');
     }

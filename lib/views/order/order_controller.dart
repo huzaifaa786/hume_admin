@@ -123,6 +123,7 @@ class OrderController extends GetxController {
       <CombinedOrderProductModel>[].obs;
   Future<void> fetchCombinedOrderProductList() async {
     combinedOrderProductList = <CombinedOrderProductModel>[].obs;
+    update();
     LoadingHelper.show();
     var id = Get.parameters['id'];
     var orderItemsSnapshot = await FirebaseFirestore.instance
@@ -158,6 +159,7 @@ class OrderController extends GetxController {
       combinedOrderProductList.add(combinedOrderProduct);
       LoadingHelper.dismiss();
     }
+    update();
   }
 
   String extractId(String paymentIntent) {

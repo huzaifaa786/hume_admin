@@ -55,7 +55,7 @@ class ShopDropdownField extends StatelessWidget {
                     fontSize: 13,
                     color: Colors.grey,
                   ),
-                ).translate(),
+                ),
               ],
             ),
             items: items

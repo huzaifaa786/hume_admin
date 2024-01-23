@@ -50,7 +50,7 @@ class _EditShopState extends State<EditShop> {
                 ),
                 InputField(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  hint: 'short Discription',
+                  hint: 'short Description',
                   controller: controller.description,
                 ),
                 Row(
@@ -106,7 +106,7 @@ class _EditShopState extends State<EditShop> {
                 Text(
                   'Choose shop category',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ).translate(),
+                ),
                 Gap(20),
                 GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

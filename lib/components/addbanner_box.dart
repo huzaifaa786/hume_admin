@@ -34,7 +34,6 @@ class AddBannerBox extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14.0),
         width: width,
-        height: height,
         decoration: BoxDecoration(
           color: hintcolor,
           borderRadius: BorderRadius.circular(20),
@@ -47,7 +46,7 @@ class AddBannerBox extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(color: const Color.fromARGB(255, 119, 110, 110)),
-                ).translate(),
+                ),
               SizedBox(
                 height: 12,
               ),

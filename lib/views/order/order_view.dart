@@ -28,7 +28,7 @@ class _OrderHistoryState extends State<OrderHistory> {
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: TitleTopBar(
-            name: 'Order Product',
+            name: 'Orders',
             ontap: () {
               Get.back();
             },

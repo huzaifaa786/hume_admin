@@ -27,7 +27,7 @@ class DropDown extends StatelessWidget {
               Text(
                 'Choose the store',
                 style: TextStyle(color: Colors.grey),
-              ).translate(),
+              ),
               Icon(Icons.keyboard_arrow_down_sharp)
             ],
           ),

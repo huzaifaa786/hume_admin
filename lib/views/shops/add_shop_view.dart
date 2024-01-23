@@ -104,8 +104,8 @@ class _AddShopState extends State<AddShop> {
                                 buttonwidth:
                                     MediaQuery.of(context).size.width * 0.3,
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.12,
+                                // height:
+                                //     MediaQuery.of(context).size.height * 0.12,
                               ),
                       ],
                     )
@@ -115,7 +115,7 @@ class _AddShopState extends State<AddShop> {
                 Text(
                   'Choose shop category',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ).translate(),
+                ),
                 Gap(20),
                 GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

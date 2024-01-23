@@ -25,11 +25,11 @@ class _SaleScreenState extends State<SaleScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleController>(
-      initState: (state) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          state.controller!.fetchSale();
-        });
-      },
+      // initState: (state) {
+      //   Future.delayed(Duration(milliseconds: 100), () {
+      //     state.controller!.fetchSale();
+      //   });
+      // },
       builder: (controller) => Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -158,7 +158,7 @@ class _SaleScreenState extends State<SaleScreen> {
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: maincolor))
-                  .translate(),
+                  ,
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.only(top: 20, bottom: 20),
@@ -172,7 +172,7 @@ class _SaleScreenState extends State<SaleScreen> {
                           color: white,
                           fontSize: 26,
                           fontWeight: FontWeight.w600),
-                    ).translate()),
+                    )),
               ),
             ],
           ),

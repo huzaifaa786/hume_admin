@@ -51,7 +51,7 @@ class OrderHistoryCard extends StatelessWidget {
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey),
-                      ).translate(),
+                      ),
                       Text(
                         size,
                         style: TextStyle(
@@ -72,7 +72,7 @@ class OrderHistoryCard extends StatelessWidget {
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey),
-                      ).translate(),
+                      ),
                       Text(
                         quantity,
                         style: TextStyle(
@@ -100,7 +100,7 @@ class OrderHistoryCard extends StatelessWidget {
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: colortext),
-                      ).translate(),
+                      ),
                     ],
                   ),
                   SizedBox(

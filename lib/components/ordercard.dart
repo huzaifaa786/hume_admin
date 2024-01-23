@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -12,13 +13,19 @@ class OrderCard extends StatelessWidget {
       this.name,
       this.ontap,
       this.shopname,
+      this.onSeeProductTap,
+      this.onClientInfoTap,
       this.orderno,
+      this.date,
       this.price});
   final name;
   final ontap;
   final shopname;
   final orderno;
+  final date;
+  final onClientInfoTap;
   final price;
+  final onSeeProductTap;
 
   @override
   Widget build(BuildContext context) {
@@ -51,34 +58,40 @@ class OrderCard extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset('assets/images/head.svg'),
-                            Text(
-                              name,
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'See clinet info    ',
-                              style: TextStyle(
-                                  color: colortext,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
-                            ).translate(),
-                            SvgPicture.asset('assets/images/arrow.svg')
-                          ],
-                        )
-                      ],
+                    InkWell(
+                      onTap: onClientInfoTap,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset('assets/images/head.svg'),
+                              SizedBox(
+                                width: Get.width * 0.35,
+                                child: Text(
+                                  name,
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'See clinet info    ',
+                                style: TextStyle(
+                                    color: colortext,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              SvgPicture.asset('assets/images/arrow.svg')
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -86,78 +99,84 @@ class OrderCard extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 10, bottom: 10),
-                width: MediaQuery.of(context).size.width * 0.9,
-                // height: MediaQuery.of(context).size.width * 0.2,
-                decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/order.svg',
-                              height: 20,
-                              width: 23,
-                            ),
-                            Gap(4),
-                            Row(
-                              children: [
-                                Text(
-                                  'Order NO  $orderno',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.black54),
-                                ).translate(),
-                              ],
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'See clinet info    ',
-                              style: TextStyle(
-                                  color: colortext,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
-                            ).translate(),
-                            SvgPicture.asset('assets/images/arrow.svg')
-                          ],
-                        )
-                      ],
-                    ),
-                    Gap(8),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/home.svg',
-                              height: 23,
-                              width: 23,
-                            ),
-                            Text(
-                              shopname,
-                              style: TextStyle(
-                                color: colortext,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w700,
+              InkWell(
+                onTap: onSeeProductTap,
+                child: Container(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 10, bottom: 10),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  // height: MediaQuery.of(context).size.width * 0.2,
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/order.svg',
+                                height: 20,
+                                width: 23,
                               ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              Gap(4),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: Get.width * 0.35,
+                                    child: Text(
+                                      'Order NO  $orderno',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black54),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'See product info    ',
+                                style: TextStyle(
+                                    color: colortext,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              SvgPicture.asset('assets/images/arrow.svg')
+                            ],
+                          )
+                        ],
+                      ),
+                      Gap(8),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/home.svg',
+                                height: 23,
+                                width: 23,
+                              ),
+                              Text(
+                                shopname,
+                                style: TextStyle(
+                                  color: colortext,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -168,11 +187,11 @@ class OrderCard extends StatelessWidget {
                   Text(
                     '       Requested',
                     style: TextStyle(color: Colors.grey),
-                  ).translate(),
+                  ),
                   SizedBox(
                     width: 23,
                   ),
-                  Text('22/11/2023', style: TextStyle(color: Colors.grey)),
+                  Text('$date', style: TextStyle(color: Colors.grey)),
                 ],
               ),
               SizedBox(
@@ -186,7 +205,7 @@ class OrderCard extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w700),
-                  ).translate(),
+                  ),
                   SizedBox(
                     width: 23,
                   ),

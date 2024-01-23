@@ -83,7 +83,7 @@ class UiUtilites {
                       // height: 52 / 12,
                     ),
                     textAlign: TextAlign.center,
-                  ).translate(),
+                  ),
                   Gap(40),
                 ],
               ),

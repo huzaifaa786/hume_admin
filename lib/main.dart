@@ -45,27 +45,32 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    box.read('Locale') == null ? box.write('Locale', 'en') : null;
-    String locale = box.read('Locale') ?? 'en';
-    return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
-        translateFrom: box.read('Locale') == 'en' ? Locale('ur') : Locale('en'),
-        translateTo: Locale(locale),
-        automaticDetection: false, builder: () {
-      return GetMaterialApp(
-        theme: ThemeData(
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: white,
-          ),
-          useMaterial3: true,
-          fontFamily: 'Poppins',
+    // box.read('Locale') == null ? box.write('Locale', 'en') : null;
+    // String locale = box.read('Locale') ?? 'en';
+    // return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
+    //     translateFrom: box.read('Locale') == 'en' ? Locale('ur') : Locale('en'),
+    //     translateTo: Locale(locale),
+    //     automaticDetection: false, builder: () {
+    return GetMaterialApp(
+      // translations: LocaleString(),
+      // locale:
+      //     box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
+      // fallbackLocale:
+      //     box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
+      theme: ThemeData(
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: white,
         ),
-        builder: EasyLoading.init(),
-        debugShowCheckedModeBanner: false,
-        title: "Huma",
-        initialBinding: SplashBinding(),
-        home: SplashView(),
-        getPages: AppPages.pages,
-      );
-    });
+        useMaterial3: true,
+        fontFamily: 'Poppins',
+      ),
+      builder: EasyLoading.init(),
+      debugShowCheckedModeBanner: false,
+      title: "Hume Admin",
+      initialBinding: SplashBinding(),
+      home: SplashView(),
+      getPages: AppPages.pages,
+    );
+    // });
   }
 }

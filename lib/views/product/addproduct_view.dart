@@ -104,7 +104,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           Text(
                             'Uploaded images',
                             style: TextStyle(color: Colors.grey),
-                          ).translate(),
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -157,7 +157,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     : SizedBox(),
                 InputField(
                   controller: controller.productdiscriptionController,
-                  hint: 'Discription',
+                  hint: 'Description',
                   width: MediaQuery.of(context).size.width * 0.94,
                 ),
                 SizedBox(
@@ -168,7 +168,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     Text(
                       'Sizes (Optional,)',
                       style: TextStyle(color: Colors.grey),
-                    ).translate(),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -189,7 +189,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 Text(
                   'Choose product Catigory',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ).translate(),
+                ),
                 SizedBox(
                   height: 16,
                 ),

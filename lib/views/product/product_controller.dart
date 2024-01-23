@@ -1,8 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
-import 'dart:developer';
-
 import 'package:hume_admin/api/database_api.dart';
+import 'package:hume_admin/api/order_api.dart';
 import 'package:hume_admin/api/stroage_api.dart';
 import 'package:hume_admin/helper/data_model.dart';
 import 'package:hume_admin/helper/loading.dart';
@@ -11,10 +10,9 @@ import 'package:hume_admin/api/product_api.dart';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 import 'package:hume_admin/api/image_selection.dart';
 import 'package:hume_admin/models/shops.dart';
-import 'package:hume_admin/routes/app_routes.dart';
+import 'package:hume_admin/models/combine_order.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
 
 class ProductController extends GetxController {
@@ -35,8 +33,10 @@ class ProductController extends GetxController {
   List<String> productImageNames = [];
   List<Shop> shops = [];
   Shop? shop;
+  final OrderApi orderApi = OrderApi();
   Shop? selectedShop;
   RxBool areFieldsFilled = false.obs;
+  String? shopname;
   List<String> categories = [
     'Clothes',
     'Furniture',
@@ -52,8 +52,13 @@ class ProductController extends GetxController {
   ];
   @override
   void onInit() {
+    id = Get.parameters['id'];
+    shopname = Get.parameters['shopname'];
+
     products();
+    fetchOrders();
     getAllshops();
+    print('object**********');
     ProductnameController.addListener(() {
       checkFields();
     });
@@ -170,12 +175,34 @@ class ProductController extends GetxController {
   }
 
   products() async {
-    if (Get.parameters['shop_id'] != null) {
-      id = Get.parameters['shop_id'];
+    if (Get.parameters['id'] != null) {
       shopProducts = await _databaseApi.fetchProducts(id);
+      print(shopProducts);
       update();
     } else {
       shopProducts = await _databaseApi.fetchProducts(id);
+      print(shopProducts);
+      update();
+    }
+  }
+
+  List<OrderCombinedModel> orders = [];
+
+  fetchOrders() async {
+    if (Get.parameters['id'] != null) {
+      List<OrderCombinedModel>? newItems =
+          await orderApi.fetchOrderbyTrainer(Get.parameters['id']!);
+
+      orders.addAll(newItems!);
+      print(orders);
+
+      update();
+    } else {
+      List<OrderCombinedModel>? newItems =
+          await orderApi.fetchOrderbyTrainer(id!);
+
+      orders.addAll(newItems!);
+      print(orders);
       update();
     }
   }

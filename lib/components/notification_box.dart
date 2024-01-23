@@ -86,12 +86,15 @@ class NotificationCard extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/head.svg'),
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                child: Text(
+                                  name,
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               )
                             ],
                           ),
@@ -103,7 +106,7 @@ class NotificationCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ).translate(),
+                              ),
                               SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -150,7 +153,7 @@ class NotificationCard extends StatelessWidget {
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black54),
-                                  ).translate(),
+                                  ),
                                 ),
                               ],
                             )
@@ -166,7 +169,7 @@ class NotificationCard extends StatelessWidget {
                                     color: colortext,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
-                              ).translate(),
+                              ),
                             ),
                             SvgPicture.asset('assets/images/arrow.svg')
                           ],

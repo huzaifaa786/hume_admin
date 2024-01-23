@@ -62,7 +62,7 @@ class IconsButton extends StatelessWidget {
                 fontSize: fontSize,
                 fontWeight: FontWeight.w700,
               ),
-            ).translate(),
+            ),
           ],
         ),
       ),

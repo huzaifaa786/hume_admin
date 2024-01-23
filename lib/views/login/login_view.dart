@@ -54,7 +54,7 @@ class LoginView extends StatelessWidget {
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             color: maincolor),
-                      ).translate(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: Column(

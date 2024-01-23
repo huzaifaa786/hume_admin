@@ -44,7 +44,7 @@ class _ShopScreenState extends State<ShopScreen> {
                   SizedBox(width: MediaQuery.of(context).size.width * 0.35,child:Text(
                     'All Shops',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                  ).translate(),),
+                  ),),
                   IconsButton(
                     width: MediaQuery.of(context).size.width * 0.5,
                     imgicon: Icon(
@@ -92,19 +92,19 @@ class _ShopScreenState extends State<ShopScreen> {
                           onPressed: () => showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
-                                    title: Text('Are you sure!').translate(),
+                                    title: Text('Are you sure!'),
                                     content: Text(
-                                        'You are going to delete the shop and all its products').translate(),
+                                        'You are going to delete the shop and all its products'),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () =>
                                             Navigator.pop(context, 'Cancel'),
-                                        child: Text('Cancel').translate(),
+                                        child: Text('Cancel'),
                                       ),
                                       TextButton(
                                           onPressed: () =>
                                               controller.deleteShop(shop.id),
-                                          child: Text('Delete').translate())
+                                          child: Text('Delete'))
                                     ],
                                   )));
                     }),

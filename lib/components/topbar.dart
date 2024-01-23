@@ -31,7 +31,7 @@ class TitleTopBar extends StatelessWidget {
               fontFamily: "Poppins",
               fontSize: 17,fontWeight: FontWeight.w500,color: maincolor
             ),
-          ).translate(),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Icon(

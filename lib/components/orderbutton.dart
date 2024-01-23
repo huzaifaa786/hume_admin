@@ -45,7 +45,7 @@ class OrderButton extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(color: textcolor, fontSize: 10),
-              ).translate(),
+              ),
             ],
           ),
         ),

@@ -71,7 +71,7 @@
 //                                       fontSize: 12,
 //                                       fontWeight: FontWeight.w700,
 //                                       color: colortext),
-//                                 ).translate(),
+//                                 ),
 //                                 Text(
 //                                   orderno,
 //                                   style: TextStyle(
@@ -91,7 +91,7 @@
 //                                   color: colortext,
 //                                   fontSize: 12,
 //                                   fontWeight: FontWeight.w600),
-//                             ).translate(),
+//                             ),
 //                             SvgPicture.asset('assets/images/arrow.svg')
 //                           ],
 //                         )

@@ -49,7 +49,7 @@ class Button extends StatelessWidget {
                 fontSize: fontSize,
                 fontWeight: FontWeight.w600,
               ),
-            ).translate(),
+            ),
           ],
         ),
       ),

@@ -39,17 +39,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
               onPressed: () => showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                        title: Text('Are you sure!').translate(),
+                        title: Text('Are you sure!'),
                         content: Text(
-                            'You are going to delete the shop and all its products').translate(),
+                            'You are going to delete the shop and all its products'),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: Text('Cancel').translate(),
+                            child: Text('Cancel'),
                           ),
                           TextButton(
                               onPressed: () => controller.deleteProduct(),
-                              child: Text('Delete').translate())
+                              child: Text('Delete'))
                         ],
                       ))),
         ),
@@ -117,7 +117,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           Text(
                             'Uploaded images',
                             style: TextStyle(color: Colors.grey),
-                          ).translate(),
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -226,7 +226,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     Text(
                       'Sizes (Optional,)',
                       style: TextStyle(color: Colors.grey),
-                    ).translate(),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -257,7 +257,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 Text(
                   'Choose product Catigory',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
-                ).translate(),
+                ),
                 SizedBox(
                   height: 16,
                 ),

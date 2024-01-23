@@ -47,7 +47,7 @@ class CategoryButton extends StatelessWidget {
                     height: 0.08,
                     letterSpacing: 0.96,
                   ),
-                ).translate(),
+                ),
               ],
             ),
           ),
