@@ -49,7 +49,7 @@ class LoginView extends StatelessWidget {
                       GuestTopbar(),
                       Gap(40),
                       Text(
-                        'Signin',
+                        'Signin'.tr,
                         style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -60,13 +60,13 @@ class LoginView extends StatelessWidget {
                         child: Column(
                           children: [
                             InputField(
-                              hint: 'Email',
+                              hint: 'Email'.tr,
                               controller: controller.email,
                               color: maincolor,
                             ),
                             Gap(15),
                             PasswordInputField(
-                              hint: 'Password',
+                              hint: 'Password'.tr,
                               controller: controller.password,
                               color: maincolor,
                               obscure: controller.passObscure,
@@ -88,7 +88,7 @@ class LoginView extends StatelessWidget {
                             //   ],
                             // ),
                             LargeButton(
-                              title: 'Done',
+                              title: 'Done'.tr,
                               textcolor: white,
                               onPressed: () {
                                 controller.loginUser();

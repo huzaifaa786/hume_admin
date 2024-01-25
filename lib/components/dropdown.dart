@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -25,7 +26,7 @@ class DropDown extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Choose the store',
+                'Choose the store'.tr,
                 style: TextStyle(color: Colors.grey),
               ),
               Icon(Icons.keyboard_arrow_down_sharp)

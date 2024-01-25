@@ -11,9 +11,12 @@ class UserModel {
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
+    var email1 = json['email'] ?? '';
+    print('email $email1');
     id = json['id'];
     name = json['name'];
-    email = json['email'];
+    email = email1;
+    print('object $email');
     token = json['token'];
   }
 

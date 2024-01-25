@@ -101,7 +101,7 @@ class OrderController extends GetxController {
           forAdmin: false,
           seen: false));
       await notificationService.postNotification(
-          title: 'Order Rejected',
+          title: 'Order Rejected'.tr,
           body:
               'Order with Order Id #$id has been rejected and your payment has been refunded to your accout.',
           receiverToken: '');
@@ -110,8 +110,8 @@ class OrderController extends GetxController {
       update();
     } else {
       UiUtilites.errorSnackbar(
-        'Error!',
-        'Error during refund. Please try again later',
+        'Error!'.tr,
+        'Error during refund. Please try again later'.tr,
       );
     }
     LoadingHelper.dismiss();
@@ -190,7 +190,7 @@ class OrderController extends GetxController {
         forAdmin: false,
         seen: false));
     await notificationService.postNotification(
-        title: 'Order Delivered',
+        title: 'Order Delivered'.tr,
         body:
             'Order with Order Id #$id delivered successfully on your provided destination.',
         receiverToken: token);

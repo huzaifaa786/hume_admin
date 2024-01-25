@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:hume_admin/utils/translation.dart';
+import 'package:hume_admin/translation.dart';
 
 class InputField extends StatefulWidget {
   const InputField(

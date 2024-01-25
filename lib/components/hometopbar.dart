@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class Hometopbar extends StatelessWidget {
@@ -21,11 +22,11 @@ class Hometopbar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hume',
+                  'Hume'.tr,
                   style: TextStyle(
                       color: black, fontSize: 16, fontWeight: FontWeight.w700),
                 ),
-                Text('Admin'),
+                Text('Admin'.tr),
               ],
             ),
           ],

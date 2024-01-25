@@ -76,7 +76,7 @@ class SaleController extends GetxController {
   double sum = 0;
 
   double getsale() {
-    LoadingHelper.show();
+    // LoadingHelper.show();
     List<OrderModel> fetchSales;
     fetchSales = getOrdersById();
     sum = 0;
@@ -94,7 +94,7 @@ class SaleController extends GetxController {
     }
     update();
     print(sum);
-    LoadingHelper.dismiss();
+    // LoadingHelper.dismiss();
     return sum;
   }
 
@@ -121,7 +121,7 @@ class SaleController extends GetxController {
   }
 
   double getSalesBySelectedRange(DateTime startDate, DateTime endDate) {
-    LoadingHelper.show();
+    // LoadingHelper.show();
     List<OrderModel> fetchSales = getOrdersById();
     print(fetchSales);
     sum = 0;
@@ -142,7 +142,7 @@ class SaleController extends GetxController {
       }
     }
     update();
-    LoadingHelper.dismiss();
+    // LoadingHelper.dismiss();
     return sum;
   }
 

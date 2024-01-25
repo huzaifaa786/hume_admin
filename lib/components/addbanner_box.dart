@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/smallbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -15,7 +16,8 @@ class AddBannerBox extends StatelessWidget {
     this.fontSize,
     this.buttonwidth,
     this.buttonheight,
-    this.text, File? bannerImage, // Make text parameter optional
+    this.text,
+    File? bannerImage, // Make text parameter optional
   }) : super(key: key);
 
   final onPressed;
@@ -42,10 +44,11 @@ class AddBannerBox extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (text != null) 
+              if (text != null)
                 Text(
                   text,
-                  style: TextStyle(color: const Color.fromARGB(255, 119, 110, 110)),
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 119, 110, 110)),
                 ),
               SizedBox(
                 height: 12,
@@ -53,7 +56,7 @@ class AddBannerBox extends StatelessWidget {
               Button(
                 buttonWidth: buttonwidth,
                 buttonheight: buttonheight,
-                title: 'Upload',
+                title: 'Upload'.tr,
                 onPressed: onPressed,
                 textcolor: white,
               )

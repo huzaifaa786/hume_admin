@@ -5,7 +5,7 @@ import 'package:hume_admin/api/notification_api.dart';
 import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/combined_notifications.dart';
 import 'package:hume_admin/models/notification_model.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 class NotificationController extends GetxController {
   static NotificationController instance = Get.find();
@@ -24,9 +24,13 @@ class NotificationController extends GetxController {
   fetchNotifications() async {
     LoadingHelper.show();
     fetchednotifications = await _notificationApi.fetchNotifications();
+    print(fetchednotifications);
     for (var notification in fetchednotifications) {
+      print(notification.notificationId);
       final shop = await _notificationApi.fetchShop(notification.shopId);
+
       final user = await _notificationApi.fetchUser(notification.userId);
+
       final order = await _notificationApi.fetchOrder(notification.orderId);
 
       final combinedNotification = NotificationCombinedModel(
@@ -35,7 +39,7 @@ class NotificationController extends GetxController {
         shop: shop,
         user: user,
       );
-
+      print(combinedNotification);
       extendedNotifications.add(combinedNotification);
     }
     LoadingHelper.dismiss();

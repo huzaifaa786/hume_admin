@@ -85,7 +85,6 @@ class DatabaseApi {
     return products;
   }
 
- 
   Future<Shop?> getShopById(String shopId) async {
     try {
       DocumentSnapshot documentSnapshot =
@@ -107,14 +106,12 @@ class DatabaseApi {
     final QuerySnapshot<Object?> shop =
         await _shopsCollection.where('id', isEqualTo: id).get();
     if (shop.docs.isNotEmpty) {
-
       final shopData = shop.docs.first.data() as Map<String, dynamic>;
-      final shopObject = Shop.fromJson(
-          shopData); 
+      final shopObject = Shop.fromJson(shopData);
 
       return shopObject;
     } else {
-      return null; 
+      return null;
     }
   }
 
@@ -123,7 +120,7 @@ class DatabaseApi {
       await _shopsCollection.doc(shop.id).set(shop.toJson());
     } on PlatformException catch (e) {
       throw DatabaseApiException(
-        title: 'Failed to update Shop',
+        title: 'Failed to update Shop'.tr,
       );
     }
   }

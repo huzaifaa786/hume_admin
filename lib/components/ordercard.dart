@@ -81,7 +81,7 @@ class OrderCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See clinet info    ',
+                                'See client info    '.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -128,7 +128,7 @@ class OrderCard extends StatelessWidget {
                                   SizedBox(
                                     width: Get.width * 0.35,
                                     child: Text(
-                                      'Order NO  $orderno',
+                                      'Order NO  $orderno'.tr,
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w700,
@@ -142,7 +142,7 @@ class OrderCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See product info    ',
+                                'See product info    '.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -185,7 +185,7 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '       Requested',
+                    '       Requested'.tr,
                     style: TextStyle(color: Colors.grey),
                   ),
                   SizedBox(
@@ -200,7 +200,7 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '        Total Price',
+                    '        Total Price'.tr,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,

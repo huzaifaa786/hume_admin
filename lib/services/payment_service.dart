@@ -104,7 +104,7 @@ class PaymentService extends GetxController {
     final int amountInCents = (amountInAEDDouble * 100).round();
     return amountInCents.toString();
   }
-      
+
 /////////////////////////// Make a POST request to create a refund ////////////////////////////
   Future<bool> refundPayment(String paymentIntentString) async {
     try {

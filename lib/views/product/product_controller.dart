@@ -38,17 +38,17 @@ class ProductController extends GetxController {
   RxBool areFieldsFilled = false.obs;
   String? shopname;
   List<String> categories = [
-    'Clothes',
-    'Furniture',
-    'Bags and shoes',
-    'Makeup',
-    'Home & kitchen',
-    'Skin & Hair Products',
-    'Perfumes',
-    'Devices',
-    'Accessories',
-    'Personal Services',
-    'Foods'
+    'Clothes'.tr,
+    'Furniture'.tr,
+    'Bags and Shoes'.tr,
+    'MakeUp'.tr,
+    'Home & Kitchen'.tr,
+    'Skin & Hair Products'.tr,
+    'Perfumes'.tr,
+    'Devices'.tr,
+    'Accessories'.tr,
+    'Personal Services'.tr,
+    'Foods'.tr
   ];
   @override
   void onInit() {

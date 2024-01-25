@@ -23,37 +23,44 @@ class _OrderHistoryState extends State<OrderHistory> {
           state.controller!.fetchCombinedOrderProductList();
         });
       },
-      builder: (controller) => Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          forceMaterialTransparency: true,
-          title: TitleTopBar(
-            name: 'Orders',
-            ontap: () {
-              Get.back();
-            },
-          ),
-        ),
-        body: SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Obx(() {
-            return ListView.builder(
-              itemCount: controller.combinedOrderProductList.length,
-              itemBuilder: (context, index) {
-                final orderItem = controller.combinedOrderProductList[index];
-                return OrderHistoryCard(
-                  // image: SvgPicture.asset('assets/images/wooo.svg'),
-                  image: CachedNetworkImage(imageUrl: orderItem.product.productImageUrls[0],height: 156,width: 137,),
-                  price: orderItem.ordersItem.total,
-                  size: orderItem.ordersItem.size,
-                  name: orderItem.product.productName,
-                  quantity: orderItem.ordersItem.quantity,
-                );
+      builder: (controller) => Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            title: TitleTopBar(
+              name: 'Orders'.tr,
+              ontap: () {
+                Get.back();
               },
-            );
-          }),
-        )),
+            ),
+          ),
+          body: SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Obx(() {
+              return ListView.builder(
+                itemCount: controller.combinedOrderProductList.length,
+                itemBuilder: (context, index) {
+                  final orderItem = controller.combinedOrderProductList[index];
+                  return OrderHistoryCard(
+                    // image: SvgPicture.asset('assets/images/wooo.svg'),
+                    image: CachedNetworkImage(
+                      imageUrl: orderItem.product.productImageUrls[0],
+                      height: 156,
+                      width: 137,
+                    ),
+                    price: orderItem.ordersItem.total,
+                    size: orderItem.ordersItem.size,
+                    name: orderItem.product.productName,
+                    quantity: orderItem.ordersItem.quantity,
+                  );
+                },
+              );
+            }),
+          )),
+        ),
       ),
     );
   }

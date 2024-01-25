@@ -32,8 +32,8 @@ class _TranslateScreenState extends State<TranslateScreen> {
   void initState() {
     // print(Get.locale);
     GetStorage box = GetStorage();
-    box.read('Locale') == 'ar';
-    _site = box.read('Locale') != 'ar'
+    box.read('locale') == 'ar';
+    _site = box.read('locale') != 'ar'
         ? translateMethod.English
         : translateMethod.Arabic;
     super.initState();
@@ -47,9 +47,12 @@ class _TranslateScreenState extends State<TranslateScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
-          title: TitleTopBar(name: "Languages",ontap: (){
-            Get.back();
-          },),
+          title: TitleTopBar(
+            name: "Languages".tr,
+            ontap: () {
+              Get.back();
+            },
+          ),
         ),
         body: SafeArea(
             child: Padding(
@@ -57,33 +60,29 @@ class _TranslateScreenState extends State<TranslateScreen> {
           child: Column(
             children: [
               TranslateMethod(
-                title: 'English',
+                title: 'English'.tr,
                 groupvalue: _site,
                 value: translateMethod.English,
                 onchaged: () async {
                   await toggleplan(translateMethod.English);
-                  // Get.updateLocale(const Locale('en', 'US'));
+                  Get.updateLocale(const Locale('en', 'US'));
                   GetStorage box = GetStorage();
-                  await box.write('Locale', 'en');
-                  GoogleTranslatorController.init(
-                      'AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8', Locale('ur'),
-                      cacheDuration: Duration(), translateTo: Locale('en'));
-                  Get.offAllNamed(AppRoutes.home);
+                  await box.write('locale', 'en');
+                  box.read('locale');
+                  setState(() {});
                 },
               ),
               TranslateMethod(
-                title: 'Arabic',
+                title: 'Arabic'.tr,
                 groupvalue: _site,
                 value: translateMethod.Arabic,
                 onchaged: () async {
                   await toggleplan(translateMethod.Arabic);
-                  // Get.updateLocale(const Locale('ar', 'AE'));
+                  Get.updateLocale(const Locale('ar', 'AE'));
                   GetStorage box = GetStorage();
-                  await box.write('Locale', 'ar');
-                  GoogleTranslatorController.init(
-                      'AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8', Locale('en'),
-                      cacheDuration: Duration(), translateTo: Locale('ar'));
-                  Get.offAllNamed(AppRoutes.home);
+                  await box.write('locale', 'ar');
+                  box.read('locale');
+                  setState(() {});
                 },
               ),
             ],

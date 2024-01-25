@@ -32,24 +32,25 @@ class _EditProductScreenState extends State<EditProductScreen> {
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: EditTitleTopBar(
-              name: 'Edit Product',
+              name: 'Edit Product'.tr,
               ontap: () {
                 Get.back();
               },
               onPressed: () => showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                        title: Text('Are you sure!'),
+                        title: Text('Are you sure!'.tr),
                         content: Text(
-                            'You are going to delete the shop and all its products'),
+                            'You are going to delete the shop and all its products'
+                                .tr),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: Text('Cancel'),
+                            child: Text('Cancel'.tr),
                           ),
                           TextButton(
                               onPressed: () => controller.deleteProduct(),
-                              child: Text('Delete'))
+                              child: Text('Delete'.tr))
                         ],
                       ))),
         ),
@@ -98,7 +99,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             imgicon:
                                 SvgPicture.asset('assets/images/upload.svg'),
                             fontSize: 14.0,
-                            title: 'Upload',
+                            title: 'Upload'.tr,
                             height: 50.0,
                             textcolor: white,
                             color: maincolor,
@@ -115,7 +116,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Uploaded images',
+                            'Uploaded images'.tr,
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -215,7 +216,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     : SizedBox(),
                 InputField(
                   controller: controller.productdiscriptionController,
-                  hint: 'Discription',
+                  hint: 'Discription'.tr,
                   width: MediaQuery.of(context).size.width * 0.94,
                 ),
                 SizedBox(
@@ -224,7 +225,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 Row(
                   children: [
                     Text(
-                      'Sizes (Optional,)',
+                      'Sizes (Optional,)'.tr,
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -242,10 +243,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         ontap: () {
                           controller.checkFields();
                           controller.selectedSizes.contains(size)
-                          
-                              ? controller.selectedSizes.remove(size):
-                              controller.selectedSizes
-                                  .add(size);
+                              ? controller.selectedSizes.remove(size)
+                              : controller.selectedSizes.add(size);
                           setState(() {});
                         },
                       ),
@@ -255,7 +254,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   height: 16,
                 ),
                 Text(
-                  'Choose product Catigory',
+                  'Choose product Category'.tr,
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 SizedBox(
@@ -290,14 +289,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(14),
           child: validateButton(
-            title: 'Update Product ',
+            title: 'Update Product'.tr,
             onPressed: controller.areFieldsFilled.value
                 ? () {
                     controller.updateProduct();
                   }
                 : () {
-                    UiUtilites.errorSnackbar(
-                        'Fill out all fields', 'Please fill all above fields');
+                    UiUtilites.errorSnackbar('Fill out all fields',
+                        'Please fill all above fields'.tr);
                   },
             selected: controller.areFieldsFilled.value,
           ),

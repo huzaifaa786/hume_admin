@@ -13,6 +13,7 @@ import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/routes/app_pages.dart';
 import 'package:hume_admin/services/payment_service.dart';
 import 'package:hume_admin/services/notification_service.dart';
+import 'package:hume_admin/translation.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/home/home_binding.dart';
 import 'package:hume_admin/views/home/home_view.dart';
@@ -22,6 +23,7 @@ import 'package:hume_admin/views/splash/splash_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LoadingHelper.init();
+  await GetStorage.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -52,11 +54,11 @@ class MyApp extends StatelessWidget {
     //     translateTo: Locale(locale),
     //     automaticDetection: false, builder: () {
     return GetMaterialApp(
-      // translations: LocaleString(),
-      // locale:
-      //     box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
-      // fallbackLocale:
-      //     box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
+      translations: LocaleString(),
+      locale:
+          box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
+      fallbackLocale:
+          box.read('locale') != 'ar' ? Locale('en', 'US') : Locale('ar', 'AE'),
       theme: ThemeData(
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: white,
@@ -66,7 +68,7 @@ class MyApp extends StatelessWidget {
       ),
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
-      title: "Hume Admin",
+      title: "Hume Admin".tr,
       initialBinding: SplashBinding(),
       home: SplashView(),
       getPages: AppPages.pages,

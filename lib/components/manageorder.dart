@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/orderbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -83,7 +84,7 @@ class ManageOrderCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See clinet info    ',
+                                'See client info'.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -128,7 +129,7 @@ class ManageOrderCard extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    'Order NO  $orderno',
+                                    'Order NO  $orderno'.tr,
                                     style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
@@ -141,7 +142,7 @@ class ManageOrderCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See Products    ',
+                                'See Products'.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -184,7 +185,7 @@ class ManageOrderCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '       Requested',
+                    '       Requested'.tr,
                     style: TextStyle(color: Colors.grey),
                   ),
                   SizedBox(
@@ -199,7 +200,7 @@ class ManageOrderCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '        Total Price',
+                    '        Total Price'.tr,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -208,7 +209,7 @@ class ManageOrderCard extends StatelessWidget {
                   SizedBox(
                     width: 23,
                   ),
-                  Text(price,
+                  Text(price + ' AED'.tr,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -225,7 +226,7 @@ class ManageOrderCard extends StatelessWidget {
                         OrderButton(
                           onPressed: onAcceptTap,
                           bordercolor: colortext,
-                          text: 'accept order',
+                          text: 'Accept order'.tr,
                           textcolor: colortext,
                           width: MediaQuery.of(context).size.width * 0.25,
                         ),
@@ -233,7 +234,7 @@ class ManageOrderCard extends StatelessWidget {
                           onPressed: onRejectTap,
                           width: MediaQuery.of(context).size.width * 0.25,
                           bordercolor: const Color.fromARGB(255, 226, 117, 109),
-                          text: 'Order Reject',
+                          text: 'Reject Order'.tr,
                           textcolor: Colors.red,
 
                           // color: ,
@@ -244,7 +245,7 @@ class ManageOrderCard extends StatelessWidget {
                       ? OrderButton(
                           width: MediaQuery.of(context).size.width * 0.26,
                           bordercolor: colortext,
-                          text: 'Mark as delivred',
+                          text: 'Mark as delivred'.tr,
                           color: colortext,
                           textcolor: white,
                           icon: SvgPicture.asset('assets/images/tickk.svg'),
@@ -256,7 +257,7 @@ class ManageOrderCard extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.26,
                               bordercolor: Colors.red,
                               color: Colors.red,
-                              text: 'Rejected',
+                              text: 'Rejected'.tr,
                               textcolor: white,
                               icon: SvgPicture.asset('assets/images/cross.svg'),
 
@@ -266,7 +267,7 @@ class ManageOrderCard extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.26,
                               bordercolor: maincolor,
                               color: maincolor,
-                              text: 'Deliverd',
+                              text: 'Delivered'.tr,
                               textcolor: white,
                               icon: SvgPicture.asset('assets/images/cross.svg'),
                             ),

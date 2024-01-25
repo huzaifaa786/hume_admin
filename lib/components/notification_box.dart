@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -101,7 +102,7 @@ class NotificationCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                'See client info    ',
+                                'See client info'.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,
@@ -147,7 +148,7 @@ class NotificationCard extends StatelessWidget {
                                   width:
                                       MediaQuery.of(context).size.width * 0.3,
                                   child: Text(
-                                    'Order NO  $orderno',
+                                    'Order NO  $orderno'.tr,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                         fontSize: 12,
@@ -164,7 +165,7 @@ class NotificationCard extends StatelessWidget {
                             GestureDetector(
                               onTap: productDetail,
                               child: Text(
-                                'See order details    ',
+                                'See order details'.tr,
                                 style: TextStyle(
                                     color: colortext,
                                     fontSize: 12,

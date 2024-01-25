@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/utils/controller_initlization.dart';
 
-
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 

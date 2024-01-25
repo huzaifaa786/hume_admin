@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_cast, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hume_admin/exceptions/database_api_exception.dart';
 import 'package:hume_admin/models/notification_model.dart';
@@ -37,6 +36,7 @@ class NotificationApi {
   Future<Shop> fetchShop(String shopId) async {
     final shopSnapshot =
         await FirebaseFirestore.instance.collection('shops').doc(shopId).get();
+    print(shopSnapshot.data().toString());
     final shopData = shopSnapshot.data() as Map<String, dynamic>;
     return Shop.fromJson(shopData);
   }
@@ -44,6 +44,7 @@ class NotificationApi {
   Future<UserModel> fetchUser(String userId) async {
     final userSnapshot =
         await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
     final userData = userSnapshot.data() as Map<String, dynamic>;
     return UserModel.fromJson(userData);
   }
