@@ -109,10 +109,13 @@ class LocaleString extends Translations {
           'Congratulatios': 'Congratulations',
           'Shop created successfully': 'Shop created successfully',
           'Shop updated successfully': 'Shop updated successfully',
-          'Please fill all above fields':"Please fill all above fields",
-          'Update Product': 'Update Product'
+          'Please fill all above fields': "Please fill all above fields",
+          'Update Product': 'Update Product',
+          'You want to delete that product!':
+              'You want to delete that product?',
         },
         'ar_AE': {
+          'You want to delete that product!': 'هل متأكد من حذف المنتج؟',
           'Update Product': 'تحديث المنتج',
           'Please fill all above fields': 'يرجى ملء جميع الحقول المذكورة أعلاه',
           'Congratulatios': 'مبروك',

@@ -40,9 +40,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                         title: Text('Are you sure!'.tr),
-                        content: Text(
-                            'You are going to delete the shop and all its products'
-                                .tr),
+                        content: Text('You want to delete that product!'.tr),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -295,8 +293,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     controller.updateProduct();
                   }
                 : () {
-                    UiUtilites.errorSnackbar('',
-                        'Please fill all above fields'.tr);
+                    UiUtilites.errorSnackbar(
+                        '', 'Please fill all above fields'.tr);
                   },
             selected: controller.areFieldsFilled.value,
           ),

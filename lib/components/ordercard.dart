@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -29,6 +30,7 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
       child: Container(
@@ -182,39 +184,49 @@ class OrderCard extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              Row(
-                children: [
-                  Text(
-                    '       Requested'.tr,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  SizedBox(
-                    width: 23,
-                  ),
-                  Text('$date', style: TextStyle(color: Colors.grey)),
-                ],
+              Directionality(
+                textDirection: box.read('locale') == 'ar'
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+                child: Row(
+                  children: [
+                    Text(
+                      '       Requested'.tr,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(
+                      width: 23,
+                    ),
+                    Text('$date', style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 12,
               ),
-              Row(
-                children: [
-                  Text(
-                    '        Total Price'.tr,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(
-                    width: 23,
-                  ),
-                  Text(price,
+              Directionality(
+                textDirection: box.read('locale') == 'ar'
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+                child: Row(
+                  children: [
+                    Text(
+                      '        Total Price'.tr,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
-                          fontWeight: FontWeight.w700)),
-                ],
+                          fontWeight: FontWeight.w700),
+                    ),
+                    SizedBox(
+                      width: 23,
+                    ),
+                    Text(price,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700)),
+                  ],
+                ),
               ),
               Gap(20),
             ],
