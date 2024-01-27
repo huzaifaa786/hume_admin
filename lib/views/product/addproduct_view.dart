@@ -230,8 +230,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       controller.saveProduct();
                     }
                   : () {
-                      UiUtilites.errorSnackbar('Fill out all fields',
-                          'Please fill all above fields');
+                      UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                          'Please fill all above fields'.tr);
                     },
               selected: controller.areFieldsFilled.value,
             ),

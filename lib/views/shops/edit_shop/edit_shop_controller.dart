@@ -174,6 +174,6 @@ class EditShopController extends GetxController {
     Get.back();
     clear();
     UiUtilites.successSnackbar(
-        'Shop updated successfully', 'Congratulatios'.tr);
+        'Shop updated successfully'.tr, 'Congratulatios'.tr);
   }
 }

@@ -225,7 +225,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 Row(
                   children: [
                     Text(
-                      'Sizes (Optional,)'.tr,
+                      'Sizes(Optional)'.tr,
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -295,7 +295,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     controller.updateProduct();
                   }
                 : () {
-                    UiUtilites.errorSnackbar('Fill out all fields',
+                    UiUtilites.errorSnackbar('',
                         'Please fill all above fields'.tr);
                   },
             selected: controller.areFieldsFilled.value,

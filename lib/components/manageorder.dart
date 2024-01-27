@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/orderbutton.dart';
 import 'package:hume_admin/utils/colors.dart';
@@ -36,6 +37,7 @@ class ManageOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Padding(
       padding: EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Container(
@@ -90,7 +92,9 @@ class ManageOrderCard extends StatelessWidget {
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
                               ),
-                              SvgPicture.asset('assets/images/arrow.svg')
+                              box.read('locale') == 'ar'
+                                  ? Icon(Icons.arrow_forward_ios,color: maincolor,size: 14,)
+                                  : SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
                         ],
@@ -148,7 +152,9 @@ class ManageOrderCard extends StatelessWidget {
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
                               ),
-                              SvgPicture.asset('assets/images/arrow.svg')
+                              box.read('locale') == 'ar'
+                                  ? Icon(Icons.arrow_forward_ios,color: maincolor,size: 14,)
+                                  : SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
                         ],

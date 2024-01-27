@@ -128,7 +128,8 @@ class ShopController extends GetxController {
     clear();
     update();
     LoadingHelper.dismiss();
-    UiUtilites.successSnackbar('Shop created successfully', 'Congratulatios');
+    UiUtilites.successSnackbar(
+        'Shop created successfully'.tr, 'Congratulatios'.tr);
   }
 
   clear() {
@@ -155,9 +156,11 @@ class ShopController extends GetxController {
 
 //------------delete shop---------------
   Future deleteShop(String id) async {
+    LoadingHelper.show();
     await _databaseApi.deleteShop(id);
 
     shops = await fetchShop();
+    LoadingHelper.dismiss();
     UiUtilites.successAlert(context, 'Success');
     update();
   }

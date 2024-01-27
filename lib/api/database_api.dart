@@ -16,6 +16,10 @@ class DatabaseApi {
       _firestore.collection("banners");
   final CollectionReference _productsCollection =
       _firestore.collection("products");
+  final CollectionReference _ordersCollection = _firestore.collection("orders");
+  final CollectionReference _cartCollection = _firestore.collection("carts");
+  final CollectionReference _notificationsCollection =
+      _firestore.collection("notifications");
 
   Future<void> createShop(Shop shop) async {
     try {
@@ -39,22 +43,40 @@ class DatabaseApi {
 
   Future deleteShop(String id) async {
     try {
-      final querySnapshot =
+      final batch = FirebaseFirestore.instance.batch();
+
+      // Delete documents from the "products" collection
+      final productsQuerySnapshot =
           await _productsCollection.where('shopId', isEqualTo: id).get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        final batch = FirebaseFirestore.instance.batch();
-        for (final doc in querySnapshot.docs) {
-          batch.delete(doc.reference);
-        }
-        batch.delete(_shopsCollection.doc(id)); // Delete the shop as well
-
-        await batch.commit();
-        Get.back();
-      } else {
-        await _shopsCollection.doc(id).delete();
-        Get.back();
+      for (final doc in productsQuerySnapshot.docs) {
+        batch.delete(doc.reference);
       }
+
+      // Delete documents from the "orders" collection
+      final ordersQuerySnapshot =
+          await _ordersCollection.where('shopId', isEqualTo: id).get();
+      for (final doc in ordersQuerySnapshot.docs) {
+        batch.delete(doc.reference);
+      }
+
+      // Delete documents from the "cart" collection
+      final cartQuerySnapshot =
+          await _cartCollection.where('cartItems.shopId', isEqualTo: id).get();
+      for (final doc in cartQuerySnapshot.docs) {
+        batch.delete(doc.reference);
+      }
+
+      // Delete documents from the "notications" collection
+      final notificationQuerySnapshot =
+          await _cartCollection.where('shopId', isEqualTo: id).get();
+      for (final doc in notificationQuerySnapshot.docs) {
+        batch.delete(doc.reference);
+      }
+      // Delete the shop document
+      batch.delete(_shopsCollection.doc(id));
+
+      await batch.commit();
+      Get.back();
     } on PlatformException catch (e) {
       throw DatabaseApiException(title: 'Failed to delete Shop', message: '');
     }
