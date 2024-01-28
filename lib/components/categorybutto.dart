@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
@@ -36,9 +37,12 @@ class CategoryButton extends StatelessWidget {
                     width: 16,
                     height: 16,
                   ),
-                SizedBox(width: isSelected ? 8 : 0), // Add some spacing if the tick is shown
+                SizedBox(
+                    width: isSelected
+                        ? 8
+                        : 0), // Add some spacing if the tick is shown
                 Text(
-                  text,
+                  "$text".tr,
                   style: TextStyle(
                     color: isSelected ? Colors.white : colortext,
                     fontSize: 12,

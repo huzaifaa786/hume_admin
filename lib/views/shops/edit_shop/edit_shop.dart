@@ -158,8 +158,8 @@ class _EditShopState extends State<EditShop> {
                       controller.selectedIndex != -1) {
                     controller.updateShop();
                   } else {
-                    UiUtilites.errorSnackbar(
-                        'Fill all fields', 'Please fill all the fields');
+                    UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                        'Please fill all above fields'.tr);
                   }
                 }),
           ),

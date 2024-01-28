@@ -38,17 +38,16 @@ class ProductController extends GetxController {
   RxBool areFieldsFilled = false.obs;
   String? shopname;
   List<String> categories = [
-    'Clothes'.tr,
-    'Furniture'.tr,
-    'Bags and Shoes'.tr,
-    'MakeUp'.tr,
-    'Home & Kitchen'.tr,
-    'Skin & Hair Products'.tr,
-    'Perfumes'.tr,
-    'Devices'.tr,
-    'Accessories'.tr,
-    'Personal Services'.tr,
-    'Foods'.tr
+    'Clothes',
+    'Furniture',
+    'Bags and Shoes',
+    'MakeUp',
+    'Home & Kitchen',
+    'Skin & Hair Products',
+    'Perfumes',
+    'Devices',
+    'Accessories',
+    'Personal Services'
   ];
   @override
   void onInit() {
@@ -142,7 +141,7 @@ class ProductController extends GetxController {
       print('Error saving product: $e');
     }
     Get.back();
-    UiUtilites.successSnackbar('Product Add\nSuccessfully !', 'Success!');
+    UiUtilites.successSnackbar('Product Add Successfully !', 'Success!');
   }
 
   void checkFields() {

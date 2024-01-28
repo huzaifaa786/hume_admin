@@ -110,11 +110,30 @@ class LocaleString extends Translations {
           'Shop created successfully': 'Shop created successfully',
           'Shop updated successfully': 'Shop updated successfully',
           'Please fill all above fields': "Please fill all above fields",
+          "Fill out all fields": 'Fill out all fields',
           'Update Product': 'Update Product',
           'You want to delete that product!':
               'You want to delete that product?',
+          'Error!': 'Error!',
+          'Error during refund. Please try again later':
+              'Error during refund. Please try again later',
+          'Product Add Successfully !': 'Product Add Successfully !',
+          'Success!': 'Success!',
+          'Success': 'Success',
+
+          'Product updated successfully.': 'Product updated successfully',
+          'Product Deleted successfully.':'Product Deleted successfully',
         },
         'ar_AE': {
+          'Product Deleted successfully.': 'مبروك لقد تم حذف المنتج',
+          'Product updated successfully.': 'تم تحديث المنتج بنجاح',
+          'Success!': 'مبروك',
+          'Success': 'مبروك',
+          'Product Add Successfully !': 'تمت اضافة المنتج بنجاح',
+          'Fill out all fields': 'املأ جميع الحقول',
+          'Error during refund. Please try again later':
+              'حدث خطأ أثناء استرداد الأموال. الرجاء معاودة المحاولة في وقت لاحق',
+          'Error!': 'خطأ!',
           'You want to delete that product!': 'هل متأكد من حذف المنتج؟',
           'Update Product': 'تحديث المنتج',
           'Please fill all above fields': 'يرجى ملء جميع الحقول المذكورة أعلاه',

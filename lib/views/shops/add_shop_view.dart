@@ -166,7 +166,7 @@ class _AddShopState extends State<AddShop> {
                     controller.createShop();
                   } else {
                     UiUtilites.errorSnackbar(
-                        'Fill all fields', 'Please fill all the fields');
+                        'Fill out all fields'.tr, 'Please fill all above fields'.tr);
                   }
                 }),
           ),

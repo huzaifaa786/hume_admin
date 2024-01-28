@@ -302,11 +302,4 @@ class _EditProductScreenState extends State<EditProductScreen> {
       ),
     );
   }
-
-  int _getCrossAxisCount(BuildContext context) {
-    // You can implement your own logic here to determine the cross axis count
-    // For example, return 3 for every third row, and 2 for others
-    int rowIndex = (MediaQuery.of(context).size.width / 200).floor();
-    return rowIndex % 3 == 0 ? 3 : 2;
-  }
 }

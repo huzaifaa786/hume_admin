@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hume_admin/exceptions/database_api_exception.dart';
+import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/home_banner_model.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
@@ -42,6 +43,8 @@ class DatabaseApi {
   }
 
   Future deleteShop(String id) async {
+    LoadingHelper.show();
+
     try {
       final batch = FirebaseFirestore.instance.batch();
 
@@ -76,8 +79,11 @@ class DatabaseApi {
       batch.delete(_shopsCollection.doc(id));
 
       await batch.commit();
+      LoadingHelper.dismiss();
+
       Get.back();
     } on PlatformException catch (e) {
+      LoadingHelper.dismiss();
       throw DatabaseApiException(title: 'Failed to delete Shop', message: '');
     }
   }

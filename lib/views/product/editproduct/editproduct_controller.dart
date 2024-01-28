@@ -35,17 +35,16 @@ class EditProductController extends GetxController {
   RxBool areFieldsFilled = false.obs;
 
   List<String> categories = [
-    'Clothes'.tr,
-    'Furniture'.tr,
-    'Bags and Shoes'.tr,
-    'MakeUp'.tr,
-    'Home & Kitchen'.tr,
-    'Skin & Hair Products'.tr,
-    'Perfumes'.tr,
-    'Devices'.tr,
-    'Accessories'.tr,
-    'Personal Services'.tr,
-    'Foods'.tr
+    'Clothes',
+    'Furniture',
+    'Bags and Shoes',
+    'MakeUp',
+    'Home & Kitchen',
+    'Skin & Hair Products',
+    'Perfumes',
+    'Devices',
+    'Accessories',
+    'Personal Services'
   ];
   void toggleSize(String size) {
     if (selectedSizes.contains(size)) {
@@ -222,7 +221,7 @@ class EditProductController extends GetxController {
     }
 
     Get.back();
-    UiUtilites.successSnackbar('Product updated successfully.', 'Success!');
+    UiUtilites.successSnackbar('Product updated successfully.'.tr, 'Success!'.tr);
   }
 
   void clearFields() {
@@ -251,7 +250,7 @@ class EditProductController extends GetxController {
       await _productApi.deleteProduct(productId);
       clearFields();
       Get.offAllNamed(AppRoutes.shop);
-      UiUtilites.successSnackbar('Product Deleted successfully.', 'Success!');
+      UiUtilites.successSnackbar('Product Deleted successfully.'.tr, 'Success!'.tr);
     } catch (e) {
       print('Error deleting product: $e');
     }

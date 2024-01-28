@@ -11,6 +11,8 @@ class ProductApi {
   static final _firestore = FirebaseFirestore.instance;
   final CollectionReference _productCollection =
       _firestore.collection("products");
+  final CollectionReference _orderItemCollection =
+      _firestore.collection("orderItems");
 
   Future<void> createProduct(ProductModel product) async {
     try {
@@ -72,6 +74,14 @@ class ProductApi {
 
   Future<void> deleteProduct(String productId) async {
     try {
+      await _orderItemCollection
+          .where('productId', isEqualTo: productId)
+          .get()
+          .then((snapshot) {
+        for (var doc in snapshot.docs) {
+          doc.reference.delete();
+        }
+      });
       await _productCollection.doc(productId).delete();
     } on PlatformException catch (e) {
       throw DatabaseApiException(

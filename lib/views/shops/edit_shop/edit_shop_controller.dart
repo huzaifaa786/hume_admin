@@ -43,17 +43,16 @@ class EditShopController extends GetxController {
   int selectedIndex = -1;
 
   List<String> categories = [
-    'Clothes'.tr,
-    'Furniture'.tr,
-    'Bags and Shoes'.tr,
-    'MakeUp'.tr,
-    'Home & Kitchen'.tr,
-    'Skin & Hair Products'.tr,
-    'Perfumes'.tr,
-    'Devices'.tr,
-    'Accessories'.tr,
-    'Personal Services'.tr,
-    'Foods'.tr
+    'Clothes',
+    'Furniture',
+    'Bags and Shoes',
+    'MakeUp',
+    'Home & Kitchen',
+    'Skin & Hair Products',
+    'Perfumes',
+    'Devices',
+    'Accessories',
+    'Personal Services'
   ];
 
   @override
