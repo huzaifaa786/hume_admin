@@ -71,7 +71,7 @@ class DatabaseApi {
 
       // Delete documents from the "notications" collection
       final notificationQuerySnapshot =
-          await _cartCollection.where('shopId', isEqualTo: id).get();
+          await _notificationsCollection.where('shopId', isEqualTo: id).get();
       for (final doc in notificationQuerySnapshot.docs) {
         batch.delete(doc.reference);
       }

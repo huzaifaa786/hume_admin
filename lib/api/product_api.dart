@@ -13,6 +13,7 @@ class ProductApi {
       _firestore.collection("products");
   final CollectionReference _orderItemCollection =
       _firestore.collection("orderItems");
+  final CollectionReference _cartCollection = _firestore.collection("carts");
 
   Future<void> createProduct(ProductModel product) async {
     try {
@@ -74,6 +75,14 @@ class ProductApi {
 
   Future<void> deleteProduct(String productId) async {
     try {
+      await _cartCollection
+          .where('cartItems.productId', isEqualTo: productId)
+          .get()
+          .then((snapshot) {
+        for (var doc in snapshot.docs) {
+          doc.reference.delete();
+        }
+      });
       await _orderItemCollection
           .where('productId', isEqualTo: productId)
           .get()

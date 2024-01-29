@@ -20,8 +20,8 @@ class UiUtilites {
 
   static successSnackbar(String message, String title) {
     Get.snackbar(
-      title,
-      message,
+      '$title'.tr,
+      '$message'.tr,
       backgroundColor: maincolor,
       colorText: white,
       duration: const Duration(seconds: 2),

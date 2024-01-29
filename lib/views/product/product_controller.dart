@@ -141,7 +141,7 @@ class ProductController extends GetxController {
       print('Error saving product: $e');
     }
     Get.back();
-    UiUtilites.successSnackbar('Product Add Successfully !', 'Success!');
+    UiUtilites.successSnackbar('Product Add Successfully !'.tr, 'Success!'.tr);
   }
 
   void checkFields() {
