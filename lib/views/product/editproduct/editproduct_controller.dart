@@ -8,6 +8,7 @@ import 'package:hume_admin/api/image_selection.dart';
 import 'package:hume_admin/api/product_api.dart';
 
 import 'package:hume_admin/helper/data_model.dart';
+import 'package:hume_admin/helper/loading.dart';
 import 'package:hume_admin/models/product_model.dart';
 import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/routes/app_routes.dart';
@@ -42,7 +43,6 @@ class EditProductController extends GetxController {
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
-    'Devices',
     'Accessories',
     'Personal Services'
   ];
@@ -192,6 +192,7 @@ class EditProductController extends GetxController {
 
 /////////////////////update//////////////////////////////////////////
   Future<void> updateProduct() async {
+    LoadingHelper.show();
     String productId = Get.parameters['id'].toString();
     List<String> newImageUrls = await uploadImages(productId);
 
@@ -219,9 +220,10 @@ class EditProductController extends GetxController {
     } catch (e) {
       print('Error updating product: $e');
     }
-
+    LoadingHelper.dismiss();
     Get.back();
-    UiUtilites.successSnackbar('Product updated successfully.'.tr, 'Success!'.tr);
+    UiUtilites.successSnackbar(
+        'Product updated successfully.'.tr, 'Success!'.tr);
   }
 
   void clearFields() {
@@ -240,6 +242,7 @@ class EditProductController extends GetxController {
 
 ////////////////////////////////delete/////////////////////////////
   Future<void> deleteProduct() async {
+    LoadingHelper.show();
     String productId = Get.parameters['id'].toString();
 
     try {
@@ -249,9 +252,12 @@ class EditProductController extends GetxController {
 
       await _productApi.deleteProduct(productId);
       clearFields();
+      LoadingHelper.dismiss();
       Get.offAllNamed(AppRoutes.shop);
-      UiUtilites.successSnackbar('Product Deleted successfully.'.tr, 'Success!'.tr);
+      UiUtilites.successSnackbar(
+          'Product Deleted successfully.'.tr, 'Success!'.tr);
     } catch (e) {
+      LoadingHelper.show();
       print('Error deleting product: $e');
     }
   }

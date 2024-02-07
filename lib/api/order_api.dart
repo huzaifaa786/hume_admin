@@ -20,7 +20,7 @@ class OrderApi {
     }
 
     QuerySnapshot<Map<String, dynamic>> orderDocSnapshot =
-        await query.limit(10).get();
+        await query.limit(5).get();
     print(orderDocSnapshot);
     if (orderDocSnapshot.size > 0) {
       final orders = orderDocSnapshot.docs.map((doc) => doc.data()).toList();

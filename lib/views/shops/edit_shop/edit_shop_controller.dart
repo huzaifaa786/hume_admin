@@ -50,7 +50,6 @@ class EditShopController extends GetxController {
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
-    'Devices',
     'Accessories',
     'Personal Services'
   ];

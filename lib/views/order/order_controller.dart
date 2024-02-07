@@ -61,6 +61,15 @@ class OrderController extends GetxController {
     FirebaseFirestore.instance.collection('orders').doc(id).update(
       {'status': '1'},
     );
+    await FirebaseFirestore.instance
+        .collection('notifications')
+        .where('orderId')
+        .get()
+        .then((snapshot) {
+      for (var doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+    });
     String notiId = DateTime.now().millisecondsSinceEpoch.toString();
     notificationApi.storeNotification(NotificationModel(
         notificationId: notiId,
@@ -92,6 +101,15 @@ class OrderController extends GetxController {
       );
       String notiId = DateTime.now().millisecondsSinceEpoch.toString();
       print(notiId);
+      await FirebaseFirestore.instance
+          .collection('notifications')
+          .where('orderId')
+          .get()
+          .then((snapshot) {
+        for (var doc in snapshot.docs) {
+          doc.reference.delete();
+        }
+      });
       notificationApi.storeNotification(NotificationModel(
           notificationId: notiId,
           orderId: id,
@@ -180,6 +198,15 @@ class OrderController extends GetxController {
       {'status': '3'},
     );
     print(token);
+    await FirebaseFirestore.instance
+        .collection('notifications')
+        .where('orderId')
+        .get()
+        .then((snapshot) {
+      for (var doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+    });
     String notiId = DateTime.now().millisecondsSinceEpoch.toString();
     notificationApi.storeNotification(NotificationModel(
         notificationId: notiId,

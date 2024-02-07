@@ -22,7 +22,7 @@ class Hometopbar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hume'.tr,
+                  'Hume',
                   style: TextStyle(
                       color: black, fontSize: 16, fontWeight: FontWeight.w700),
                 ),

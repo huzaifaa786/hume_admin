@@ -74,12 +74,15 @@ class ManageOrderCard extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset('assets/images/head.svg'),
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
+                              SizedBox(
+                                width: Get.width * 0.3,
+                                child: Text(
+                                  name,
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               )
                             ],
                           ),

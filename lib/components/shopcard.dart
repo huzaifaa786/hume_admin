@@ -79,7 +79,7 @@ class ShopCard extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            '$category',
+                            '$category'.tr,
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,

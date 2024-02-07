@@ -45,7 +45,6 @@ class ProductController extends GetxController {
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
-    'Devices',
     'Accessories',
     'Personal Services'
   ];
@@ -119,6 +118,7 @@ class ProductController extends GetxController {
   }
 
   Future saveProduct() async {
+    LoadingHelper.show();
     final productId = DateTime.now().millisecondsSinceEpoch.toString();
     category = categories[selectedIndex];
     final imageUrls = await uploadImages(productId);
@@ -139,7 +139,10 @@ class ProductController extends GetxController {
       clearFields();
     } catch (e) {
       print('Error saving product: $e');
+      LoadingHelper.dismiss();
+      return;
     }
+    LoadingHelper.dismiss();
     Get.back();
     UiUtilites.successSnackbar('Product Add Successfully !'.tr, 'Success!'.tr);
   }
