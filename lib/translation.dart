@@ -70,7 +70,7 @@ class LocaleString extends Translations {
           "price": "price",
           "Manage orders": "Manage orders",
           "Accept order": "Accept order",
-          "Mark as delivered": "Mark as delivered",
+          "Mark as delivred": "Mark as delivered",
           "Delivered": "Delivered",
           "Reject order": "Reject order",
           "Reject Order": "Reject Order",
@@ -121,9 +121,8 @@ class LocaleString extends Translations {
           'Product Add Successfully !': 'Product Add Successfully !',
           'Success!': 'Success!',
           'Success': 'Success',
-
           'Product updated successfully.': 'Product updated successfully',
-          'Product Deleted successfully.':'Product Deleted successfully',
+          'Product Deleted successfully.': 'Product Deleted successfully',
         },
         'ar_AE': {
           'Product Deleted successfully.': 'مبروك لقد تم حذف المنتج',
@@ -208,7 +207,7 @@ class LocaleString extends Translations {
           "price": "السعر",
           "Manage orders": "ادارة المبيعات",
           "Accept order": "قبول الطلب",
-          "Mark as delivered": "وضع علامة على أنه تم التسليم",
+          "Mark as delivred": "وضع علامة تم التسليم",
           "Reject order": "رفض الطلب",
           "Reject Order": "رفض الطلب",
           "Mark as Rejected": "تم الرفض",

@@ -96,7 +96,11 @@ class ManageOrderCard extends StatelessWidget {
                                     fontWeight: FontWeight.w600),
                               ),
                               box.read('locale') == 'ar'
-                                  ? Icon(Icons.arrow_forward_ios,color: maincolor,size: 14,)
+                                  ? Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: maincolor,
+                                      size: 14,
+                                    )
                                   : SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -156,7 +160,11 @@ class ManageOrderCard extends StatelessWidget {
                                     fontWeight: FontWeight.w600),
                               ),
                               box.read('locale') == 'ar'
-                                  ? Icon(Icons.arrow_forward_ios,color: maincolor,size: 14,)
+                                  ? Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: maincolor,
+                                      size: 14,
+                                    )
                                   : SvgPicture.asset('assets/images/arrow.svg')
                             ],
                           )
@@ -252,7 +260,7 @@ class ManageOrderCard extends StatelessWidget {
                     )
                   : status == '1'
                       ? OrderButton(
-                          width: MediaQuery.of(context).size.width * 0.26,
+                          width: MediaQuery.of(context).size.width * 0.3,
                           bordercolor: colortext,
                           text: 'Mark as delivred'.tr,
                           color: colortext,
@@ -263,7 +271,7 @@ class ManageOrderCard extends StatelessWidget {
                         )
                       : status == '2'
                           ? OrderButton(
-                              width: MediaQuery.of(context).size.width * 0.26,
+                              width: MediaQuery.of(context).size.width * 0.3,
                               bordercolor: Colors.red,
                               color: Colors.red,
                               text: 'Rejected'.tr,
@@ -273,7 +281,7 @@ class ManageOrderCard extends StatelessWidget {
                               // color: ,
                             )
                           : OrderButton(
-                              width: MediaQuery.of(context).size.width * 0.26,
+                              width: MediaQuery.of(context).size.width * 0.3,
                               bordercolor: maincolor,
                               color: maincolor,
                               text: 'Delivered'.tr,
