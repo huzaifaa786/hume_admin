@@ -10,6 +10,7 @@ import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/largebutton.dart';
 import 'package:hume_admin/components/shopdropdown.dart';
+import 'package:hume_admin/components/shose_sizes.dart';
 import 'package:hume_admin/components/sizebox.dart';
 import 'package:hume_admin/components/topbar.dart';
 import 'package:hume_admin/components/validarebutton.dart';
@@ -185,6 +186,28 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                     ],
                   ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  controller.selectedIndex == 2
+                      ? Column(
+                          children: [
+                            for (var i = 0;
+                                i < 4;
+                                i++) // Assuming you want 4 rows
+                              Row(
+                                children: [
+                                  for (var j = 0; j < 6; j++)
+                                    ShoseSizeContainer(
+                                      text:
+                                          '${i * 6 + j + 26}', // Calculate the shoe size dynamically
+                                      shosesizeValue: '${i * 6 + j + 26}',
+                                    ),
+                                ],
+                              ),
+                          ],
+                        )
+                      : SizedBox(),
                   SizedBox(
                     height: 16,
                   ),

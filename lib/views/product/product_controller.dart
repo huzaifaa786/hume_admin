@@ -29,6 +29,7 @@ class ProductController extends GetxController {
   final _storageApi = StorageApii();
   String category = '';
   List<String> selectedSizes = [];
+  List<String> shoseselectedSizes = [];
   List<File> productImages = [];
   List<String> productImageNames = [];
   List<Shop> shops = [];
@@ -46,7 +47,6 @@ class ProductController extends GetxController {
     'Skin & Hair Products',
     'Perfumes',
     'Accessories',
-    'Personal Services'
   ];
   @override
   void onInit() {
@@ -78,6 +78,16 @@ class ProductController extends GetxController {
       selectedSizes.add(size);
     }
 
+    update();
+  }
+
+  void toggleshoseSize(String size) {
+    if (shoseselectedSizes.contains(size)) {
+      shoseselectedSizes.remove(size);
+    } else {
+      shoseselectedSizes.add(size);
+    }
+    print(shoseselectedSizes);
     update();
   }
 
@@ -130,6 +140,7 @@ class ProductController extends GetxController {
       productDescription: productdiscriptionController.text,
       category: category,
       selectedSizes: selectedSizes,
+      shoseselectedSizes:shoseselectedSizes,
       productImageNames: imageUrls,
       productImageUrls: imageUrls,
     );
@@ -166,7 +177,8 @@ class ProductController extends GetxController {
     ProductnameController.clear();
     productpriceController.clear();
     productdiscriptionController.clear();
-    selectedSizes.clear();
+    selectedSizes = [];
+    shoseselectedSizes = [];
     productImages.clear();
     productImageNames.clear();
     selectedIndex = -1;

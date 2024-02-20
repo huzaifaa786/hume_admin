@@ -17,7 +17,7 @@ class ShopDropdownField extends StatelessWidget {
     required this.items,
     required this.icon,
     required this.onChange,
-    this.secreenRatio = 0.55,
+    this.secreenRatio = 0.65,
   }) : super(key: key);
 
   final imageIcon;

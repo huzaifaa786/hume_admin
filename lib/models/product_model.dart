@@ -6,6 +6,7 @@ class ProductModel {
   late String shopId;
   late String category;
   late List<String> selectedSizes;
+  late List<String>shoseselectedSizes;
   late List<String> productImageUrls;
   late List<String> productImageNames; // Added this line
 
@@ -17,6 +18,7 @@ class ProductModel {
     required this.productDescription,
     required this.category,
     required this.selectedSizes,
+    required this.shoseselectedSizes,
     required this.productImageUrls,
     required this.productImageNames, // Added this line
   });
@@ -28,6 +30,7 @@ class ProductModel {
     productPrice = json['productPrice'];
     productDescription = json['productDescription'];
     category = json['category'];
+    shoseselectedSizes = List<String>.from(json['shoseselectedSizes']);
     selectedSizes = List<String>.from(json['selectedSizes']);
     productImageUrls = List<String>.from(json['productImageUrls']);
     productImageNames = List<String>.from(json['productImageNames']); // Added this line
@@ -42,6 +45,7 @@ class ProductModel {
     data['productDescription'] = productDescription;
     data['category'] = category;
     data['selectedSizes'] = selectedSizes;
+    data['shoseselectedSizes'] = shoseselectedSizes;
     data['productImageUrls'] = productImageUrls;
     data['productImageNames'] = productImageNames; // Added this line
 

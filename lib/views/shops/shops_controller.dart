@@ -52,7 +52,7 @@ class ShopController extends GetxController {
     'Skin & Hair Products',
     'Perfumes',
     'Accessories',
-    'Personal Services'
+   
   ];
 
   Future selectImage() async {

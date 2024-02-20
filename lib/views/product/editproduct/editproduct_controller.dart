@@ -24,6 +24,7 @@ class EditProductController extends GetxController {
   List<Shop> shops = [];
   String category = '';
   List<String> selectedSizes = [];
+   List<String> shoseselectedSizes = [];
   final _imageSelectorApi = ImageSelectorApi();
   final _storageApi = StorageApii();
   List<File> productImages = [];
@@ -211,6 +212,7 @@ class EditProductController extends GetxController {
               productPrice: productpriceController.text,
               productDescription: productdiscriptionController.text,
               selectedSizes: selectedSizes,
+              shoseselectedSizes :shoseselectedSizes,
               category: categories[selectedIndex],
               shopId: selectedShop!.id,
               productImageUrls: updatedImageUrls,
