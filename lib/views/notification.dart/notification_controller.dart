@@ -34,7 +34,7 @@ class NotificationController extends GetxController {
       final user = await _notificationApi.fetchUser(notification.userId);
       print(user);
 
-      final order = await _notificationApi.fetchOrerwder(notification.orderId);
+      final order = await _notificationApi.fetchOrder(notification.orderId);
       print(order);
 
       final combinedNotification = NotificationCombinedModel(
