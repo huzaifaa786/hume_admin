@@ -30,8 +30,8 @@ class ProductModel {
     productPrice = json['productPrice'];
     productDescription = json['productDescription'];
     category = json['category'];
-    shoseselectedSizes = List<String>.from(json['shoseselectedSizes']);
-    selectedSizes = List<String>.from(json['selectedSizes']);
+    shoseselectedSizes = List<String>.from(json['shoseselectedSizes']?? []);
+    selectedSizes = List<String>.from(json['selectedSizes'] ?? []);
     productImageUrls = List<String>.from(json['productImageUrls']);
     productImageNames = List<String>.from(json['productImageNames']); // Added this line
   }
@@ -47,8 +47,7 @@ class ProductModel {
     data['selectedSizes'] = selectedSizes;
     data['shoseselectedSizes'] = shoseselectedSizes;
     data['productImageUrls'] = productImageUrls;
-    data['productImageNames'] = productImageNames; // Added this line
-
+    data['productImageNames'] = productImageNames;
     return data;
   }
 }

@@ -24,7 +24,7 @@ class EditProductController extends GetxController {
   List<Shop> shops = [];
   String category = '';
   List<String> selectedSizes = [];
-   List<String> shoseselectedSizes = [];
+  List<String> shoseselectedSizes = [];
   final _imageSelectorApi = ImageSelectorApi();
   final _storageApi = StorageApii();
   List<File> productImages = [];
@@ -38,14 +38,13 @@ class EditProductController extends GetxController {
 
   List<String> categories = [
     'Clothes',
-    'Furniture',
+    'Craft Tools',
     'Bags and Shoes',
     'MakeUp',
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
     'Accessories',
-    'Personal Services'
   ];
   void toggleSize(String size) {
     if (selectedSizes.contains(size)) {
@@ -141,6 +140,7 @@ class EditProductController extends GetxController {
         productpriceController.text = product.productPrice;
         productdiscriptionController.text = product.productDescription;
         selectedSizes = product.selectedSizes;
+        shoseselectedSizes = product.shoseselectedSizes;
         selectedIndex = categories.indexOf(product.category);
         productNetworkImages = product.productImageUrls;
       } else {}
@@ -204,20 +204,25 @@ class EditProductController extends GetxController {
 
     try {
       if (selectedShop != null) {
-        await _productApi.updateProduct(
-          productId,
-          ProductModel(
-              id: productId,
-              productName: ProductnameController.text,
-              productPrice: productpriceController.text,
-              productDescription: productdiscriptionController.text,
-              selectedSizes: selectedSizes,
-              shoseselectedSizes :shoseselectedSizes,
-              category: categories[selectedIndex],
-              shopId: selectedShop!.id,
-              productImageUrls: updatedImageUrls,
-              productImageNames: updatedImageUrls),
-        );
+        if (selectedIndex != 2) {
+          shoseselectedSizes = [];
+          update();
+        }
+        print(shoseselectedSizes);
+        // await _productApi.updateProduct(
+        //   productId,
+        //   ProductModel(
+        //       id: productId,
+        //       productName: ProductnameController.text,
+        //       productPrice: productpriceController.text,
+        //       productDescription: productdiscriptionController.text,
+        //       selectedSizes: selectedSizes,
+        //       shoseselectedSizes: shoseselectedSizes,
+        //       category: categories[selectedIndex],
+        //       shopId: selectedShop!.id,
+        //       productImageUrls: updatedImageUrls,
+        //       productImageNames: updatedImageUrls),
+        // );
       }
     } catch (e) {
       print('Error updating product: $e');
@@ -232,8 +237,8 @@ class EditProductController extends GetxController {
     ProductnameController.clear();
     productpriceController.clear();
     productdiscriptionController.clear();
-    selectedSizes.clear();
-
+    selectedSizes = [];
+    shoseselectedSizes = [];
     productImageNames.clear();
     selectedIndex = -1;
     selectedShop = null;

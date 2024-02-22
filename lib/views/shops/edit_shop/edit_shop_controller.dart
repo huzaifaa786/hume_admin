@@ -44,14 +44,13 @@ class EditShopController extends GetxController {
 
   List<String> categories = [
     'Clothes',
-    'Furniture',
+    'Craft Tools',
     'Bags and Shoes',
     'MakeUp',
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
     'Accessories',
-    'Personal Services'
   ];
 
   @override

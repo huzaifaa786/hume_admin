@@ -10,4 +10,6 @@ class OrderCombinedModel {
   final DocumentSnapshot lastDoc; 
 
   OrderCombinedModel({required this.order, required this.shop,required this.user,required this.lastDoc});
+  // OrderCombinedModel({required this.order, required this.user,required this.lastDoc});
+
 }

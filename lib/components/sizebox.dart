@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hume_admin/utils/colors.dart';
 import 'package:hume_admin/views/product/product_controller.dart';
 
-
 class SizeContainer extends StatefulWidget {
   const SizeContainer({Key? key, this.text, this.sizeValue}) : super(key: key);
 
@@ -33,8 +32,8 @@ class _SizeContainerState extends State<SizeContainer> {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
-          width: 50,
-          height: 50,
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: isPressed ? colortext : hintcolor,

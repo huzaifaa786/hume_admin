@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/editsizebox.dart';
 import 'package:hume_admin/components/edittopbar.dart';
@@ -248,6 +248,52 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       ),
                   ],
                 ),
+                SizedBox(
+                  height: 12,
+                ),
+                controller.selectedIndex == 2
+                    ? Row(
+                        children: [
+                          Text(
+                            'Shoe Sizes(Optional)'.tr,
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      )
+                    : SizedBox(),
+                controller.selectedIndex == 2 ? Gap(12) : SizedBox(),
+                controller.selectedIndex == 2
+                    ? Column(
+                        children: [
+                          for (var i = 0; i < 3; i++)
+                            Row(
+                              children: [
+                                for (var j = 0; j < 7; j++)
+                                  // ShoseSizeContainer(
+                                  //   text: '${i * 7 + j + 26}',
+                                  //   shosesizeValue: '${i * 7 + j + 26}',
+                                  // ),
+                                  EditSizeContainer(
+                                    text: '${i * 7 + j + 26}',
+                                    isSelected: controller.shoseselectedSizes
+                                        .contains('${i * 7 + j + 26}'),
+                                    sizeValue: '${i * 7 + j + 26}',
+                                    ontap: () {
+                                      controller.checkFields();
+                                      controller.shoseselectedSizes
+                                              .contains('${i * 7 + j + 26}')
+                                          ? controller.shoseselectedSizes
+                                              .remove('${i * 7 + j + 26}')
+                                          : controller.shoseselectedSizes
+                                              .add('${i * 7 + j + 26}');
+                                      setState(() {});
+                                    },
+                                  ),
+                              ],
+                            ),
+                        ],
+                      )
+                    : SizedBox(),
                 SizedBox(
                   height: 16,
                 ),

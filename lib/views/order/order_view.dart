@@ -46,10 +46,15 @@ class _OrderHistoryState extends State<OrderHistory> {
                   final orderItem = controller.combinedOrderProductList[index];
                   return OrderHistoryCard(
                     // image: SvgPicture.asset('assets/images/wooo.svg'),
-                    image: CachedNetworkImage(
-                      imageUrl: orderItem.product.productImageUrls[0],
-                      height: 156,
-                      width: 137,
+                    image: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black12),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: CachedNetworkImage(
+                        imageUrl: orderItem.product.productImageUrls[0],
+                        height: 156,
+                        width: 137,
+                      ),
                     ),
                     price: orderItem.ordersItem.total,
                     size: orderItem.ordersItem.size,

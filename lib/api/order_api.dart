@@ -26,21 +26,21 @@ class OrderApi {
       final orders = orderDocSnapshot.docs.map((doc) => doc.data()).toList();
 
       List<OrderCombinedModel> combinedOrders = [];
-
       for (final orderData in orders) {
+        print(orderData['shopId']);
         final userId = orderData['userId'];
-        final shopId = orderData['shopId'];
+        // final shopId = orderData['shopId'];
+        List<dynamic> shopIds = orderData['shopId'];
 
         final userDocSnapshot = await FirebaseFirestore.instance
             .collection('users')
             .doc(userId)
             .get();
+        print(shopIds.first.toString());
+        var id = shopIds.first.toString();
 
-        final shopDocSnapshot = await FirebaseFirestore.instance
-            .collection('shops')
-            .doc(shopId)
-            .get();
-
+        final shopDocSnapshot =
+            await FirebaseFirestore.instance.collection('shops').doc(id).get();
         if (userDocSnapshot.exists && shopDocSnapshot.exists) {
           final userData = userDocSnapshot.data();
           final shopData = shopDocSnapshot.data();
@@ -62,7 +62,7 @@ class OrderApi {
   Future<List<OrderCombinedModel>?> fetchOrderbyTrainer(String id) async {
     Query<Map<String, dynamic>> query = FirebaseFirestore.instance
         .collection('orders')
-        .where('shopId', isEqualTo: id)
+        .where('shopId', arrayContains: id)
         .orderBy('id', descending: true);
 
     QuerySnapshot<Map<String, dynamic>> orderDocSnapshot = await query.get();
@@ -73,17 +73,15 @@ class OrderApi {
 
       for (final orderData in orders) {
         final userId = orderData['userId'];
-        final shopId = orderData['shopId'];
+        // final shopId = orderData['shopId'];
 
         final userDocSnapshot = await FirebaseFirestore.instance
             .collection('users')
             .doc(userId)
             .get();
 
-        final shopDocSnapshot = await FirebaseFirestore.instance
-            .collection('shops')
-            .doc(shopId)
-            .get();
+        final shopDocSnapshot =
+            await FirebaseFirestore.instance.collection('shops').doc(id).get();
 
         if (userDocSnapshot.exists && shopDocSnapshot.exists) {
           final userData = userDocSnapshot.data();

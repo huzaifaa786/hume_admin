@@ -40,7 +40,7 @@ class ProductController extends GetxController {
   String? shopname;
   List<String> categories = [
     'Clothes',
-    'Furniture',
+    'Craft Tools',
     'Bags and Shoes',
     'MakeUp',
     'Home & Kitchen',
@@ -50,6 +50,9 @@ class ProductController extends GetxController {
   ];
   @override
   void onInit() {
+    shoseselectedSizes = [];
+    update();
+    print(shoseselectedSizes);
     id = Get.parameters['id'];
     shopname = Get.parameters['shopname'];
 
@@ -77,7 +80,6 @@ class ProductController extends GetxController {
     } else {
       selectedSizes.add(size);
     }
-
     update();
   }
 
@@ -140,11 +142,10 @@ class ProductController extends GetxController {
       productDescription: productdiscriptionController.text,
       category: category,
       selectedSizes: selectedSizes,
-      shoseselectedSizes:shoseselectedSizes,
+      shoseselectedSizes: shoseselectedSizes,
       productImageNames: imageUrls,
       productImageUrls: imageUrls,
     );
-
     try {
       await _productApi.createProduct(product);
       clearFields();

@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/components/categorybutto.dart';
 import 'package:hume_admin/components/dropdown.dart';
+import 'package:hume_admin/components/editsizebox.dart';
 import 'package:hume_admin/components/icon_button.dart';
 import 'package:hume_admin/components/input_field.dart';
 import 'package:hume_admin/components/largebutton.dart';
@@ -180,9 +182,22 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   Row(
                     children: [
                       for (var size in ['S', 'M', 'L', 'XL', '2XL', '3XL'])
-                        SizeContainer(
+                        // SizeContainer(
+                        //   text: size,
+                        //   sizeValue: size,
+                        // ),
+                        EditSizeContainer(
                           text: size,
+                          isSelected: controller.selectedSizes.contains(size),
                           sizeValue: size,
+                          ontap: () {
+                            controller.checkFields();
+                            controller.selectedSizes.contains(size)
+                                ? controller.selectedSizes.remove(size)
+                                : controller.selectedSizes.add(size);
+                            setState(() {});
+                            print(controller.selectedSizes);
+                          },
                         ),
                     ],
                   ),
@@ -190,18 +205,44 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     height: 12,
                   ),
                   controller.selectedIndex == 2
+                      ? Row(
+                          children: [
+                            Text(
+                              'Shoe Sizes(Optional)'.tr,
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        )
+                      : SizedBox(),
+                  controller.selectedIndex == 2 ? Gap(12) : SizedBox(),
+                  controller.selectedIndex == 2
                       ? Column(
                           children: [
                             for (var i = 0;
-                                i < 4;
+                                i < 3;
                                 i++) // Assuming you want 4 rows
                               Row(
                                 children: [
-                                  for (var j = 0; j < 6; j++)
-                                    ShoseSizeContainer(
-                                      text:
-                                          '${i * 6 + j + 26}', // Calculate the shoe size dynamically
-                                      shosesizeValue: '${i * 6 + j + 26}',
+                                  for (var j = 0; j < 7; j++)
+                                    // ShoseSizeContainer(
+                                    //   text: '${i * 7 + j + 26}',
+                                    //   shosesizeValue: '${i * 7 + j + 26}',
+                                    // ),
+                                    EditSizeContainer(
+                                      text: '${i * 7 + j + 26}',
+                                      isSelected: controller.shoseselectedSizes
+                                          .contains('${i * 7 + j + 26}'),
+                                      sizeValue: '${i * 7 + j + 26}',
+                                      ontap: () {
+                                        controller.checkFields();
+                                        controller.shoseselectedSizes
+                                                .contains('${i * 7 + j + 26}')
+                                            ? controller.shoseselectedSizes
+                                                .remove('${i * 7 + j + 26}')
+                                            : controller.shoseselectedSizes
+                                                .add('${i * 7 + j + 26}');
+                                        setState(() {});
+                                      },
                                     ),
                                 ],
                               ),
@@ -262,12 +303,5 @@ class _AddProductScreenState extends State<AddProductScreen> {
         ),
       ),
     );
-  }
-
-  int _getCrossAxisCount(BuildContext context) {
-    // You can implement your own logic here to determine the cross axis count
-    // For example, return 3 for every third row, and 2 for others
-    int rowIndex = (MediaQuery.of(context).size.width / 200).floor();
-    return rowIndex % 3 == 0 ? 3 : 2;
   }
 }

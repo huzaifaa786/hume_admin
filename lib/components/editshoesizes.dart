@@ -30,8 +30,8 @@ class _EditSizeContainerState extends State<EditSizeContainer> {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
-          width: 40,
-          height: 40,
+          width: 50,
+          height: 50,
           child: Center(
             child: Text(
               widget.text ?? '',

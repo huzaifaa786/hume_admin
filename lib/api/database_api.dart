@@ -48,34 +48,29 @@ class DatabaseApi {
     try {
       final batch = FirebaseFirestore.instance.batch();
 
-      // Delete documents from the "products" collection
+      //! Delete documents from the "products" collection
       final productsQuerySnapshot =
           await _productsCollection.where('shopId', isEqualTo: id).get();
       for (final doc in productsQuerySnapshot.docs) {
         batch.delete(doc.reference);
       }
 
-      // Delete documents from the "orders" collection
-      final ordersQuerySnapshot =
-          await _ordersCollection.where('shopId', isEqualTo: id).get();
-      for (final doc in ordersQuerySnapshot.docs) {
-        batch.delete(doc.reference);
-      }
+      await removeShopIdFromAllOrders(id);
 
-      // Delete documents from the "cart" collection
+      //! Delete documents from the "cart" collection
       final cartQuerySnapshot =
           await _cartCollection.where('cartItems.shopId', isEqualTo: id).get();
       for (final doc in cartQuerySnapshot.docs) {
         batch.delete(doc.reference);
       }
 
-      // Delete documents from the "notications" collection
+      //! Delete documents from the "notications" collection
       final notificationQuerySnapshot =
           await _notificationsCollection.where('shopId', isEqualTo: id).get();
       for (final doc in notificationQuerySnapshot.docs) {
         batch.delete(doc.reference);
       }
-      // Delete the shop document
+      //! Delete the shop document
       batch.delete(_shopsCollection.doc(id));
 
       await batch.commit();
@@ -151,6 +146,36 @@ class DatabaseApi {
         title: 'Failed to update Shop'.tr,
       );
     }
+  }
+
+  removeShopIdFromAllOrders(String itemId) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference ordersCollection = firestore.collection('orders');
+    QuerySnapshot ordersSnapshot = await ordersCollection.get();
+    print(ordersSnapshot.docs);
+
+    for (QueryDocumentSnapshot orderDoc in ordersSnapshot.docs) {
+      Map<String, dynamic>? orderData =
+          orderDoc.data() as Map<String, dynamic>?;
+      if (orderData?.containsKey('shopId') == true &&
+          orderData!['shopId'] is List) {
+        List<String> updatedShopIds = await List.from(orderData['shopId']);
+        updatedShopIds.remove(itemId);
+        print(updatedShopIds);
+        if (updatedShopIds.isEmpty) {
+          await ordersCollection.doc(orderDoc.id).delete();
+          print(
+              'Order ${orderDoc.id} deleted because the shopIds array is empty.');
+        } else {
+          await ordersCollection.doc(orderDoc.id).update({
+            'shopId': updatedShopIds,
+          });
+          print('ShopId $itemId removed from order ${orderDoc.id}');
+        }
+      }
+    }
+
+    print('Process complete');
   }
 
   Future<void> createBanner(HomeBanner banner) async {

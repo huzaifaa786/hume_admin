@@ -45,14 +45,13 @@ class ShopController extends GetxController {
 
   List<String> categories = [
     'Clothes',
-    'Furniture',
+    'Craft Tools',
     'Bags and Shoes',
     'MakeUp',
     'Home & Kitchen',
     'Skin & Hair Products',
     'Perfumes',
     'Accessories',
-   
   ];
 
   Future selectImage() async {
@@ -155,8 +154,8 @@ class ShopController extends GetxController {
 //------------delete shop---------------
   Future deleteShop(String id) async {
     await _databaseApi.deleteShop(id);
-    shops = await fetchShop();
-    UiUtilites.successAlert(context, 'Success'.tr);
+    await fetchShop();
+    UiUtilites.successAlert(Get.context, 'Success'.tr);
     update();
   }
 }

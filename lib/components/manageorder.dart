@@ -170,26 +170,26 @@ class ManageOrderCard extends StatelessWidget {
                           )
                         ],
                       ),
-                      Gap(8),
+                      // Gap(8),
                       Row(
                         children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/images/home.svg',
-                                height: 23,
-                                width: 23,
-                              ),
-                              Text(
-                                shopname,
-                                style: TextStyle(
-                                  color: colortext,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              )
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     SvgPicture.asset(
+                          //       'assets/images/home.svg',
+                          //       height: 23,
+                          //       width: 23,
+                          //     ),
+                          //     Text(
+                          //       shopname,
+                          //       style: TextStyle(
+                          //         color: colortext,
+                          //         fontSize: 11,
+                          //         fontWeight: FontWeight.w700,
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
                         ],
                       ),
                     ],

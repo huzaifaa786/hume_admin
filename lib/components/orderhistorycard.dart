@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:hume_admin/utils/colors.dart';
 
 class OrderHistoryCard extends StatelessWidget {
@@ -44,24 +43,26 @@ class OrderHistoryCard extends StatelessWidget {
                   SizedBox(
                     height: 12,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Size : '.tr,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey),
-                      ),
-                      Text(
-                        size,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey),
-                      ),
-                    ],
-                  ),
+                  size != ''
+                      ? Row(
+                          children: [
+                            Text(
+                              'Size : '.tr,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                            Text(
+                              size,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                          ],
+                        )
+                      : SizedBox(height: 20),
                   SizedBox(
                     height: 12,
                   ),

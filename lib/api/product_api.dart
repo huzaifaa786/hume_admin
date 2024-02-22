@@ -83,6 +83,14 @@ class ProductApi {
           doc.reference.delete();
         }
       });
+      await _cartCollection
+          .where('orderItems', isEqualTo: productId)
+          .get()
+          .then((snapshot) {
+        for (var doc in snapshot.docs) {
+          doc.reference.delete();
+        }
+      });
       await _orderItemCollection
           .where('productId', isEqualTo: productId)
           .get()

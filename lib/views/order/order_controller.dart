@@ -23,6 +23,8 @@ class OrderController extends GetxController {
   String category = 'New arrivals';
   final paymentService = PaymentService();
   final notificationService = NotificationService();
+  bool islodaing = false;
+  bool isBottomLoading = false;
 
   @override
   void onInit() {
@@ -38,13 +40,15 @@ class OrderController extends GetxController {
 
     if (currentScroll >= scrollThreshold) {
       if (lastDocument != null) {
-        fetchOrders();
+        fetchMoreOrders();
         lastDocument = null;
       }
     }
   }
 
   fetchOrders() async {
+    islodaing = true;
+    update();
     List<OrderCombinedModel>? newItems =
         await orderApi.fetchOrder(lastDocument);
 
@@ -53,6 +57,22 @@ class OrderController extends GetxController {
     }
 
     orders.addAll(newItems);
+    islodaing = false;
+    update();
+  }
+
+  fetchMoreOrders() async {
+    isBottomLoading = true;
+    update();
+    List<OrderCombinedModel>? newItems =
+        await orderApi.fetchOrder(lastDocument);
+
+    if (newItems!.isNotEmpty) {
+      lastDocument = newItems.last.lastDoc;
+    }
+
+    orders.addAll(newItems);
+    isBottomLoading = false;
     update();
   }
 
@@ -142,8 +162,8 @@ class OrderController extends GetxController {
   Future<void> fetchCombinedOrderProductList() async {
     combinedOrderProductList = <CombinedOrderProductModel>[].obs;
     update();
-    LoadingHelper.show();
-    var id = Get.parameters['id'];
+    // LoadingHelper.show();
+    var id = await Get.parameters['id'];
     var orderItemsSnapshot = await FirebaseFirestore.instance
         .collection('orderItems')
         .where('orderId', isEqualTo: id)
@@ -163,20 +183,22 @@ class OrderController extends GetxController {
     }
     for (final orderItem in orderItemList) {
       final productId = orderItem.productId;
-
+      print(productId);
       final productSnapshot = await FirebaseFirestore.instance
           .collection('products')
           .doc(productId)
           .get();
+      // if (productSnapshot)
+      print(productSnapshot.data());
       final product =
           ProductModel.fromJson(productSnapshot.data() as Map<String, dynamic>);
-
+      print('object***************************8');
       final combinedOrderProduct =
           CombinedOrderProductModel(product: product, ordersItem: orderItem);
 
       combinedOrderProductList.add(combinedOrderProduct);
-      LoadingHelper.dismiss();
     }
+    LoadingHelper.dismiss();
     update();
   }
 

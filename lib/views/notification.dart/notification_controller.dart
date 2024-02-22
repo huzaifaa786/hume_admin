@@ -26,12 +26,16 @@ class NotificationController extends GetxController {
     fetchednotifications = await _notificationApi.fetchNotifications();
     print(fetchednotifications);
     for (var notification in fetchednotifications) {
-      print(notification.notificationId);
+      print(notification.shopId);
+      print(notification.userId);
+      print(notification.orderId);
       final shop = await _notificationApi.fetchShop(notification.shopId);
-
+      print(shop);
       final user = await _notificationApi.fetchUser(notification.userId);
+      print(user);
 
-      final order = await _notificationApi.fetchOrder(notification.orderId);
+      final order = await _notificationApi.fetchOrerwder(notification.orderId);
+      print(order);
 
       final combinedNotification = NotificationCombinedModel(
         notification: notification,

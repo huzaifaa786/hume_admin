@@ -7,7 +7,7 @@ class OrderModel {
   String? status;
   String? total;
   String? userId;
-  String? shopId;
+  List? shopId;
 
   OrderModel({
     required this.id,

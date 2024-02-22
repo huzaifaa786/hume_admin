@@ -44,24 +44,24 @@ class UiUtilites {
               width: 300.0,
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.01),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 20,
-                      offset: Offset(12, 15),
-                      color: Colors.black),
-                  BoxShadow(
-                      blurRadius: 20,
-                      offset: Offset(12, -15),
-                      color: Colors.black),
-                  BoxShadow(
-                      blurRadius: 20,
-                      offset: Offset(-12, 15),
-                      color: Colors.black),
-                  BoxShadow(
-                      blurRadius: 20,
-                      offset: Offset(-12, -15),
-                      color: Colors.black)
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //       blurRadius: 20,
+                //       offset: Offset(12, 15),
+                //       color: Colors.black),
+                //   BoxShadow(
+                //       blurRadius: 20,
+                //       offset: Offset(12, -15),
+                //       color: Colors.black),
+                //   BoxShadow(
+                //       blurRadius: 20,
+                //       offset: Offset(-12, 15),
+                //       color: Colors.black),
+                //   BoxShadow(
+                //       blurRadius: 20,
+                //       offset: Offset(-12, -15),
+                //       color: Colors.black)
+                // ],
                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
               ),
               child: Column(
@@ -79,7 +79,7 @@ class UiUtilites {
                       fontFamily: "Montserrat",
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                      // color: Colors.white,
                       // height: 52 / 12,
                     ),
                     textAlign: TextAlign.center,

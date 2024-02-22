@@ -33,8 +33,8 @@ class _ShoseSizeContainerState extends State<ShoseSizeContainer> {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
-          width: 50,
-          height: 50,
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: isPressed ? colortext : hintcolor,
