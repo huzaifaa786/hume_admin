@@ -1,6 +1,7 @@
 class OrdersItemsModel {
   late String id;
   String? productId;
+  String? shopId;
   String? quantity;
   String? size;
   String? total;
@@ -9,6 +10,7 @@ class OrdersItemsModel {
     required this.id,
     required this.productId,
     required this.quantity,
+    required this.shopId,
     required this.size,
     required this.total,
     required this.orderId,
@@ -21,6 +23,7 @@ class OrdersItemsModel {
     size = json['size'];
     total = json['total'];
     orderId = json['orderId'];
+    shopId = json['shopId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +34,7 @@ class OrdersItemsModel {
     data['size'] = size;
     data['total'] = total;
     data['orderId'] = orderId;
+    data['shopId'] = shopId;
     return data;
   }
 }

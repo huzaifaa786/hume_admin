@@ -60,6 +60,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                     size: orderItem.ordersItem.size,
                     name: orderItem.product.productName,
                     quantity: orderItem.ordersItem.quantity,
+                    shopname: orderItem.shop.name,
                   );
                 },
               );

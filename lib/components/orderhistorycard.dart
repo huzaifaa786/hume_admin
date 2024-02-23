@@ -6,12 +6,19 @@ import 'package:hume_admin/utils/colors.dart';
 
 class OrderHistoryCard extends StatelessWidget {
   const OrderHistoryCard(
-      {super.key, this.name, this.size, this.quantity, this.price, this.image});
+      {super.key,
+      this.name,
+      this.size,
+      this.quantity,
+      this.price,
+      this.image,
+      this.shopname});
   final name;
   final image;
   final size;
   final quantity;
   final price;
+  final shopname;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +47,7 @@ class OrderHistoryCard extends StatelessWidget {
                           color: Colors.black),
                     ),
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  SizedBox(height: 6),
                   size != ''
                       ? Row(
                           children: [
@@ -63,9 +68,7 @@ class OrderHistoryCard extends StatelessWidget {
                           ],
                         )
                       : SizedBox(height: 20),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  SizedBox(height: 6),
                   Row(
                     children: [
                       Text(
@@ -84,9 +87,7 @@ class OrderHistoryCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  SizedBox(height: 6),
                   Row(
                     children: [
                       Text(
@@ -105,8 +106,32 @@ class OrderHistoryCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Text(
+                        'Shop Name'.tr + ' : ',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey),
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.27,
+                        child: Text(
+                          shopname,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(
-                    height: 23,
+                    height: 10,
                   ),
                 ],
               ),

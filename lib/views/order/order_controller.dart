@@ -9,6 +9,7 @@ import 'package:hume_admin/models/combine_order_product.dart';
 import 'package:hume_admin/models/notification_model.dart';
 import 'package:hume_admin/models/order_item_model.dart';
 import 'package:hume_admin/models/product_model.dart';
+import 'package:hume_admin/models/shops.dart';
 import 'package:hume_admin/services/notification_service.dart';
 import 'package:hume_admin/services/payment_service.dart';
 import 'package:hume_admin/utils/ui_utils.dart';
@@ -183,18 +184,21 @@ class OrderController extends GetxController {
     }
     for (final orderItem in orderItemList) {
       final productId = orderItem.productId;
+      final shopId = orderItem.shopId;
       print(productId);
       final productSnapshot = await FirebaseFirestore.instance
           .collection('products')
           .doc(productId)
           .get();
-      // if (productSnapshot)
-      print(productSnapshot.data());
+      final shopSnapshot = await FirebaseFirestore.instance
+          .collection('shops')
+          .doc(shopId)
+          .get();
       final product =
           ProductModel.fromJson(productSnapshot.data() as Map<String, dynamic>);
-      print('object***************************8');
-      final combinedOrderProduct =
-          CombinedOrderProductModel(product: product, ordersItem: orderItem);
+      final shop = Shop.fromJson(shopSnapshot.data() as Map<String, dynamic>);
+      final combinedOrderProduct = CombinedOrderProductModel(
+          product: product, ordersItem: orderItem, shop: shop);
 
       combinedOrderProductList.add(combinedOrderProduct);
     }
